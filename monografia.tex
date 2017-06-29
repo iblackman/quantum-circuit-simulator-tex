@@ -313,6 +313,10 @@ O Flask seria uma boa opção entretanto escolhemos o Django por: possuir a maio
 
 \section{Drag and Drop}
 
+Como o simulador deveria ser amigável para o usuário decidimos em utilizar Drag \& Drop (D \& D) para a criação/edição do circuito. Resolvemos que o simulador deveria ter uma área com as portas quânticas disponíveis para montar o circuito quântico e a paritr dessa area o usuário poderia arrastar as portas para formar o circuito. Entretanto os D \& D convencionais apenas possibilitavam o arrastar de um elemento para um outro container, ou seja, o elemento deixava de existir no container original e era adicionado no final. O que queriamos era que o elemento inicial continuasse existindo onde estava e que uma cópia do mesmo fosse criada e adicionada ao container alvo, ou final, por isso decidimos criar um.
+
+-----------
+
 Tive varios problemas com a implementação do Drag and Drop, o que achei na internet apenas movia um elemento de um lugar para o outro mas nao era bem isso que eu queria.
 
 No lugar inicial sempre tinha que ter a imagem e eu poderia arrasta-la para um dos pontos do circuito para assim montar o mesmo.
