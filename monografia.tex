@@ -8,6 +8,8 @@
 \usepackage[brazilian]{babel}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{physics}
+\usepackage[export]{adjustbox}
 
 \linespread{1.5} 
 \setlength{\hoffset}{-1in}
@@ -266,48 +268,191 @@ O simulador Quirk é composto por um menu que possui opções de carregar alguns
 
 Este trabalho está divido da seguinte forma: a Seção 2 é apresentada a motivação; na Seção 3 é realizada uma revisão bibliográfica, expondo a teoria e os frameworks existentes atualmente; a Seção 4 apresenta a solução implementada; a Seção 5 traz os resultados obtidos com o trabalho; e por final na Seção 6 são apresentadas as conclusões e trabalhos futuros.
 
+
+%%%%%%%%% Circuitos Quanticos
+\chapter{Circuito Quântico}
+
+Primeiramento vamos relembrar um pouco de circuitos lógicos. Os circuitos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que é a entrada transformada pelo circuito.
+
+\section{Qubit}
+Já um bit quântico, ou seja um qubit, é um vetor de dois números complexos que chamaremos de a e b.
+\begin{equation} \label{eq1} 
+\ket{\Psi} = \mqty(a\\b).
+\end{equation}
+
+Ao ser medido os elementos $\abs{a}^2$ e $\abs{b}^2$ são, respectivamente, a probabilidade de que o qubit seja $\ket{0}$ e $\ket{1}$. 
+\begin{equation} \label{eq2}
+  \ket{0} = \mqty(1\\0) ,\hspace{2cm} 
+  \ket{1} = \mqty(0\\1).
+\end{equation}
+Sendo assim os valores a e b devem seguir a regra de normalização
+\begin{equation}\label{eq3}
+\abs{a}^2 + \abs{b}^2 = 1,
+\end{equation}
+\begin{equation}\label{eq4}
+\ket{\Psi} = a\ket{0} + b\ket{1} = \mqty(a\\b).
+\end{equation}
+O estado $\ket{\Psi}$ é dito de estar em superposição dos estados $\ket{0}$ e $\ket{1}$ com amplitudes \textit{a} e \textit{b}. Se a ou b for 0 e o outro for 1, por exemplo, é o caso especial onde o estado do qubit é igual a um dos estados classicos $\ket{0}$ ou $\ket{1}$. (pagina 17)
+
+\section{Entrelaçamento}
+Assim como o estado geral de um único qubit é qualquer superposição normalizada \eqref{eq4} dos dois possíveis estados clássicos, o estado geral de $\ket{\Psi}$ nos possibilita associar com dois qubits em qualquer superposição dos quatro estados clássicos,
+\begin{equation}\label{eq5}
+  \ket{00} = \mqty(1\\0\\0\\0) \hspace{1cm} 
+  \ket{01} = \mqty(0\\1\\0\\0) \hspace{1cm} 
+  \ket{10} = \mqty(0\\0\\1\\0) \hspace{1cm} 
+  \ket{11} = \mqty(0\\0\\0\\1)
+\end{equation}
+\begin{equation}\label{eq6}
+\ket{\Psi}_2 = a\ket{00} + b\ket{01} + c\ket{10} + d\ket{11} = \mqty(a\\b\\c\\d)
+\end{equation}
+Se tivermos dois qubits $\ket{\Psi} = a\ket{0} + b\ket{1}$ e $\ket{\Phi} = c\ket{0} + d\ket{1}$, então o estado $\ket{\Psi}_2$ do par é o produto tensor deles,
+\begin{equation}\label{eq7}
+\ket{\Psi}_2 = \ket{\Psi}\otimes\ket{\Phi} = \mqty(a \vdot c\\a \vdot d\\b \vdot c\\b \vdot d)
+\end{equation}\
+Assim os valores das quatro amplitudes devem seguir a regra de normalização, onde
+\begin{equation}
+\abs{a}^2 + \abs{b}^2 + \abs{c}^2 + \abs{d}^2 = 1
+\end{equation}
+Com \eqref{eq7} temos
+\begin{align}
+\abs{a \vdot c}^2 + \abs{a \vdot d}^2 + \abs{b \vdot c}^2 + \abs{b \vdot d}^2 \\
+\abs{a}^2 \vdot \abs{c}^2 + \abs{a}^2 \vdot \abs{d}^2 + \abs{b}^2 \vdot \abs{c}^2 + \abs{b}^2 \vdot \abs{d}^2 \\
+\abs{a}^2 \vdot (\abs{c}^2 + {d}^2) + \abs{b}^2 \vdot (\abs{c}^2 + \abs{d}^2) \\
+\abs{a}^2 \vdot 1 + \abs{b}^2 \vdot 1 \\
+\abs{a}^2 + \abs{b}^2 = 1
+\end{align}
+Essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \ref{eq7} de dois estados de 1-qubit. Esse estado de dois ou mais qubits é chamado de entrelaçamento.
+
+\section{Portas quânticas}
+Portas quânticas são operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos ou matemáticamente por matrizes.
+\begin{equation}
+\ket{\Psi'} =  U\ket{\Psi}
+\qquad \includegraphics[width=0.07\linewidth, valign=c]{h.jpg}
+\end{equation}
+Uma porta quântica deve sempre ser representada por uma matriz unitária porque ao multiplicar o vetor pela matriz a norma do vetor é mantida.
+\subsection{NOT} 
+A operação NOT quântica faz com que as amplitudes do qubits se invertam.
+\begin{equation}
+X =  \mqty(0&1\\1&0)
+\qquad \includegraphics[width=0.07\linewidth, valign=c]{x.jpg}
+\end{equation}
+\begin{equation}
+X\ket{\Psi} = \mqty(0&1\\1&0)\mqty(a\\b) = \mqty(0 \vdot a+1 \vdot b \\1 \vdot a+0 \vdot b) = \mqty(b\\a) = \ket{\Psi'}
+\end{equation}
+
+\subsection{Y e Z} 
+Análogas a operação NOT temos as operações Y e Z.
+\begin{equation}
+Y =  \mqty(0&-i\\i&0)
+\qquad \includegraphics[width=0.07\linewidth, valign=c]{y.jpg}
+\end{equation}
+\begin{equation}
+Z =  \mqty(1&0\\0&-1)
+\qquad \includegraphics[width=0.07\linewidth, valign=c]{z.jpg}
+\end{equation}
+
+\subsection{Identidade} 
+A operação Identidade quântica mantém os valores iniciais do qubit.
+\begin{equation}
+I =  \mqty(1&0\\0&1)
+\qquad \includegraphics[width=0.07\linewidth, valign=c]{line.jpg}
+\end{equation}
+\begin{equation}
+I\ket{\Psi} = \mqty(1&0\\0&1)\mqty(a\\b) = \mqty(1 \vdot a+0 \vdot b \\0 \vdot a+1 \vdot b) = \mqty(a\\b) = \ket{\Psi'}
+\end{equation}
+
+\subsection{Hadamard} 
+A porta Hadamard é uma operação fundamental na computação quântica e não possui uma operação clássica equivalente. Ela transforma  os qubits bases $\ket{0}$ e $\ket{1}$ para um estado de sobreposição onde $\ket{0}$ e $\ket{1}$ possuem a mesma probabilidade.
+\begin{equation}
+H =  \frac{1}{\sqrt{2}}\mqty(1&1\\1&-1)
+\qquad \includegraphics[width=0.07\linewidth, valign=c]{h.jpg}
+\end{equation}
+\begin{equation}
+H\ket{\Psi} = \frac{1}{\sqrt{2}}\mqty(1&1\\1&-1)\mqty(a\\b) = \frac{1}{\sqrt{2}}\mqty(1 \vdot a+1 \vdot b \\1 \vdot a-1 \vdot b) = \mqty( \frac{a+b}{\sqrt{2}} \\ \frac{a-b}{\sqrt{2}} ) = \ket{\Psi'}
+\end{equation}
+
+\subsection{CNOT} 
+A operação CNOT possui um controle. Dados dois qubits, x e y, a matriz C mantém o valor de y caso x seja igual a 0 e caso x seja igual a 1 ela inverte o valor de y.
+\begin{equation}
+C =  \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)
+\qquad \includegraphics[width=0.07\linewidth, valign=c]{cnot.png}
+\end{equation}
+\begin{equation}
+C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)\mqty(a\\b\\c\\d) = 
+\mqty(1 \vdot a+0 \vdot b +0 \vdot c +0 \vdot d \\
+	  0 \vdot a+1 \vdot b +0 \vdot c +0 \vdot d \\
+	  0 \vdot a+0 \vdot b +0 \vdot c +1 \vdot d \\
+	  0 \vdot a+0 \vdot b +1 \vdot c +0 \vdot d ) 
+= \mqty(a\\b\\d\\c) = \ket{\Psi'}
+\end{equation}
+
+\subsection{Medição}
+Quando um qubit passa pela operação de medição ele se torna um bit clássico, 0 ou 1, e por esse motivo essa operação é muito importante na computação quântica. Para fazer essa diferenciação entre qubit e bit clássico em um circuito lógico quântico, um traço representa um qubit e um traço duplo um bit clássico.
+\begin{align}
+\qquad \includegraphics[width=0.1\linewidth, valign=c]{medicao.png}
+\end{align}
+
+\subsection{Código Superdenso}
+
+(pagina 149)
+
+
+%%%%%%%%%%%%% Escolha das ferramentas
 \chapter{Escolha das ferramentas}
 \thispagestyle{empty} 
 
+
+Neste capítulo iremos falar sobre as opções e escolhas de linguagem, biblioteca e frameworks para desenvolvimento do proejto. 
+
 \section{Linguagem}
 
-Python foi a escolha por ser um linguagem com a qual tinhamos interesse de aprender e que é vastamente utilizada em diversas aplicações e empresas como: YouTube, Google, Industrial Light e Magic, etc...~\cite{pythonquotes} O que adiciona mais valor ao seu aprendizdo além de possuir todos os requisitos necessários para o desenvolvimento do projeto, frameworks de desenvolvimento web e bibliotecas de circuitos quânticos.
+Python foi a escolha por possuir todos os requisitos necessários para o desenvolvimento do projeto, frameworks de desenvolvimento web e bibliotecas de circuitos quânticos. Além disso, ela é vastamente utilizada em diversas aplicações e empresas como YouTube, Google, Industrial Light e Magic~\cite{pythonquotes} o que adiciona mais valor ao seu aprendizdo.
 
 \section{Biblioteca}
 
-Tendo em vista que escolhemos python como linguagem achamos algumas bibliotecas para a mesma:
+Tendo em vista que escolhemos python como linguagem agora é a vez de escolhermos alguma biblioteca para nos ajudar com os cálculos de cicuito quântico. A seguir falamos sobre algumas opções encontradas e qual foi a escolhida.
 \subsection{PyQu}
-PyQu é um módulo de extensão para Python 3 com o objetivo principal de providenciar um completo conjunto de tipos de dados e funções para simular computação quântica com uma sintaxe pura. Entretanto o último commit feito foi a 7 anos o que nos fez entender que o projeto foi descontinuado, fazendo com que discartassemos essa opção~\cite{pyqu}.
+PyQu é um módulo de extensão para Python 3 com o objetivo principal de providenciar um completo conjunto de tipos de dados e funções para simular computação quântica com uma sintaxe pura. Entretanto o último commit feito foi há 7 anos o que nos fez entender que o projeto foi descontinuado, fazendo com que discartassemos essa opção~\cite{pyqu}.
 
 \subsection{Qitensor}
-Qitensor outro módulo que essencialmente é um pacote para Numpy~\cite{numpy} que utiliza semânticas mais úteis para mecânica quântica de dimensões finitas de muitas partículas. Mas essa biblioteca também não recebia atualizações a mais de ano~\cite{qitensor}.
+Qitensor outro módulo que essencialmente é um pacote para Numpy~\cite{numpy}, utiliza semânticas mais úteis para mecânica quântica de dimensões finitas de muitas partículas. Infelizmente essa biblioteca também não recebia atualizações há mais de ano~\cite{qitensor}.
 \subsection{Qubiter}
-Qubiter tinha como intuíto ajudar no designer e simulação de circuitos quânticos em computadores clássicos. É um projeto gêmeo do Quantum Fog e eles esperam que um dia o Quantum Fog chame o Qubiter para realizar algumas tarefas, como compilação e simulação quântica~\cite{qubiter}.	
+Qubiter tem como intuíto ajudar no designer e simulação de circuitos quânticos em computadores clássicos. É um projeto gêmeo do Quantum Fog e eles esperam que um dia o Quantum Fog chame o Qubiter para realizar algumas tarefas, como compilação e simulação quântica~\cite{qubiter}.	
 
 \subsection{QuTiP}
-QuTiP teve sua primeira versão em Julho de 2011~\cite{qutipchangelog}. É um software open-source para simular as dinâmicas de um sistema quântico aberto que utiliza os pacotes numéricos Numpy, Scipy e Cython. Teve sua primeira versão em Julho de 2011. Possui também um output gráfico provido pela Matplotlib. QuTiP tem como objetivo providenciar simulações numéricas eficientes e amigáveis para o usuário de um variado numero de Hamiltonianas comumente achadas em uma vasta quantidade de aplicações físicas. Está disponível sem custos para Linux, Mac OSX e Windows, sendo esta última com algumas restrições~\cite{qutip.org}. 
+QuTiP teve sua primeira versão em Julho de 2011~\cite{qutipchangelog}. É um software open-source para simular as dinâmicas de um sistema quântico aberto que utiliza os pacotes numéricos Numpy, Scipy e Cython. Teve sua primeira versão em Julho de 2011. Possui também um output gráfico provido pela Matplotlib. QuTiP tem como objetivo providenciar simulações numéricas eficientes e amigáveis para o usuário de um variado numero de Hamiltonianas comumente achadas em uma vasta quantidade de aplicações físicas. Está disponível sem custos para Linux, Mac OSX e Windows, sendo esta última com algumas restrições~\cite{qutip.org}. \cite{teste}
+
+\subsection{Escolhida}
+QuTip foi a escolhida por possuir pacotes numéricos e também output gráfico, mesmo este último não tendo sido utilizado no projeto mas com ele existe a possibilidade de utilização em trabalhos futuros. Além de possuir a melhor documentação dentre as bibliotecas pesquisadas, com exemplos e tutoriais.
 
 No site eles pedem para citar da seguinte forma.
 J. R. Johansson, P. D. Nation, and F. Nori: "QuTiP: An open-source Python framework for the dynamics of open quantum systems.", Comp. Phys. Comm. 183, 1760–1772 (2012) [DOI: 10.1016/j.cpc.2012.02.021]. 
 
-\section{Framework}
-
-Sobre os Frameworks ficamos na dúvida entre 3 opções, Flask, Pyramid e Django.
+\section{Framework Web}
+Frameworks web são projetados para dar suporte no desenvolvimento de sites dinâmicos, aplicações web e web services, auxiliando no trabalho de tarefas comuns como, controle de sessão, validação de dados, acesso ao banco de dados, templates, tratamento de requisições e respostas HTTP, etc. Dentre os frameworks web existentes para python avaliamos neste trabalho Flask, Pyramid e Django.
 \subsection{Flask}
-Flask é o mais novo dentre os três, foi criado em meados de 2010. Teve o aprendizado dos frameworks que vieram antes dele e tem se destacado em pequenos projetos. Quanto a sua comunidade, é pequena se comparada à do Django mas é bem ativa em suas listas de email e no IRC~\cite{ryanbrown}. 
+Flask é o framework mais recente encontrado, foi criado em meados de 2010. Evoluiu muito a partir da análise de framworks anteriores e tem se destacado em pequenos projetos. A sua comunidade é pequena se comparada a do Django mas é ativa em listas de email e no IRC~\cite{ryanbrown}. 
 
 \subsection{Pyramid}
-O Pyramid foi criado a partir do projeto Pylons~\cite{pylonsproject} e recebeu o nome de Pyramid no ano de 2010, mesmo tendo sua primeira realease em 2005. É um framework tão maduro quanto o Django e disponibiliza mais flexibilidade para desenvolvedores que possuem projetos onde o caso de uso não se encaixe muito bem nos padrões do mapeamento objeto-relacional~\cite{pyramid}. Pode-se dizer que Pyramid é o framework mais flexível dentre os três o que é um ponto positivo mas foi negativo para a escolha do framework, pois apresenta muitas opções para se começar um projeto. Além disso como pode-se ver mais a frente no trabalho possui a menos comunidade dentre os frameworks pesquisados.
+O Pyramid foi criado a partir do projeto Pylons~\cite{pylonsproject} e recebeu o nome de Pyramid somente no ano de 2010, mesmo tendo sua primeira realease em 2005. É um framework tão maduro quanto o Django e disponibiliza mais flexibilidade para desenvolvedores que possuem projetos onde o caso de uso não se encaixe muito bem nos padrões do mapeamento objeto-relacional, que nada mais é do que a representação das tabelas do banco de dados através de classes onde cada resgistro é representado como uma instancia da classe~\cite{pyramid}. Pode-se dizer que Pyramid é o framework mais flexível dentre os estudados. Apesar disso, pareceu muito mais complexo do que noso projeto necessitava. Além disso ele possui a comunidade mais inativa dentre os frameworks pesquisados.
 
 \subsection{Django}
-Django foi lançado em 2005. É um framework com foco em grandes aplicações, inclui dezenas de extras que podem ser usados para lidar com as tarefas comuns do desenvolvimento web, como por exemplo autenticação, administração de conteúdo, etc. Além de ajudar também com questões de segurança como SQL injection com seus querysets, evitar ataques Cross Site Scripting, proteção a Clickjacking, dentre outros~\cite{django}. De longe Django é o framework mais popular e a lista de sites que o utilizam é impressionante, mais de 5000~\cite{listadjangosites}. Para sites que possuem requisitos comuns, Django segue padrões bem sensatos tornando-o uma escolha bem popular entre media e grandes aplicações web.
+Django foi lançado em 2005. É um framework com foco em grandes aplicações que inclui dezenas de extras para lidar com as tarefas comuns do desenvolvimento web, como por exemplo autenticação e administração de conteúdo, além de auxiliar também com questões de segurança como SQL injection com seus querysets, evitar ataques Cross Site Scripting e fornecer proteção a Clickjacking~\cite{django}. Sem dúvida o Django é o framework mais popular e a lista de sites que o utilizam é impressionante, tendo mais de 5000 páginas~\cite{listadjangosites}. Para sites que possuem requisitos comuns, Django segue padrões bem sensatos tornando-o uma escolha bem popular entre aplicações web de porte médio ou grande.
 
 \subsection{Comunidade}
-Django possui uma quantidade enorme de perguntas no StackOverflow se comparado com os outros dois Frameworks, Django 144.000, Flask 16.600, Pyramid 1.900 (Maio 2017)~\cite{stackoverflowtags}. Mas já no Github Flask e Django têm números semelhantes e Pyramid 10 vezes menos, Flask possui um pouco mais de 27.200 estrelas, Django pouco mais de 25.900 e Pyramid 2.300~\cite{github}.
+Django possui uma quantidade enorme de perguntas no StackOverflow se comparado com os outros dois Frameworks, Django 144.000, Flask 16.600, Pyramid 1.900 (Maio 2017)~\cite{stackoverflowtags}. Já no Github Flask e Django têm números semelhantes e Pyramid 10 vezes menos, Flask possui um pouco mais de 27.200 estrelas, Django pouco mais de 25.900 e Pyramid 2.300~\cite{github}. Esses números evidenciam a populariedade e o suporte oferecido por cada framework.
 
 \subsection{Escolhido}
-O Flask seria uma boa opção entretanto escolhemos o Django por: possuir a maior comunidade; diversas ferramentas já inclusas não tendo que "reinventar a roda"; ele foi criado para projetos escaláveis pensando em uma futura continuação do Projeto Final; força boas práticas no desenvolvimento além de ser uma ferramenta muito utilizada no mercado o que nos fez acreditar que traria mais benefícios com o aprendizado.
+O Flask seria uma boa opção entretanto escolhemos o Django por:
+\begin{itemize}
+\item possuir uma grande comunidade ativa;
+\item diversas ferramentas já inclusas, evitando o tempo de reprogramação de funções comuns;
+\item ser facilmente escalável, pensando em uma futura continuação deste Proejto Final
+\item ser uma ferramenta muito utilizada no mercado, trazendo mais benefícios com o aprendizado.
+\end{itemize}
 
+
+%%%%%%%%%%%%%%% Desenvolvimento
 \chapter{Desenvolvimento}
 \thispagestyle{empty} 
 
@@ -357,6 +502,9 @@ https://docs.djangoproject.com/en/1.11/ref/request-response/
 OBS: Tive muito problema para arrumar as dependencias da lib Qutip
 http://qutip.org/docs/3.1.0/installation.html
 
+\section{Usando QuTip}
+
+
 \section{Hospedagem - Heroku}
 
 -criei um novo virtualenv para usar apenas as dependências necessárias
@@ -381,12 +529,6 @@ Texto...
 \thispagestyle{empty} 
 
 Texto...
-\cite{mermin}
-\cite{qutip.org}
-\cite{test2}
-\cite{davyw}
-\cite{quirk}
-\cite{simulatorList}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    REFERÊNCIAS BIBLIOGRÁFICAS
 \bibliographystyle{plain}
