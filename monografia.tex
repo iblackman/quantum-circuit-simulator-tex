@@ -394,7 +394,111 @@ Quando um qubit passa pela operação de medição ele se torna um bit clássico
 
 \subsection{Código Superdenso}
 
+Apesar que uma quantidade infinita de informações é necessária para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo de que alguém que tenha adquirido um qubit possa descobrir qual é seu estado. Se Alice prepara um qubit no estado $\ket{\Psi}$ e envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
+
+E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2bits clássicos para Bob e Eve que fará e inicialização do sistema.
+
+Na inicialização do sistema, Eve inicializa um qubit de tamanho dois $\ket{\Psi}=\ket{\Psi' \Psi''}$ com zero. 
+\begin{equation}
+\ket{\Psi} = \ket{00} = \ket{0}\otimes \ket{0} = \mqty(1\\0) \otimes \mqty(1\\0) = \mqty(1\\0\\0\\0)
+\end{equation}
+Após isso Eve aplica a operação Hadamard em $\ket{\Psi'}$
+\begin{align}
+H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
+				\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}} ) 
+	\otimes \mqty(1&0\\0&1) 
+= \mqty(\frac{1}{\sqrt{2}}\mqty(1&0\\0&1) & \frac{1}{\sqrt{2}}\mqty(1&0\\0&1) \\ 
+	\frac{1}{\sqrt{2}}\mqty(1&0\\0&1) & -\frac{1}{\sqrt{2}}\mqty(1&0\\0&1))
+	\\
+H \otimes I = 
+\mqty(\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}}&0\\
+	0&\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}} \\
+	\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}&0 \\
+	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) \hspace{2cm} \\
+(H \otimes I)\ket{\Psi} =  \mqty(\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}}&0\\
+	0&\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}} \\
+	\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}&0 \\
+	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) 
+	\mqty(1\\0\\0\\0) = \mqty(\frac{1}{\sqrt{2}}\\0\\ \frac{1}{\sqrt{2}}\\0)
+\end{align}
+e usa a porta CNOT em $\ket{\Psi}$.
+\begin{equation}
+C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0) 
+			\mqty(\frac{1}{\sqrt{2}}\\0\\ \frac{1}{\sqrt{2}}\\0)
+		= \mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}})
+\end{equation}
+Em seguida Eve envia $\ket{\Psi'}$ para Alice e $\ket{\Psi''}$ para Bob. 
+
+Alice que deseja enviar dois bits clássicos $\ket{ab}$ para Bob, ao receber o qubit $\ket{\Psi'}$ de Eve aplica uma transformação U em $\ket{\Psi'}$ da seguinte forma:
+\begin{itemize}
+\item Se $\ket{ab}=\ket{00}$, então U = I.
+\begin{align}
+U = I\otimes I = \mqty(1&0\\0&1)\otimes\mqty(1&0\\0&1) = 
+	\mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1) \\
+(I\otimes I)\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)
+	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
+	= \mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
+\end{align}
+\item Se $\ket{ab}=\ket{01}$, então U = X.
+\begin{align}
+U = X\otimes I = \mqty(0&1\\1&0)\otimes\mqty(1&0\\0&1) = 
+	\mqty(0&0&1&0\\0&0&0&1\\1&0&0&0\\0&1&0&0) \\
+(X\otimes I)\ket{\Psi} =  \mqty(0&0&1&0\\0&0&0&1\\1&0&0&0\\0&1&0&0) 
+	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
+	= \mqty(0\\ \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\ 0)\label{eq34}
+\end{align}
+\item Se $\ket{ab}=\ket{10}$, então U = Z.
+\begin{align}
+U = Z\otimes I = \mqty(1&0\\0&-1)\otimes\mqty(1&0\\0&1) = 
+	\mqty(1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1) \\
+(Z\otimes I)\ket{\Psi} =  \mqty(1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1) 
+	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
+	= \mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ -\frac{1}{\sqrt{2}}) 
+\end{align}
+\item Se $\ket{ab}=\ket{11}$, então U = XZ.
+\begin{align}
+U = XZ\otimes I = \mqty(1&1\\1&-1)\otimes\mqty(1&0\\0&1) = 
+	\mqty(1&0&1&0\\0&1&0&1\\1&0&-1&0\\0&1&0&-1) \\
+(XZ\otimes I)\ket{\Psi} =  \mqty(1&0&1&0\\0&1&0&1\\1&0&-1&0\\0&1&0&-1)
+	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
+	= \mqty(\frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\ -\frac{1}{\sqrt{2}}) 
+\end{align}
+\end{itemize}
+Depois de aplicada a transformação, Alice envia $U\ket{\Psi'}$ para Bob. Para continuar as equações usaremos $\ket{ab}=\ket{01}$ \eqref{eq34}.
+
+Bob aplica a porta CNOT em $\ket{\Psi}$
+\begin{equation}
+C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0) 
+			\mqty(0\\ \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\0)
+		= \mqty(0\\ \frac{1}{\sqrt{2}}\\ 0\\ \frac{1}{\sqrt{2}}),
+\end{equation}
+em seguida usa a porta Hadamard em $U\ket{\Psi'}$
+\begin{align}
+H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
+				\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}} ) 
+	\otimes \mqty(1&0\\0&1) 
+= \mqty(\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}}&0\\
+	0&\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}} \\
+	\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}&0 \\
+	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) \\
+(H \otimes I)\ket{\Psi} =  \mqty(\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}}&0\\
+	0&\frac{1}{\sqrt{2}}&0&\frac{1}{\sqrt{2}} \\
+	\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}&0 \\
+	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) 
+	\mqty(0\\ \frac{1}{\sqrt{2}}\\ 0\\ \frac{1}{\sqrt{2}}) = \mqty(0\\1\\0\\0)
+\end{align}
+que recebeu de Alice. Após tudo isso Bob faz a medição dos dois qubits, passando eles para bits clássicos $\ket{ab}$
+\begin{align}
+\ket{\Psi} = \mqty(0\\1\\0\\0) \hspace{2.5cm} \\
+\ket{\Psi} = 0\vdot\ket{00} + 1\vdot\ket{01} + 0\vdot\ket{10} + 0\vdot\ket{11} \\
+\ket{ab} = \ket{01}. \hspace{2.5cm}
+\end{align}
 (pagina 149)
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.36]{superdenso.jpg}
+\caption{Código Superdenso}
+\end{figure}
 
 
 %%%%%%%%%%%%% Escolha das ferramentas
