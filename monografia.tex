@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage{physics}
 \usepackage[export]{adjustbox}
+\usepackage{float}
 
 \linespread{1.5} 
 \setlength{\hoffset}{-1in}
@@ -494,9 +495,9 @@ que recebeu de Alice. Após tudo isso Bob faz a medição dos dois qubits, passa
 \ket{ab} = \ket{01}. \hspace{2.5cm}
 \end{align}
 (pagina 149)
-\begin{figure}[hbtp]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.36]{superdenso.jpg}
+\includegraphics[scale=0.38]{superdenso.jpg}
 \caption{Código Superdenso}
 \end{figure}
 
@@ -529,9 +530,6 @@ QuTiP teve sua primeira versão em Julho de 2011~\cite{qutipchangelog}. É um so
 \subsection{Escolhida}
 QuTip foi a escolhida por possuir pacotes numéricos e também output gráfico, mesmo este último não tendo sido utilizado no projeto mas com ele existe a possibilidade de utilização em trabalhos futuros. Além de possuir a melhor documentação dentre as bibliotecas pesquisadas, com exemplos e tutoriais.
 
-No site eles pedem para citar da seguinte forma.
-J. R. Johansson, P. D. Nation, and F. Nori: "QuTiP: An open-source Python framework for the dynamics of open quantum systems.", Comp. Phys. Comm. 183, 1760–1772 (2012) [DOI: 10.1016/j.cpc.2012.02.021]. 
-
 \section{Framework Web}
 Frameworks web são projetados para dar suporte no desenvolvimento de sites dinâmicos, aplicações web e web services, auxiliando no trabalho de tarefas comuns como, controle de sessão, validação de dados, acesso ao banco de dados, templates, tratamento de requisições e respostas HTTP, etc. Dentre os frameworks web existentes para python avaliamos neste trabalho Flask, Pyramid e Django.
 \subsection{Flask}
@@ -560,38 +558,60 @@ O Flask seria uma boa opção entretanto escolhemos o Django por:
 \chapter{Desenvolvimento}
 \thispagestyle{empty} 
 
+\section{Construção da Pagina}
+A ideia inicial do simulador era de termos uma área com os inputs de tempo, as portas e o circuito. No início do desenvolvimento já fomos definindo um pouco melhor onde deveríamos ter o que. Como um dos objetivos do projeto é de simular o tempo que um computador quântico levaria para executar o circuito decidimos por colocar os inputs em primeiro lugar, ficando assim a esquerda e em cima. 
+
+Já pensando sobre a área para montar o ciruito resolvemos que as portas ficariam em cima pois ao carregar a página o circuito estaria vazio e para que ao mesmo tempo essa parte se diferenciasse dos inputs resolvemos colocá-la a direita.
+
+Por final precisamos de uma área para mostrar o resultado o que fez total sentido em deixá-la depois de tudo pois ela seria dependente das anteriores, sendo assim ficou na parte de baixo de tudo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{simulador-pagina.png}
+\caption{Nosso simulador circuito quântico online}
+\end{figure}
+
+\section{Arquiterura}
+
+Escolhemos o padrão Model-View-Controller (MVC) para o projeto até porque o Django já segue esse padrão e que faz muito sentido para o desenvolvimento de aplicações online.
+
+Esse estilo arquitetural é composto de três elementos: modelo, visão e controle. O modelo é composto dos elementos que representam os principais conceitos do domínio, se pensarmos na orientação a objetos, o modelo seria as classes do sistema e que normalmente são persistidas em bancos de dados. Mas não possuem nenhum acesso de fora do sistema. Já a visão é composta por elementos de interface com o usuário, podendo ser uma interface gráfica, linha de comando ou uma API que manipulam elementos do modelo. E por últimos mas não menos importante o controle que são elementos responsáveis pela orquestração, que manipulam uma visão e executam os casos de uso.
+
+No MVC uma visão conhece seu modelo mas o modelo não conhece sua visão, os controles conhecem suas visões mas a visão não conhece seu controle. E as entidade do modelo não conhecem ninguém a não ser as outras entidades do modelo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{mvc.png}
+\caption{Diagrama MVC \cite{mvc-murta}}
+\end{figure}
+
+Vantagens do MVC:
+\begin{itemize}
+\item responsabilidades bem definidas por componente
+\item modularização da aplicação, o que traz idependência 
+\item fácil manutenabilidade
+\item alta reutilização
+\item possibilita desenvolvedores trabalharem simultaneamente
+\end{itemize}
+
+\section{Django e MVC}
+O Django possui uma peculiaridade, ele utiliza o padrão Model View Controller (MVC) entretanto possui nomes peculiares para seus componentes. Para a parte de modelo ele chama de ``model'' e para View de ``template'' até então tudo bem, mas quando chega na parte do Controller ele chama de ``view'' o que gera confusão e reclamações de muitos. No próprio site do Django~\cite{django} existe uma pergunta sobre isso onde eles respondem que ``view'' representa os dados que são apresentados ao usuário, não necessariamente como é apresentado. Então para eles a ``view'' representa qual informação é vista e ``template'' como ela é vista~\cite{django-mvc}.
+
 \section{Drag and Drop}
 
-Como o simulador deveria ser amigável para o usuário decidimos em utilizar Drag \& Drop (D \& D) para a criação/edição do circuito. Resolvemos que o simulador deveria ter uma área com as portas quânticas disponíveis para montar o circuito quântico e a paritr dessa area o usuário poderia arrastar as portas para formar o circuito. Entretanto os D \& D convencionais apenas possibilitavam o arrastar de um elemento para um outro container, ou seja, o elemento deixava de existir no container original e era adicionado no final. O que queriamos era que o elemento inicial continuasse existindo onde estava e que uma cópia do mesmo fosse criada e adicionada ao container alvo, ou final, por isso decidimos criar um.
+Como o simulador deveria ser amigável para o usuário decidimos utilizar Drag \& Drop (D\&{D}) para a criação/edição do circuito. Resolvemos que o simulador deveria ter uma área com as portas quânticas disponíveis para montar o circuito quântico e a partir dessa área o usuário poderia arrastar as portas para formar o circuito. Entretanto os D\&{D} convencionais apenas possibilitavam o arrastar de um elemento para um outro container, ou seja, o elemento deixava de existir no container original e era adicionado no final. O que queriamos era que o elemento inicial continuasse existindo onde estava e que uma cópia do mesmo fosse criada e adicionada ao container alvo, ou final, por isso decidimos criar um.
 
------------
+Sendo assim utilizamos Javascript e JQuery~\cite{jquery}, uma biblioteca de JS, para criar uma cópia do elemento que sofreu o evento de Drag e movemos a cópia até o destino do Drop. E ao realizar o Drop existe uma checagem para excluir o elemento existente e adicionar a cópia. Nos materias encontrados sobre D\&{D} o elemento utilizado pelo Javascript para capturar o elemento do drop era o ev.target o que gera alguns problemas pois esse target não traz especificamente o elemento com o evento de drop atrelado, podendo trazer uma das divs que o encapsulam ou algum outro elemento mais interno fazendo com que não houvesse uma consistencia do retorno. Para resolver esse problema decidimos utilizar currentTarget ao invés do target.
 
-Tive varios problemas com a implementação do Drag and Drop, o que achei na internet apenas movia um elemento de um lugar para o outro mas nao era bem isso que eu queria.
+Quando pensamos nas portas de 2 qubits nos deparamos com outro problema. Como iríamos fazer a seleção do qubit de controle? A escolha foi ter um input que serviria de alvo do segundo qubit e a partir disso bastou fazer o tratamento para quando o alvo era igual ao bit do Drop ou caso o alvo fosse maior que o número de bits. No primeiro caso é solto um alerta com a mensagem de que não se pode arrastar a parta para o mesmo bit alvo da conexão, e no segundo caso o alvo se torna o último qubit do circuito ou o primeiro caso o valor seja negativo.
 
-No lugar inicial sempre tinha que ter a imagem e eu poderia arrasta-la para um dos pontos do circuito para assim montar o mesmo.
+\section{Cálculo via Ajax}
 
-Entao vi que, ao iniciar o drag, nao deveria mover o objeto e sim criar uma copia dele e mover a copia.
+A escolha do Ajax para realização do cálculo se deve ao simples fato de que o simulador tem o intuito de ser amigável ao usuário e dessa forma utilizando Ajax para isso não existe a necessidade de recarregar a pagina ou ser direcionado para uma outra.
 
-Mas ao fazer isso acabei gerando novos problemas: 
-\begin{itemize}
-\item eu conseguir colocar diferentes imagens na mesma div, o que meio que gerava uma pilha, e a ideia nao era essa, em cada div do circuito deveria haver apenas 1 imagem. Entao tive que adicionar o tratamento do Drop para que a imagem já existente fosse deletada e ai sim adicionada a que foi arrastada até la.
-\item As imagens se moviam de uma div do circuito para outra do circuito, o que resolvi fazendo com q a div apenas possuisse o evento de drop
-\end{itemize}
-	
-Do matérial que achei na internet o JavaScript utilizado usava o ev.target o que gerava alguns problemas no tratamento do drop, pois esse target era o elemento sobre o qual o drop ocorreu, independente se o elemete possuia o evento de drop ou nao, o que me gerou confusao, mas acabei resolvendo o problema trocando target por currentTarget
+Primeiramente existe o tratamento do circuito para um objeto de facil acesso à aplicação onde decidimos por 
 
-\section{Iframe ou Div}
-
-Objetivo inicial: Facilitar a visualização e utilização do simulador para montar os circuitos, com a existencia de scrolls latérais.
-
--Primeira solução foi englobar a div com uma div onde seriam aplicados as propriedades overflow e fixar a width e height. Mas com isso os novos circuitos nao aparecem, entao proximo passo seria modificar a altura da div quando um novo circuito e criado.
-
--foram criadas 2 funcoes para alterar a altura da div de acordo com a adicao ou exclusao de um circuito. Acabei utilizando a funcao outerHeight() do Jquery para pegar a altura total do circuito, quando estava usando apenas a funcao height() após acrescentar alguns circuitos o aumento nao era proprocional pois nao pegava os valores como padding, border, etc.
-
--foi criado tbm a funcao de ajustar width, para alterar a largura da div que contem os circuitos dependendo do numero de portas que os circuitos podem ter
-
-
-\section{Ajax}
+----
 
 Escolhi fazer o cálculo do circuito por ajax para apenas alterar o resultado sem haver a necessidade de recarregar a pagina inteira. (1) Precisei fazer o tratamento do circuito para um objeto Json que seria passado para o ajax. (2) O sistema recebendo esse objeto utiliza a lib de python e calcula o circuito retornando o resultado. (3) Mostra o resultado na tela
 
