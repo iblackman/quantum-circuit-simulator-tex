@@ -607,42 +607,57 @@ Quando pensamos nas portas de 2 qubits nos deparamos com outro problema. Como ir
 
 \section{Cálculo via Ajax}
 
-A escolha do Ajax para realização do cálculo se deve ao simples fato de que o simulador tem o intuito de ser amigável ao usuário e dessa forma utilizando Ajax para isso não existe a necessidade de recarregar a pagina ou ser direcionado para uma outra.
+Ajax, ou JavaScript e XML assíncronos, não é uma lingaguem e sim uma combinação de técnicas que utilizam ferramentas já embutidas do browser para realizar requisições ao servidor e receber respostas do mesmo de forma assíncrona, sem a necessidade de recarregar a página inteira, apenas parte da mesma.
 
-Primeiramente existe o tratamento do circuito para um objeto de facil acesso à aplicação onde decidimos por 
+A escolha do Ajax para realização do cálculo se deve ao simples fato de que o simulador tem o intuito de ser amigável ao usuário e dessa forma utilizando Ajax não existe a necessidade de recarregar a pagina ou ser direcionado para uma outra.
 
-----
+Primeiramente existe o tratamento do circuito para um objeto de fácil acesso à aplicação onde decidimos por utilizar JSON (JavaScript Object Notation - Notação de Objetos JavaScript) que é uma formatação de dados fácil de ler e escrever para pessoas, e fácil de interpretar e gerar para computadores. JSON é composto por duas estruturas:
+\begin{itemize}
+\item Uma coleção de pares nome/valor;
+\item Uma lista ordenada de valores.
+\end{itemize}
+Por serem estruturas de dados comuns a todas as linguagens é uma ótima opção de formato para troca de dados~\cite{json}.
 
-Escolhi fazer o cálculo do circuito por ajax para apenas alterar o resultado sem haver a necessidade de recarregar a pagina inteira. (1) Precisei fazer o tratamento do circuito para um objeto Json que seria passado para o ajax. (2) O sistema recebendo esse objeto utiliza a lib de python e calcula o circuito retornando o resultado. (3) Mostra o resultado na tela
+Após isso colocamos os elementos, as portas, pertencentes ao circuito em um array de arrays, a quantidade de qubits que o circuito possui, as conexões entre as portas e enviamos tudo para o servidor.
 
-(1)Tive varios problemas para entender como funcionava a parte de request do Django, entender o objeto QueryDict que e como o Django recebe o JSon enviado pelo Ajax. Tive que fazer tratamento para leitura, pois ele le de uma forma estranha.
+Agora pela parte do servidor por estarmos utilizando o Django, ele já trata essa parte de requisição e respostas~\cite{django-req-resp}. Dentro da view, que é considerado um controle pelo Django, bastou pegar o objeto Request fazer a leitura do JSON que foi enviado pelo AJAX e trabalhar em cima dele utilizando a bibliotéca QuTip para realizar o cáculo.
 
-https://docs.djangoproject.com/en/1.11/ref/request-response/
+A parte do cálculo do tempo por não necessitar da bibliotéca ou qualquer outra informação por parte do servidor poderia ser feita na própria pagina pelo JavaScript, pois as únicas informações necessárias eram os inputs de tempo de cada porta e que portas formavam o circuito.
 
-(2)Tive muita dificuldade para fazer a importação da lib Qutip no projeto, resolvendo as dependencias ta no OBS. Resolvi fazer o tratamento e criar uma funcao para realizar a transformação dependendo da porta (string) passada.
-
-(3) O cálculo do tempo esta sendo feito pelo javascript pois já possuo todos os dados necessários na tela, nao existe a necessidade de enviar para o sistema. O sistema no passo anterior (2) processou os dados e retorna o resultado que e mostrado na tela.
-
-OBS: Tive muito problema para arrumar as dependencias da lib Qutip
-http://qutip.org/docs/3.1.0/installation.html
+Ao receber o retorno do servidor, o AJAX adiciona os resultados, tanto o do cálculo do circuito quanto o do cálculo do tempo, na área do HTML de resultados da página.
 
 \section{Usando QuTip}
 
+Utilizar a bibliotéca QuTip se mostrou um desafio maior do que imaginávamos. Entretanto após aprender a usá-la a mesma se torou uma excelente ferramenta. QuTip possui alguns objetos, um deles é o QubitCircuit que representa um programa/algoritmo quântico que mantém uma sequência de Gates, estes últimos são representações das portas quânticas. O QubitCircuit possui uma função add\_gate com os seguintes parâmetros:
+\begin{itemize}
+\item gate - Nome da porta, dentro de uma lista aceitável. RX, RY, RZ, CRX, CRY, CRZ, SQRTNOT, SNOT, PHASEGATE, CPHASE, CNOT, CSIGN, BERKELEY, SWAPalpha, SWAP, ISWAP, SQRTSWAP, SQRTISWAP, FREDKIN, TOFFOLI, GLOBALPHASE;
+\item targets - Uma lista com os qubits alvos;
+\item controls - Uma lista com os qubits de controle;
+\item arg\_value - Parâmetro para a transformação, do tipo Float;
+\item arg\_label - Label para representação da porta.
+\end{itemize}
+Dependendo da porta desejada para adicionar no circuito alguns dos parâmetros viram obrigatórios. Como por exemplo para adicionar a porta Hadamard basta qcircuit.add\_gate(``SNOT'', targets=[0]).
+
+Após montarmos o objeto QubitCircuit com as portas passadas no Request. Deve-se calcular a matriz de propagação e para isso existe a função QubitCircuit.propagators() que faz esse cáculo retornando uma lista com os passos em forma de matrizes unitárias operando da esquerda para a direita. Agora com essa lista é chamada a função gate\_sequence\_product() passando a lista como parâmetro que retorna a matriz unitária final gerada a partir de uma lista de operações unitárias. 
+
+O objeto gerado pela função gate\_sequence\_product() é então multiplicado pelo vetor coluna dos qubits passados no input que para o projeto assumimos que sempre são $\ket{0}$. Essa multiplicação gera outro vetor coluna com as probabilidades dos valores finais para o circuito e é nesse vetor que é feito uma análise para retirada legível dos resultados que são retornados para o AJAX.
 
 \section{Hospedagem - Heroku}
 
--criei um novo virtualenv para usar apenas as dependências necessárias
--após o projeto estar rodando localmente gerei o arquivo requirements.txt igual ao pio freeze daquele env.
--adicionei um arquivo runtime.txt para especificar a versão do python a ser utilizada, python-2.7.13 (heroku só aceita algumas versões, ele tem isso no site)
--criei o Procfile com apenas "web: gunicorn quantum-circuit-simulator.wsgi --log-file -" comando a ser executado qnd a aplicação começar a rodar
--logei e criei uma aplicação no heroku, "heroku creaté demo-quantum "
--especificquei o build pack, "heroku buildpacks:set heroku/python"
--addicionei e commitei as alterações feitas e realizei o deploy, "git push heroku master"
--Tirando os erros no processo, esses foram basicamente os passos
-PS:
--Para instalar todas as dependências tive que fazer o deploy duas vezes alterando o requirements.txt porque não consegui achar uma forma de fazer a instalação do qutip por último e por isso acabava dando erro na instalação dele falando q faltavam dependência mas apenas prq na ordem de instalação elas não estavam sendo instaladas antes, primeiro deploy com a qutip comentado e segundo com ela, onde apenas ela foi instalada
--aprendi a escrever requirements hahaha (fiquei MT tempo sem conseguir fazer o deploy prq eu havia escrito requirements errado e não consegui reparar nisso
+Como o simulador tem o objetivo de ser online utilizamos a plataforma da nuvem Heroku para a hospedagem. O Heroku é um PaaS (Platform as a Service) que faz com que o desenvolvedor não tenha que se preocupar com infraestrutura tendo assim foco total no desenvolvimento, sem precisar gerenciar, fazer a manutenção e garantir a segurança do servidor~\cite{heroku}. Ele possui uma opção grátis que da suporte a diversas linguagem sendo uma delas python, o que fez dela uma escolha perfeita.
 
+A configuração do projeto para rodar no Heroku não foi complicada. Bastou o projeto estar no Git, preparar um ambiente virtual com todas as dependências necessárias, gerar um arquivo texto chamado ``requirements.txt'' com essas dependência, o que pode ser feito com o comando ``pip freeze > requirements.txt'', adicionar esse arquivo ao diretório do projeto. Criar um outro arquivo ``runtime.txt'' para especificar a versão do python a ser utilizada. É necessário criar um ``Procfile'' que serve para declarar o comando que será executado para começar a aplicação, no caso do projeto coloquei ``web: gunicorn quantum-circuit-simulator.wsgi --log-file -''. 
+
+Após essas configurações básicas é necessário criar uma conta no Heroku e instalar o Heroku CLI. Com a instalação do Heroku CLI podemos executar o comando ``heroku login'' e entrar com as credenciais de login. Após isso entrar com o comando ``heroku create nome-aplicacao'', adicionar e commitar todas as alterações feitas no projeto e fazer o deploy da aplicação no Heroku ``git push heroku master''.
+
+Durante o deploy o Heroku:
+\begin{itemize}
+\item detecta a linguagem;
+\item faz a instalção dos requisitos que estão no arquivo ``requirements.txt'';
+\item roda o comando no Procfile.
+\end{itemize}
+
+Com o deploy da sua aplicação feito basta acessar a url da aplicação acessando sua conta do Heroku ou executando o comando ``heroku open''~\cite{heroku-python}.
 
 \chapter{Resultados}
 \thispagestyle{empty} 
