@@ -511,33 +511,33 @@ que recebeu de Alice. Após tudo isso Bob faz a medição dos dois qubits, passa
 \thispagestyle{empty} 
 
 
-Neste capítulo iremos falar sobre as opções e escolhas de linguagem, biblioteca e frameworks para desenvolvimento do proejto. 
+Neste capítulo falaremos sobre as opções e escolhas de linguagem, biblioteca e frameworks para desenvolvimento do projeto. 
 
 \section{Linguagem}
 
-Python foi a escolha por possuir todos os requisitos necessários para o desenvolvimento do projeto, frameworks de desenvolvimento web e bibliotecas de circuitos quânticos. Além disso, ela é vastamente utilizada em diversas aplicações e empresas como YouTube, Google, Industrial Light e Magic~\cite{pythonquotes} o que adiciona mais valor ao seu aprendizdo.
+Python foi a escolha por possuir todos os requisitos necessários para o desenvolvimento do projeto, frameworks de desenvolvimento web e bibliotecas de circuitos quânticos. Além disso, ela é vastamente utilizada em diversas aplicações e empresas como YouTube, Google, Industrial Light e Magic~\cite{pythonquotes} o que adiciona mais valor ao seu aprendizado.
 
 \section{Biblioteca}
 
 Tendo em vista que escolhemos python como linguagem agora é a vez de escolhermos alguma biblioteca para nos ajudar com os cálculos de cicuito quântico. A seguir falamos sobre algumas opções encontradas e qual foi a escolhida.
 \subsection{PyQu}
-PyQu é um módulo de extensão para Python 3 com o objetivo principal de providenciar um completo conjunto de tipos de dados e funções para simular computação quântica com uma sintaxe pura. Entretanto o último commit feito foi há 7 anos o que nos fez entender que o projeto foi descontinuado, fazendo com que discartassemos essa opção~\cite{pyqu}.
+PyQu é um módulo de extensão para Python 3 com o objetivo principal de providenciar um completo conjunto de tipos de dados e funções para simular computação quântica com uma sintaxe pura. Entretanto o último commit feito foi há 7 anos o que nos fez entender que o projeto foi descontinuado, fazendo com que descartássemos essa opção~\cite{pyqu}.
 
 \subsection{Qitensor}
 Qitensor outro módulo que essencialmente é um pacote para Numpy~\cite{numpy}, utiliza semânticas mais úteis para mecânica quântica de dimensões finitas de muitas partículas. Infelizmente essa biblioteca também não recebia atualizações há mais de ano~\cite{qitensor}.
 \subsection{Qubiter}
-Qubiter tem como intuíto ajudar no designer e simulação de circuitos quânticos em computadores clássicos. É um projeto gêmeo do Quantum Fog e eles esperam que um dia o Quantum Fog chame o Qubiter para realizar algumas tarefas, como compilação e simulação quântica~\cite{qubiter}.	
+Qubiter tem como intuito ajudar no designer e simulação de circuitos quânticos em computadores clássicos. É um projeto gêmeo do Quantum Fog e eles esperam que um dia o Quantum Fog chame o Qubiter para realizar algumas tarefas, como compilação e simulação quântica~\cite{qubiter}.	
 
 \subsection{QuTiP}
-QuTiP teve sua primeira versão em Julho de 2011~\cite{qutipchangelog}. É um software open-source para simular as dinâmicas de um sistema quântico aberto que utiliza os pacotes numéricos Numpy, Scipy e Cython. Teve sua primeira versão em Julho de 2011. Possui também um output gráfico provido pela Matplotlib. QuTiP tem como objetivo providenciar simulações numéricas eficientes e amigáveis para o usuário de um variado numero de Hamiltonianas comumente achadas em uma vasta quantidade de aplicações físicas. Está disponível sem custos para Linux, Mac OSX e Windows, sendo esta última com algumas restrições~\cite{qutip.org}. \cite{teste}
+QuTiP teve sua primeira versão em Julho de 2011~\cite{qutipchangelog}. É um software open-source para simular as dinâmicas de um sistema quântico aberto que utiliza os pacotes numéricos Numpy, Scipy e Cython. Teve sua primeira versão em Julho de 2011. Possui também um output gráfico provido pela Matplotlib. QuTiP tem como objetivo providenciar simulações numéricas eficientes e amigáveis para o usuário de um variado número de Hamiltonianas comumente achadas em uma vasta quantidade de aplicações físicas. Está disponível sem custos para Linux, Mac OSX e Windows, sendo esta última com algumas restrições~\cite{qutip.org}.
 
 \subsection{Escolhida}
-QuTip foi a escolhida por possuir pacotes numéricos e também output gráfico, mesmo este último não tendo sido utilizado no projeto mas com ele existe a possibilidade de utilização em trabalhos futuros. Além de possuir a melhor documentação dentre as bibliotecas pesquisadas, com exemplos e tutoriais.
+QuTip foi a escolhida por possuir pacotes numéricos e também output gráfico, mesmo que, este último não tenha sido utilizado no projeto, com ele existe a possibilidade de utilização em trabalhos futuros. Além de possuir a melhor documentação dentre as bibliotecas pesquisadas, com exemplos e tutoriais.
 
 \section{Framework Web}
 Frameworks web são projetados para dar suporte no desenvolvimento de sites dinâmicos, aplicações web e web services, auxiliando no trabalho de tarefas comuns como, controle de sessão, validação de dados, acesso ao banco de dados, templates, tratamento de requisições e respostas HTTP, etc. Dentre os frameworks web existentes para python avaliamos neste trabalho Flask, Pyramid e Django.
 \subsection{Flask}
-Flask é o framework mais recente encontrado, foi criado em meados de 2010. Evoluiu muito a partir da análise de framworks anteriores e tem se destacado em pequenos projetos. A sua comunidade é pequena se comparada a do Django mas é ativa em listas de email e no IRC~\cite{ryanbrown}. 
+Flask é o framework mais recente encontrado, foi criado em meados de 2010. Evoluiu muito a partir da análise de frameworks anteriores e tem se destacado em pequenos projetos. A sua comunidade é pequena se comparada a do Django mas é ativa em listas de e-mail e no IRC~\cite{ryanbrown}. 
 
 \subsection{Pyramid}
 O Pyramid foi criado a partir do projeto Pylons~\cite{pylonsproject} e recebeu o nome de Pyramid somente no ano de 2010, mesmo tendo sua primeira realease em 2005. É um framework tão maduro quanto o Django e disponibiliza mais flexibilidade para desenvolvedores que possuem projetos onde o caso de uso não se encaixe muito bem nos padrões do mapeamento objeto-relacional, que nada mais é do que a representação das tabelas do banco de dados através de classes onde cada resgistro é representado como uma instancia da classe~\cite{pyramid}. Pode-se dizer que Pyramid é o framework mais flexível dentre os estudados. Apesar disso, pareceu muito mais complexo do que noso projeto necessitava. Além disso ele possui a comunidade mais inativa dentre os frameworks pesquisados.
@@ -553,7 +553,7 @@ O Flask seria uma boa opção entretanto escolhemos o Django por:
 \begin{itemize}
 \item possuir uma grande comunidade ativa;
 \item diversas ferramentas já inclusas, evitando o tempo de reprogramação de funções comuns;
-\item ser facilmente escalável, pensando em uma futura continuação deste Proejto Final
+\item ser facilmente escalável, pensando em uma futura continuação deste Projeto Final
 \item ser uma ferramenta muito utilizada no mercado, trazendo mais benefícios com o aprendizado.
 \end{itemize}
 
@@ -565,7 +565,7 @@ O Flask seria uma boa opção entretanto escolhemos o Django por:
 \section{Construção da Pagina}
 A ideia inicial do simulador era de termos uma área com os inputs de tempo, as portas e o circuito. No início do desenvolvimento já fomos definindo um pouco melhor onde deveríamos ter o que. Como um dos objetivos do projeto é de simular o tempo que um computador quântico levaria para executar o circuito decidimos por colocar os inputs em primeiro lugar, ficando assim a esquerda e em cima. 
 
-Já pensando sobre a área para montar o ciruito resolvemos que as portas ficariam em cima pois ao carregar a página o circuito estaria vazio e para que ao mesmo tempo essa parte se diferenciasse dos inputs resolvemos colocá-la a direita.
+Já pensando sobre a área para montar o circuito resolvemos que as portas ficariam em cima, pois ao carregar a página o circuito estaria vazio e para que ao mesmo tempo essa parte se diferenciasse dos inputs resolvemos colocá-la a direita.
 
 Por final precisamos de uma área para mostrar o resultado o que fez total sentido em deixá-la depois de tudo pois ela seria dependente das anteriores, sendo assim ficou na parte de baixo de tudo.
 
@@ -575,13 +575,13 @@ Por final precisamos de uma área para mostrar o resultado o que fez total senti
 \caption{Nosso simulador circuito quântico online}
 \end{figure}
 
-\section{Arquiterura}
+\section{Arquitetura}
 
 Escolhemos o padrão Model-View-Controller (MVC) para o projeto até porque o Django já segue esse padrão e que faz muito sentido para o desenvolvimento de aplicações online.
 
-Esse estilo arquitetural é composto de três elementos: modelo, visão e controle. O modelo é composto dos elementos que representam os principais conceitos do domínio, se pensarmos na orientação a objetos, o modelo seria as classes do sistema e que normalmente são persistidas em bancos de dados. Mas não possuem nenhum acesso de fora do sistema. Já a visão é composta por elementos de interface com o usuário, podendo ser uma interface gráfica, linha de comando ou uma API que manipulam elementos do modelo. E por últimos mas não menos importante o controle que são elementos responsáveis pela orquestração, que manipulam uma visão e executam os casos de uso.
+Esse estilo arquitetural é composto de três elementos: modelo, visão e controle. O modelo é composto dos elementos que representam os principais conceitos do domínio, se pensarmos na orientação a objetos, o modelo seria as classes do sistema e que normalmente são persistidas em bancos de dados. Mas não possuem nenhum acesso de fora do sistema. Já a visão é composta por elementos de interface com o usuário, podendo ser uma interface gráfica, linha de comando ou uma API que manipulam elementos do modelo. E por último, mas não menos importante o controle que são elementos responsáveis pela orquestração, que manipulam uma visão e executam os casos de uso.
 
-No MVC uma visão conhece seu modelo mas o modelo não conhece sua visão, os controles conhecem suas visões mas a visão não conhece seu controle. E as entidade do modelo não conhecem ninguém a não ser as outras entidades do modelo.
+No MVC uma visão conhece seu modelo mas o modelo não conhece sua visão, os controles conhecem suas visões mas a visão não conhece seu controle. E as entidades do modelo não conhecem ninguém a não ser as outras entidades do modelo.
 
 \begin{figure}[H]
 \centering
@@ -592,28 +592,28 @@ No MVC uma visão conhece seu modelo mas o modelo não conhece sua visão, os co
 Vantagens do MVC:
 \begin{itemize}
 \item responsabilidades bem definidas por componente
-\item modularização da aplicação, o que traz idependência 
+\item modularização da aplicação, o que traz independência 
 \item fácil manutenabilidade
 \item alta reutilização
 \item possibilita desenvolvedores trabalharem simultaneamente
 \end{itemize}
 
 \section{Django e MVC}
-O Django possui uma peculiaridade, ele utiliza o padrão Model View Controller (MVC) entretanto possui nomes peculiares para seus componentes. Para a parte de modelo ele chama de ``model'' e para View de ``template'' até então tudo bem, mas quando chega na parte do Controller ele chama de ``view'' o que gera confusão e reclamações de muitos. No próprio site do Django~\cite{django} existe uma pergunta sobre isso onde eles respondem que ``view'' representa os dados que são apresentados ao usuário, não necessariamente como é apresentado. Então para eles a ``view'' representa qual informação é vista e ``template'' como ela é vista~\cite{django-mvc}.
+O Django possui uma peculiaridade, ele utiliza o padrão Model View Controller (MVC), entretanto possui nomes peculiares para seus componentes. Para a parte de modelo ele chama de ``model'' e para View de ``template'' até então tudo bem, mas quando chega na parte do Controller ele chama de ``view'' o que gera confusão e reclamações de muitos. No próprio site do Django~\cite{django} existe uma pergunta sobre isso onde eles respondem que ``view'' representa os dados que são apresentados ao usuário, não necessariamente como é apresentado. Então para eles a ``view'' representa qual informação é vista e ``template'' como ela é vista~\cite{django-mvc}.
 
 \section{Drag and Drop}
 
-Como o simulador deveria ser amigável para o usuário decidimos utilizar Drag \& Drop (D\&{D}) para a criação/edição do circuito. Resolvemos que o simulador deveria ter uma área com as portas quânticas disponíveis para montar o circuito quântico e a partir dessa área o usuário poderia arrastar as portas para formar o circuito. Entretanto os D\&{D} convencionais apenas possibilitavam o arrastar de um elemento para um outro container, ou seja, o elemento deixava de existir no container original e era adicionado no final. O que queriamos era que o elemento inicial continuasse existindo onde estava e que uma cópia do mesmo fosse criada e adicionada ao container alvo, ou final, por isso decidimos criar um.
+Como o simulador deveria ser amigável para o usuário decidimos utilizar Drag \& Drop (D\&{D}) para a criação/edição do circuito. Resolvemos que o simulador deveria ter uma área com as portas quânticas disponíveis para montar o circuito quântico e a partir dessa área o usuário poderia arrastar as portas para formar o circuito. Entretanto os D\&{D} convencionais apenas possibilitavam o arrastar de um elemento para um outro container, ou seja, o elemento deixava de existir no container original e era adicionado no final. O que queríamos era que o elemento inicial continuasse existindo onde estava e que uma cópia do mesmo fosse criada e adicionada ao container alvo, ou final, por isso decidimos criar um.
 
-Sendo assim utilizamos Javascript e JQuery~\cite{jquery}, uma biblioteca de JS, para criar uma cópia do elemento que sofreu o evento de Drag e movemos a cópia até o destino do Drop. E ao realizar o Drop existe uma checagem para excluir o elemento existente e adicionar a cópia. Nos materias encontrados sobre D\&{D} o elemento utilizado pelo Javascript para capturar o elemento do drop era o ev.target o que gera alguns problemas pois esse target não traz especificamente o elemento com o evento de drop atrelado, podendo trazer uma das divs que o encapsulam ou algum outro elemento mais interno fazendo com que não houvesse uma consistencia do retorno. Para resolver esse problema decidimos utilizar currentTarget ao invés do target.
+Sendo assim utilizamos Javascript e JQuery~\cite{jquery}, uma biblioteca de JS, para criar uma cópia do elemento que sofreu o evento de Drag e movemos a cópia até o destino do Drop. E ao realizar o Drop existe uma checagem para excluir o elemento existente e adicionar a cópia. Nos materiais encontrados sobre D\&{D} o elemento utilizado pelo Javascript para capturar o elemento do drop era o ev.target o que gera alguns problemas pois esse target não traz especificamente o elemento com o evento de drop atrelado, podendo trazer uma das divs que o encapsulam ou algum outro elemento mais interno fazendo com que não houvesse uma consistência do retorno. Para resolver esse problema decidimos utilizar currentTarget ao invés do target.
 
-Quando pensamos nas portas de 2 qubits nos deparamos com outro problema. Como iríamos fazer a seleção do qubit de controle? A escolha foi ter um input que serviria de alvo do segundo qubit e a partir disso bastou fazer o tratamento para quando o alvo era igual ao bit do Drop ou caso o alvo fosse maior que o número de bits. No primeiro caso é solto um alerta com a mensagem de que não se pode arrastar a parta para o mesmo bit alvo da conexão, e no segundo caso o alvo se torna o último qubit do circuito ou o primeiro caso o valor seja negativo.
+Quando pensamos nas portas de 2 qubits nos deparamos com outro problema. Como iríamos fazer a seleção do qubit de controle? A escolha foi ter um input que serviria de alvo do segundo qubit e a partir disso bastou fazer o tratamento para quando o alvo era igual ao bit do Drop ou caso o alvo fosse maior que o número de bits. No primeiro caso é solto um alerta com a mensagem de que não se pode arrastar a porta para o mesmo bit alvo da conexão, e no segundo caso o alvo se torna o último qubit do circuito ou o primeiro caso o valor seja negativo.
 
 \section{Cálculo via Ajax}
 
-Ajax, ou JavaScript e XML assíncronos, não é uma lingaguem e sim uma combinação de técnicas que utilizam ferramentas já embutidas do browser para realizar requisições ao servidor e receber respostas do mesmo de forma assíncrona, sem a necessidade de recarregar a página inteira, apenas parte da mesma.
+Ajax, ou JavaScript e XML assíncronos, não é uma linguagem e sim uma combinação de técnicas que utilizam ferramentas já embutidas do browser para realizar requisições ao servidor e receber respostas do mesmo de forma assíncrona, sem a necessidade de recarregar a página inteira, apenas parte da mesma.
 
-A escolha do Ajax para realização do cálculo se deve ao simples fato de que o simulador tem o intuito de ser amigável ao usuário e dessa forma utilizando Ajax não existe a necessidade de recarregar a pagina ou ser direcionado para uma outra.
+A escolha do Ajax para realização do cálculo se deve ao simples fato de que o simulador tem o intuito de ser amigável ao usuário e dessa forma utilizando Ajax não existe a necessidade de recarregar a página ou ser direcionado para uma outra.
 
 Primeiramente existe o tratamento do circuito para um objeto de fácil acesso à aplicação onde decidimos por utilizar JSON (JavaScript Object Notation - Notação de Objetos JavaScript) que é uma formatação de dados fácil de ler e escrever para pessoas, e fácil de interpretar e gerar para computadores. JSON é composto por duas estruturas:
 \begin{itemize}
@@ -624,15 +624,15 @@ Por serem estruturas de dados comuns a todas as linguagens é uma ótima opção
 
 Após isso colocamos os elementos, as portas, pertencentes ao circuito em um array de arrays, a quantidade de qubits que o circuito possui, as conexões entre as portas e enviamos tudo para o servidor.
 
-Agora pela parte do servidor por estarmos utilizando o Django, ele já trata essa parte de requisição e respostas~\cite{django-req-resp}. Dentro da view, que é considerado um controle pelo Django, bastou pegar o objeto Request fazer a leitura do JSON que foi enviado pelo AJAX e trabalhar em cima dele utilizando a bibliotéca QuTip para realizar o cáculo.
+Agora pela parte do servidor por estarmos utilizando o Django, ele já trata essa parte de requisição e respostas~\cite{django-req-resp}. Dentro da view, que é considerado um controle pelo Django, bastou pegar o objeto Request fazer a leitura do JSON que foi enviado pelo AJAX e trabalhar em cima dele utilizando a bibliotéca QuTip para realizar o cálculo.
 
-A parte do cálculo do tempo por não necessitar da bibliotéca ou qualquer outra informação por parte do servidor poderia ser feita na própria pagina pelo JavaScript, pois as únicas informações necessárias eram os inputs de tempo de cada porta e que portas formavam o circuito.
+A parte do cálculo do tempo por não necessitar da biblioteca ou qualquer outra informação por parte do servidor poderia ser feita na própria página pelo JavaScript, pois as únicas informações necessárias eram os inputs de tempo de cada porta e que portas formavam o circuito.
 
 Ao receber o retorno do servidor, o AJAX adiciona os resultados, tanto o do cálculo do circuito quanto o do cálculo do tempo, na área do HTML de resultados da página.
 
 \section{Usando QuTip}
 
-Utilizar a bibliotéca QuTip se mostrou um desafio maior do que imaginávamos. Entretanto após aprender a usá-la a mesma se torou uma excelente ferramenta. QuTip possui alguns objetos, um deles é o QubitCircuit que representa um programa/algoritmo quântico que mantém uma sequência de Gates, estes últimos são representações das portas quânticas. O QubitCircuit possui uma função add\_gate com os seguintes parâmetros:
+Utilizar a biblioteca QuTip se mostrou um desafio maior do que imaginávamos. Entretanto após aprender a usá-la a mesma se tornou uma excelente ferramenta. QuTip possui alguns objetos, um deles é o QubitCircuit que representa um programa/algoritmo quântico que mantém uma sequência de Gates, estes últimos são representações das portas quânticas. O QubitCircuit possui uma função add\_gate com os seguintes parâmetros:
 \begin{itemize}
 \item gate - Nome da porta, dentro de uma lista aceitável. RX, RY, RZ, CRX, CRY, CRZ, SQRTNOT, SNOT, PHASEGATE, CPHASE, CNOT, CSIGN, BERKELEY, SWAPalpha, SWAP, ISWAP, SQRTSWAP, SQRTISWAP, FREDKIN, TOFFOLI, GLOBALPHASE;
 \item targets - Uma lista com os qubits alvos;
@@ -642,7 +642,7 @@ Utilizar a bibliotéca QuTip se mostrou um desafio maior do que imaginávamos. E
 \end{itemize}
 Dependendo da porta desejada para adicionar no circuito alguns dos parâmetros viram obrigatórios. Como por exemplo para adicionar a porta Hadamard basta qcircuit.add\_gate(``SNOT'', targets=[0]).
 
-Após montarmos o objeto QubitCircuit com as portas passadas no Request. Deve-se calcular a matriz de propagação e para isso existe a função QubitCircuit.propagators() que faz esse cáculo retornando uma lista com os passos em forma de matrizes unitárias operando da esquerda para a direita. Agora com essa lista é chamada a função gate\_sequence\_product() passando a lista como parâmetro que retorna a matriz unitária final gerada a partir de uma lista de operações unitárias. 
+Após montarmos o objeto QubitCircuit com as portas passadas no Request. Deve-se calcular a matriz de propagação e para isso existe a função QubitCircuit.propagators() que faz esse cálculo retornando uma lista com os passos em forma de matrizes unitárias operando da esquerda para a direita. Agora com essa lista é chamada a função gate\_sequence\_product() passando a lista como parâmetro que retorna a matriz unitária final gerada a partir de uma lista de operações unitárias.
 
 O objeto gerado pela função gate\_sequence\_product() é então multiplicado pelo vetor coluna dos qubits passados no input que para o projeto assumimos que sempre são $\ket{0}$. Essa multiplicação gera outro vetor coluna com as probabilidades dos valores finais para o circuito e é nesse vetor que é feito uma análise para retirada legível dos resultados que são retornados para o AJAX.
 
@@ -650,14 +650,14 @@ O objeto gerado pela função gate\_sequence\_product() é então multiplicado p
 
 Como o simulador tem o objetivo de ser online utilizamos a plataforma da nuvem Heroku para a hospedagem. O Heroku é um PaaS (Platform as a Service) que faz com que o desenvolvedor não tenha que se preocupar com infraestrutura tendo assim foco total no desenvolvimento, sem precisar gerenciar, fazer a manutenção e garantir a segurança do servidor~\cite{heroku}. Ele possui uma opção grátis que da suporte a diversas linguagem sendo uma delas python, o que fez dela uma escolha perfeita.
 
-A configuração do projeto para rodar no Heroku não foi complicada. Bastou o projeto estar no Git, preparar um ambiente virtual com todas as dependências necessárias, gerar um arquivo texto chamado ``requirements.txt'' com essas dependência, o que pode ser feito com o comando ``pip freeze > requirements.txt'', adicionar esse arquivo ao diretório do projeto. Criar um outro arquivo ``runtime.txt'' para especificar a versão do python a ser utilizada. É necessário criar um ``Procfile'' que serve para declarar o comando que será executado para começar a aplicação, no caso do projeto coloquei ``web: gunicorn quantum-circuit-simulator.wsgi --log-file -''. 
+A configuração do projeto para rodar no Heroku não foi complicada. Bastou o projeto estar no Git, preparar um ambiente virtual com todas as dependências necessárias, gerar um arquivo texto chamado ``requirements.txt'' com essas dependências, o que pode ser feito com o comando ``pip freeze > requirements.txt'', adicionar esse arquivo ao diretório do projeto. Criar um outro arquivo ``runtime.txt'' para especificar a versão do python a ser utilizada. É necessário criar um ``Procfile'' que serve para declarar o comando que será executado para começar a aplicação, no caso do projeto colocamos ``web: gunicorn quantum-circuit-simulator.wsgi --log-file -''.
 
 Após essas configurações básicas é necessário criar uma conta no Heroku e instalar o Heroku CLI. Com a instalação do Heroku CLI podemos executar o comando ``heroku login'' e entrar com as credenciais de login. Após isso entrar com o comando ``heroku create nome-aplicacao'', adicionar e commitar todas as alterações feitas no projeto e fazer o deploy da aplicação no Heroku ``git push heroku master''.
 
 Durante o deploy o Heroku:
 \begin{itemize}
 \item detecta a linguagem;
-\item faz a instalção dos requisitos que estão no arquivo ``requirements.txt'';
+\item faz a instalação dos requisitos que estão no arquivo ``requirements.txt'';
 \item roda o comando no Procfile.
 \end{itemize}
 
