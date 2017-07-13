@@ -297,7 +297,7 @@ Sendo assim os valores a e b devem seguir a regra de normalização
 \begin{equation}\label{eq4}
 \ket{\Psi} = a\ket{0} + b\ket{1} = \mqty(a\\b).
 \end{equation}
-O estado $\ket{\Psi}$ é dito de estar em superposição dos estados $\ket{0}$ e $\ket{1}$ com amplitudes \textit{a} e \textit{b}. Se a ou b for 0 e o outro for 1, por exemplo, é o caso especial onde o estado do qubit é igual a um dos estados classicos $\ket{0}$ ou $\ket{1}$. (pagina 17)
+O estado $\ket{\Psi}$ é dito de estar em superposição dos estados $\ket{0}$ e $\ket{1}$ com amplitudes \textit{a} e \textit{b}. Se a ou b for 0 e o outro for 1, por exemplo, é o caso especial onde o estado do qubit é igual a um dos estados clássicos $\ket{0}$ ou $\ket{1}$.
 
 \section{Entrelaçamento}
 Assim como o estado geral de um único qubit é qualquer superposição normalizada \eqref{eq4} dos dois possíveis estados clássicos, o estado geral de $\ket{\Psi}$ nos possibilita associar com dois qubits em qualquer superposição dos quatro estados clássicos,
@@ -329,7 +329,7 @@ Com \eqref{eq7} temos
 Essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \ref{eq7} de dois estados de 1-qubit. Esse estado de dois ou mais qubits é chamado de entrelaçamento.
 
 \section{Portas quânticas}
-Portas quânticas são operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos ou matemáticamente por matrizes.
+Portas quânticas são operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos ou matematicamente por matrizes.
 \begin{equation}
 \ket{\Psi'} =  U\ket{\Psi}
 \qquad \includegraphics[width=0.07\linewidth, valign=c]{h.jpg}
@@ -346,7 +346,7 @@ X\ket{\Psi} = \mqty(0&1\\1&0)\mqty(a\\b) = \mqty(0 \vdot a+1 \vdot b \\1 \vdot a
 \end{equation}
 
 \subsection{Y e Z} 
-Análogas a operação NOT temos as operações Y e Z.
+Análogas à operação NOT temos as operações Y e Z.
 \begin{equation}
 Y =  \mqty(0&-i\\i&0)
 \qquad \includegraphics[width=0.07\linewidth, valign=c]{y.jpg}
@@ -399,7 +399,7 @@ Quando um qubit passa pela operação de medição ele se torna um bit clássico
 
 \subsection{Código Superdenso}
 
-Apesar que uma quantidade infinita de informações é necessária para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo de que alguém que tenha adquirido um qubit possa descobrir qual é seu estado. Se Alice prepara um qubit no estado $\ket{\Psi}$ e envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
+Apesar de uma quantidade infinita de informações ser necessária para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo de que alguém que tenha adquirido um qubit possa descobrir qual é seu estado. Se Alice prepara um qubit no estado $\ket{\Psi}$ e envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
 
 E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2bits clássicos para Bob e Eve que fará e inicialização do sistema.
 
@@ -492,7 +492,7 @@ H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
 	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) 
 	\mqty(0\\ \frac{1}{\sqrt{2}}\\ 0\\ \frac{1}{\sqrt{2}}) = \mqty(0\\1\\0\\0)
 \end{align}
-que recebeu de Alice. Após tudo isso Bob faz a medição dos dois qubits, passando eles para bits clássicos $\ket{ab}$
+que recebeu de Alice. Após tudo isso Bob faz a medição dos dois qubits, passando estes para bits clássicos $\ket{ab}$
 \begin{align}
 \ket{\Psi} = \mqty(0\\1\\0\\0) \hspace{2.5cm} \\
 \ket{\Psi} = 0\vdot\ket{00} + 1\vdot\ket{01} + 0\vdot\ket{10} + 0\vdot\ket{11} \\
