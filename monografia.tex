@@ -253,11 +253,11 @@ Existe um simulador online desenvolvido por Davy Wybiral de Austin Texas, Quantu
 
 A montagem do circuito funciona com a seleção de uma das portas e após isso basta clicar nos circuitos para adicionar a porta selecionada. Pode-se deletar uma porta clicando com o botão direito. Nos casos de portas de 2-bits é necessário que haja uma ação de clique e arraste onde o clique seleciona a posição do bit de controle e ao largar fica a porta. Existe também a possibilidade de arrastar com uma porta de 1-bit selecionada o que adiciona a mesma em diversos circuitos.
 
-Para efetuar o cálculo do circuito basta pressionar a tecla Enter ou selecionar no menu a opção Evaluaté. O resultado é mostrado ao lado direito com todas as possibilidades possíveis e suas respectivas probabilidades.
+Para efetuar o cálculo do circuito basta pressionar a tecla Enter ou selecionar no menu a opção \textit{Evaluate}. O resultado é mostrado ao lado direito com todas as possibilidades possíveis e suas respectivas probabilidades.
 
 \subsection{Quirk - Craig Gidney}
 
-O projeto teve seu início em Março de 2014 mas não teve commits após o mes de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 foi quando se teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o commit mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido "Media for Thinking the Unthinkable" de Bret Victor onde ele menciona benefícios do feedback imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de "manipulação direta"~\cite{quirk}. Foi desenvolvido utilizando Webgl.
+O projeto teve seu início em Março de 2014, mas não teve commits após o mes de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 foi quando se teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o commit mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido ``Media for Thinking the Unthinkable'' de Bret Victor onde ele menciona benefícios do feedback imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de ``manipulação direta''~\cite{quirk}. Foi desenvolvido utilizando Webgl.
 
 \begin{figure}[hbtp]
 \centering
@@ -265,9 +265,9 @@ O projeto teve seu início em Março de 2014 mas não teve commits após o mes d
 \caption{Simulador quântico Quirk de Craig Gidney}
 \end{figure}
 
-Craig faz comparações com alguns simuladores como por exemplo o já mencionado de Davy Wybiral e o IBM Quantum Experience. Ele também menciona alguns outros como Quantum Computing Playground e Microsoft's LIQ Ui|>.
+Craig faz comparações com alguns simuladores como, por exemplo, o já mencionado de Davy Wybiral e o IBM Quantum Experience. Ele também menciona alguns outros como Quantum Computing Playground e Microsoft's LIQ Ui|>.
 
-O simulador Quirk é composto por um menu que possui opções de carregar alguns exemplos de circuitos já prontos, exportar o circuito montado, desfazer ou refazer alguma alteração e inclusive criar porta. Ele possui uma área com as opções de portas a serem utilizadas no circuito, formas de mostrar o resultado e mais diversas opções. Algumas vantagens desse simulador são: as portas são colocadas da forma "arrastar e soltar", o resultado é mostrado a todo momento não havendo a necessidade de se apertar um botão para isso, e é possível adicionar mais bits ao circuito dinâmicamente com o arrastar de uma das portas para além da linha do último bit.
+O simulador Quirk é composto por um menu que possui opções de carregar alguns exemplos de circuitos já prontos, exportar o circuito montado, desfazer ou refazer alguma alteração e inclusive criar porta. Ele possui uma área com as opções de portas a serem utilizadas no circuito, formas de mostrar o resultado e mais diversas opções. Algumas vantagens desse simulador são: as portas são colocadas da forma ``arrastar e soltar'', o resultado é mostrado a todo momento não havendo a necessidade de se apertar um botão para isso, e é possível adicionar mais bits ao circuito dinamicamente com o arrastar de uma das portas para além da linha do último bit.
 
 \section{Organização do Texto}
 
@@ -277,10 +277,10 @@ Este trabalho está divido da seguinte forma: a Seção 2 é apresentada a motiv
 %%%%%%%%% Circuitos Quanticos
 \chapter{Circuito Quântico}
 
-Primeiramento vamos relembrar um pouco de circuitos lógicos. Os circuitos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que é a entrada transformada pelo circuito.
+Primeiramente vamos relembrar um pouco de circuitos lógicos. Os circuitos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que é a entrada transformada pelo circuito.
 
 \section{Qubit}
-Já um bit quântico, ou seja um qubit, é um vetor de dois números complexos que chamaremos de a e b.
+Já um bit quântico, ou seja, um qubit é um vetor de dois números complexos que chamaremos de a e b.
 \begin{equation} \label{eq1} 
 \ket{\Psi} = \mqty(a\\b).
 \end{equation}
