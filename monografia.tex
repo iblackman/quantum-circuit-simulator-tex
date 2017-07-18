@@ -227,7 +227,7 @@ No mundo da mecânica quântica os eventos são governados por probabilidades. U
 
 Pode-se tomar como exemplo o experimento teórico do "Gato de Schrödinger". São colocados um gato, um frasco de veneno e uma fonte de radiação em uma caixa selada. Se um monitor interno (ex. Contador Geiger) detecta radiação, o frasco é quebrado soltando o veneno, matando o gato. No mundo clássico existe uma chance de 50\% de o gato estar morto, e sem olhar dentro da caixa podemos dizer que o gato está vivo ou morto. Segundo a teoria, nenhuma das duas possibilidades tem qualquer realidade a menos que seja observada~\cite{gribbin}. Isso se equivale para o qubit, ele pode ser 0 ou 1 ao mesmo tempo mas quando ele é observado ele deixa de ser um bit quântico e passa a ser um bit clássico, ou seja, só pode ser 0 ou 1.
 
-Outra visão quanto a um qubit pode-se pensar em uma esfera imaginaria onde um bit clássico pode estar apenas em um dos pólos da esfera e o qubit, bit quântico, pode estar em qualquer ponto da esfera. Assim qubits podem armazenar uma quantidade muito maior de informação que um bit clássico.
+Outra visão quanto a um qubit pode-se pensar em uma esfera imaginária onde um bit clássico pode estar apenas em um dos pólos da esfera e o qubit, bit quântico, pode estar em qualquer ponto da esfera. Assim qubits podem armazenar uma quantidade muito maior de informação que um bit clássico.
 
 \section{Motivação e Objetivo}
 
@@ -243,12 +243,13 @@ Nesta sessão mostramos alguns simuladores que existem e quais suas vantagens e 
 
 \subsection{Quantum - Davy Wybiral}
 
-Existe um simulador online desenvolvido por Davy Wybiral de Austin Texas, Quantum ou como está no projeto dele do Git Quantum Circuit Simulator~\cite{davyw}. O projeto foi disponibilizado no Git em Janeiro de 2017~\cite{gitdavyw}. Davy Wybiral utiliza o Canvas para gerar toda a parte gráfica dos circuitos e menus, e javascript para toda a parte de cálculo. O simulador não possui nenhum tipo de documentação e tem uma interface bem simples com um menu superior onde existem algumas opções e uma área com as portas quânticas que podem ser adicionadas nos circuitos e ter a quantidade dos mesmos alterada.
+Existe um simulador online desenvolvido por Davy Wybiral de Austin Texas, Quantum ou como está no projeto dele do Git Quantum Circuit Simulator~\cite{davyw}. O projeto foi disponibilizado no Git em Janeiro de 2017~\cite{gitdavyw}. Davy Wybiral utiliza o Canvas para gerar toda a parte gráfica dos circuitos e menus, e javascript para toda a parte de cálculo. O simulador não possui nenhum tipo de documentação e tem uma interface bem simples com um menu superior onde existem algumas opções e uma área com as portas quânticas que podem ser adicionadas nos circuitos e ter a quantidade dos mesmos alterada, como pode ser visto na Figura~\ref{fig:davyw}.
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.36]{davyw.jpg}
 \caption{Simulador quântico de Davy Wybiral}
+\label{fig:davyw}
 \end{figure}
 
 A montagem do circuito funciona com a seleção de uma das portas e após isso basta clicar nos circuitos para adicionar a porta selecionada. Pode-se deletar uma porta clicando com o botão direito. Nos casos de portas de 2-bits é necessário que haja uma ação de clique e arraste onde o clique seleciona a posição do bit de controle e ao largar fica a porta. Existe também a possibilidade de arrastar com uma porta de 1-bit selecionada o que adiciona a mesma em diversos circuitos.
@@ -257,12 +258,13 @@ Para efetuar o cálculo do circuito basta pressionar a tecla Enter ou selecionar
 
 \subsection{Quirk - Craig Gidney}
 
-O projeto teve seu início em Março de 2014, mas não teve commits após o mes de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 foi quando se teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o commit mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido ``Media for Thinking the Unthinkable'' de Bret Victor onde ele menciona benefícios do feedback imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de ``manipulação direta''~\cite{quirk}. Foi desenvolvido utilizando Webgl.
+O projeto teve seu início em Março de 2014, mas não teve commits após o mes de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 foi quando se teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o commit mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido ``Media for Thinking the Unthinkable'' de Bret Victor onde ele menciona benefícios do feedback imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de ``manipulação direta''~\cite{quirk}. Foi desenvolvido utilizando Webgl. Na Figura~\ref{fig:quirk} pode-se ver uma captura de tela do simulador.
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.36]{quirk.jpg}
 \caption{Simulador quântico Quirk de Craig Gidney}
+\label{fig:quirk}
 \end{figure}
 
 Craig faz comparações com alguns simuladores como, por exemplo, o já mencionado de Davy Wybiral e o IBM Quantum Experience. Ele também menciona alguns outros como Quantum Computing Playground e Microsoft's LIQ Ui|>.
@@ -280,109 +282,187 @@ Este trabalho está divido da seguinte forma: a Seção 2 é apresentada a motiv
 Primeiramente vamos relembrar um pouco de circuitos lógicos. Os circuitos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que é a entrada transformada pelo circuito.
 
 \section{Qubit}
-Já um bit quântico, ou seja, um qubit é um vetor de dois números complexos que chamaremos de a e b.
+Dentro do espaço vetorial bidimensional os únicos vetores clássicos são os dois vetores ortogonais $\ket{0}$ e $\ket{1}$, visto que esses são os únicos dois estados que um bit clássico pode ter. Já um bit quântico, ou seja, um qubit possui um estado associado $\ket{\Psi}$ que pode ser qualquer vetor unitário dentro do espaço vetorial bidimensional abrangido por $\ket{0}$ e $\ket{1}$ sobre os números complexos, ou seja, um vetor composto de dois números complexos que chamaremos de a e b, como pode se notar em~\eqref{eq1}.
 \begin{equation} \label{eq1} 
-\ket{\Psi} = \mqty(a\\b).
-\end{equation}
-
-Ao ser medido os elementos $\abs{a}^2$ e $\abs{b}^2$ são, respectivamente, a probabilidade de que o qubit seja $\ket{0}$ e $\ket{1}$. 
-\begin{equation} \label{eq2}
-  \ket{0} = \mqty(1\\0) ,\hspace{2cm} 
-  \ket{1} = \mqty(0\\1).
-\end{equation}
-Sendo assim os valores a e b devem seguir a regra de normalização
-\begin{equation}\label{eq3}
-\abs{a}^2 + \abs{b}^2 = 1,
-\end{equation}
-\begin{equation}\label{eq4}
 \ket{\Psi} = a\ket{0} + b\ket{1} = \mqty(a\\b).
 \end{equation}
+
+Como a única exigência de $\ket{\Psi}$ é ser um vetor unitário dentro do espaço vetorial complexo a condição de normalização se aplica a ele tendo assim~\eqref{eq2}
+\begin{equation}\label{eq2}
+\abs{a}^2 + \abs{b}^2 = 1,
+\end{equation}
+
 O estado $\ket{\Psi}$ é dito de estar em superposição dos estados $\ket{0}$ e $\ket{1}$ com amplitudes \textit{a} e \textit{b}. Se a ou b for 0 e o outro for 1, por exemplo, é o caso especial onde o estado do qubit é igual a um dos estados clássicos $\ket{0}$ ou $\ket{1}$.
 
+Ao ser medido os elementos $\abs{a}^2$ e $\abs{b}^2$ são, respectivamente, a probabilidade de que o qubit seja $\ket{0}$ e $\ket{1}$. 
+\begin{align*} 
+  \ket{0} = \mqty(1\\0) ,\hspace{2cm} 
+  \ket{1} = \mqty(0\\1).
+\end{align*}
+
+
 \section{Entrelaçamento}
-Assim como o estado geral de um único qubit é qualquer superposição normalizada \eqref{eq4} dos dois possíveis estados clássicos, o estado geral de $\ket{\Psi}$ nos possibilita associar com dois qubits em qualquer superposição dos quatro estados clássicos,
-\begin{equation}\label{eq5}
+Assim como o estado geral de um único qubit é qualquer superposição normalizada \eqref{eq1} dos dois possíveis estados clássicos, o estado geral de $\ket{\Psi}$ nos possibilita associar com dois qubits em qualquer superposição dos quatro estados clássicos,
+\begin{equation}\label{eq3}
+\ket{\Psi}_2 = a\ket{00} + b\ket{01} + c\ket{10} + d\ket{11} = \mqty(a\\b\\c\\d)
+\end{equation}
+\begin{align*}
   \ket{00} = \mqty(1\\0\\0\\0) \hspace{1cm} 
   \ket{01} = \mqty(0\\1\\0\\0) \hspace{1cm} 
   \ket{10} = \mqty(0\\0\\1\\0) \hspace{1cm} 
   \ket{11} = \mqty(0\\0\\0\\1)
-\end{equation}
-\begin{equation}\label{eq6}
-\ket{\Psi}_2 = a\ket{00} + b\ket{01} + c\ket{10} + d\ket{11} = \mqty(a\\b\\c\\d)
-\end{equation}
-Se tivermos dois qubits $\ket{\Psi} = a\ket{0} + b\ket{1}$ e $\ket{\Phi} = c\ket{0} + d\ket{1}$, então o estado $\ket{\Psi}_2$ do par é o produto tensor deles,
-\begin{equation}\label{eq7}
-\ket{\Psi}_2 = \ket{\Psi}\otimes\ket{\Phi} = \mqty(a \vdot c\\a \vdot d\\b \vdot c\\b \vdot d)
-\end{equation}\
-Assim os valores das quatro amplitudes devem seguir a regra de normalização, onde
-\begin{equation}
+\end{align*}
+
+Assim os valores das quatro amplitudes devem seguir a condição de normalização, onde
+\begin{equation}\label{eq4}
 \abs{a}^2 + \abs{b}^2 + \abs{c}^2 + \abs{d}^2 = 1
 \end{equation}
-Com \eqref{eq7} temos
-\begin{align}
+
+Generalizando para \textit{n} qubits o estado geral pode ser qualquer superposição dos $2^n$ estados clássicos, com amplitudes cujo quadrado somam a unidade:
+\begin{align*}
+\ket{\Psi} = \sum_{0\leq x<2^n} \alpha_x\ket{x}_n \\
+\sum_{0\leq x<2^n} \abs{\alpha_x}^2 = 1.
+\end{align*}
+No contexto de computação quântica, o conjunto de $2^n$ estados clássicos, isto é, todos os possíveis produtos tensores de \textit{n} qubits $\ket{0}$ e $\ket{1}$ é chamado de base clássica. Os estados que caracterizam \textit{n} bits clássicos, estados de base clássica, são um conjunto bem limitado dos estados de \textit{n} qubits, os quais podem ser qualquer superposição com coeficientes complexos desses estados de base clássica.
+
+Se tivermos dois qubits, um no estado $\ket{\Psi} = a\ket{0} + b\ket{1}$ e outro no estado $\ket{\Phi} = c\ket{0} + d\ket{1}$, então o estado $\ket{\Psi}_2$ do par é o produto tensor dos estados individuais,
+\begin{equation}\label{eq7}
+\ket{\Psi}_2 = \ket{\Psi}\otimes\ket{\Phi} 
+= ac\ket{00} + ad\ket{01} + bc\ket{10} + bd\ket{11}
+= \mqty(a \vdot c\\a \vdot d\\b \vdot c\\b \vdot d)
+\end{equation}\
+Com \eqref{eq7} e a condição de normalização temos
+\begin{align*}
 \abs{a \vdot c}^2 + \abs{a \vdot d}^2 + \abs{b \vdot c}^2 + \abs{b \vdot d}^2 \\
 \abs{a}^2 \vdot \abs{c}^2 + \abs{a}^2 \vdot \abs{d}^2 + \abs{b}^2 \vdot \abs{c}^2 + \abs{b}^2 \vdot \abs{d}^2 \\
 \abs{a}^2 \vdot (\abs{c}^2 + {d}^2) + \abs{b}^2 \vdot (\abs{c}^2 + \abs{d}^2) \\
 \abs{a}^2 \vdot 1 + \abs{b}^2 \vdot 1 \\
 \abs{a}^2 + \abs{b}^2 = 1
-\end{align}
-Essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \ref{eq7} de dois estados de 1-qubit. Esse estado de dois ou mais qubits é chamado de entrelaçamento.
+\end{align*}
+
+Note que um estado geral de 2-qubit \eqref{eq3} é da forma especial \eqref{eq7} se e somente se $a\vdot d=b\vdot c$. Como as quatro amplitudes em \eqref{eq3} seguem a condição de normalização \eqref{eq4}, essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \eqref{eq7} de dois estados de 1-qubit. O mesmo é verdade para estados de n-qubits. Enquanto o estado geral de n bits clássicos é um dos $2^n$ produtos de $\ket{0}$s e $\ket{1}$s, o estado geral de n-qubits é a superposição desses $2^n$ produtos e não pode ser expresso como um produto de qualquer conjunto de estados de 1-qubit. Esse não produto de estados de dois ou mais qubits é chamado de entrelaçamento.
 
 \section{Portas quânticas}
-Portas quânticas são operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos ou matematicamente por matrizes.
-\begin{equation}
+Analogamente à como um computador clássico circuito com portas lógicas, um computador quântico também possui um circuito, entretanto este último possui portas quânticas~\cite{nielsen}, que são operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos, Figura~\ref{fig:portaQuantica}, ou matematicamente por matrizes~\eqref{eqPortas}.
+\begin{equation}\label{eqPortas}
 \ket{\Psi'} =  U\ket{\Psi}
-\qquad \includegraphics[width=0.07\linewidth, valign=c]{h.jpg}
 \end{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{s.jpg}
+\caption{Porta quântica}
+\label{fig:portaQuantica}
+\end{figure}
+
 Uma porta quântica deve sempre ser representada por uma matriz unitária porque ao multiplicar o vetor pela matriz a norma do vetor é mantida.
 \subsection{NOT} 
-A operação NOT quântica faz com que as amplitudes do qubits se invertam.
-\begin{equation}
-X =  \mqty(0&1\\1&0)
-\qquad \includegraphics[width=0.07\linewidth, valign=c]{x.jpg}
+Considerando as portas clássicas de um único bit, a única não trivial é a porta NOT a qual faz com que 0 e 1 se invertam. Imagine o mesmo processo que recebe o estado $\ket{0}$ e retorna o estado $\ket{1}$, e vice versa. Este processo seria um bom candidato para a porta quântica análoga a NOT clássica. Entretanto, especificando a ação sobre os estados $\ket{0}$ e $\ket{1}$ não nos diz nada sobre o que aconteceria sobre a superposição dos mesmos. Na verdade, a porta quântica NOT age linearmente, ou seja, recebe o estado $a\ket{0} + b\ket{1}$ e retorna $b\ket{0} + a\ket{1}$, assim invertendo as amplitudes do qubit. A porta quântica NOT pode ser representada graficamente pela Figura~\ref{fig:not} e um outro modo conveniente de representá-la é em forma de matriz \eqref{eq2x}.
+\begin{equation}\label{eq2x}
+X =  \mqty(0&1\\1&0).
 \end{equation}
-\begin{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{x.jpg}
+\caption{Porta quântica NOT}
+\label{fig:not}
+\end{figure}
+
+Com o estado $\ket{\Psi} = \mqty(a\\b)$, podemos aplicar \eqref{eq2x} e teremos \eqref{eq2x2}
+\begin{equation}\label{eq2x2}
 X\ket{\Psi} = \mqty(0&1\\1&0)\mqty(a\\b) = \mqty(0 \vdot a+1 \vdot b \\1 \vdot a+0 \vdot b) = \mqty(b\\a) = \ket{\Psi'}
 \end{equation}
 
 \subsection{Y e Z} 
-Análogas à operação NOT temos as operações Y e Z.
-\begin{equation}
+Comparado com a computação clássica, onde só existe uma porta não trivial de um bit, a porta NOT, pode se encontrar na computação quântica várias portas de um único qubit não triviais. Como por exemplo as operações Y e Z, que são representadas graficamente pelas Figuras \ref{fig:y} e \ref{fig:z}, e matricialmente por \eqref{eqY} e \eqref{eqZ},respectivamente. Essa operações são análogas a operação NOT, se pensarmos na representação do estado de um qubit como uma esfera, ilustrado pela esfera de Bloch na Figura \ref{fig:bloch}, a operação NOT é equivalente a rotação da esfera no eixo X em $\pi$ radianos. Análogamente, as operações Y e Z são rotações de $\pi$ radianos nos eixos Y e Z, respectivamente.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{bloch_sphere.png}
+\caption{Esfera de Bloch}
+\label{fig:bloch}
+\end{figure}
+%imagem retirada da wikipedia
+\begin{equation}\label{eqY}
 Y =  \mqty(0&-i\\i&0)
-\qquad \includegraphics[width=0.07\linewidth, valign=c]{y.jpg}
 \end{equation}
-\begin{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{y.jpg}
+\caption{Porta quântica Y}
+\label{fig:y}
+\end{figure}
+
+\begin{equation}\label{eqZ}
 Z =  \mqty(1&0\\0&-1)
-\qquad \includegraphics[width=0.07\linewidth, valign=c]{z.jpg}
 \end{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{z.jpg}
+\caption{Porta quântica Z}
+\label{fig:z}
+\end{figure}
 
 \subsection{Identidade} 
-A operação Identidade quântica mantém os valores iniciais do qubit.
-\begin{equation}
+A operação Identidade quântica mantém os valores iniciais do qubit, representada graficamente pela Figura~\ref{fig:I} e pela matriz~\eqref{eqI}.
+\begin{equation}\label{eqI}
 I =  \mqty(1&0\\0&1)
-\qquad \includegraphics[width=0.07\linewidth, valign=c]{line.jpg}
-\end{equation}
-\begin{equation}
-I\ket{\Psi} = \mqty(1&0\\0&1)\mqty(a\\b) = \mqty(1 \vdot a+0 \vdot b \\0 \vdot a+1 \vdot b) = \mqty(a\\b) = \ket{\Psi'}
 \end{equation}
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{line.jpg}
+\caption{Porta quântica Identidade}
+\label{fig:I}
+\end{figure}
+
+\begin{align*}
+I\ket{\Psi} = \mqty(1&0\\0&1)\mqty(a\\b) = \mqty(1 \vdot a+0 \vdot b \\0 \vdot a+1 \vdot b) = \mqty(a\\b) = \ket{\Psi'}
+\end{align*}
+
 \subsection{Hadamard} 
-A porta Hadamard é uma operação fundamental na computação quântica e não possui uma operação clássica equivalente. Ela transforma  os qubits bases $\ket{0}$ e $\ket{1}$ para um estado de sobreposição onde $\ket{0}$ e $\ket{1}$ possuem a mesma probabilidade.
-\begin{equation}
+A porta Hadamard é uma operação fundamental na computação quântica e não possui uma operação clássica equivalente. Ela pode ser representada pela Figura~\ref{fig:H} ou pela matriz~\eqref{eqH}. Essa porta transforma os qubits bases $\ket{0}$ e $\ket{1}$ para um estado de sobreposição onde $\ket{0}$ e $\ket{1}$ possuem a mesma probabilidade. Se consideramos a esfera de Bloch e realizar essa operação sobre ela, isto seria uma rotação da esfera no eixo Y de $90^o$ e em seguida uma rotação no eixo X de $180^o$, como é mostrado na Figura~\ref{fig:h_sphere}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{h_sphere.png}
+\caption{Esferas de Bloch da operação Hadamard}
+\label{fig:h_sphere}
+\end{figure}
+%imagem pega do livro do Nielsen
+
+\begin{equation}\label{eqH}
 H =  \frac{1}{\sqrt{2}}\mqty(1&1\\1&-1)
-\qquad \includegraphics[width=0.07\linewidth, valign=c]{h.jpg}
 \end{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.75]{h.jpg}
+\caption{Porta quântica Hadamard}
+\label{fig:H}
+\end{figure}
+
 \begin{equation}
 H\ket{\Psi} = \frac{1}{\sqrt{2}}\mqty(1&1\\1&-1)\mqty(a\\b) = \frac{1}{\sqrt{2}}\mqty(1 \vdot a+1 \vdot b \\1 \vdot a-1 \vdot b) = \mqty( \frac{a+b}{\sqrt{2}} \\ \frac{a-b}{\sqrt{2}} ) = \ket{\Psi'}
 \end{equation}
 
 \subsection{CNOT} 
-A operação CNOT possui um controle. Dados dois qubits, x e y, a matriz C mantém o valor de y caso x seja igual a 0 e caso x seja igual a 1 ela inverte o valor de y.
-\begin{equation}
+A operação CNOT é uma porta de dois qubits conhecidos como controle e alvo, representada pela matriz~\eqref{eqCNOT} ou pela Figura~\ref{fig:CNOT}, onde a linha de cima representa o qubit de controle e a de baixo o qubit alvo. A porta CNOT funciona da seguinte maneira. Dados dois qubits, x e y, a matriz C mantém o valor de y caso x seja igual a 0 e caso x seja igual a 1 ela inverte o valor de y, como é mostrado em~\eqref{eqFullCNOT}.
+\begin{equation}\label{eqCNOT}
 C =  \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)
-\qquad \includegraphics[width=0.07\linewidth, valign=c]{cnot.png}
 \end{equation}
-\begin{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.80]{cnot.png}
+\caption{Porta quântica CNOT}
+\label{fig:CNOT}
+\end{figure}
+
+\begin{equation}\label{eqFullCNOT}
 C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)\mqty(a\\b\\c\\d) = 
 \mqty(1 \vdot a+0 \vdot b +0 \vdot c +0 \vdot d \\
 	  0 \vdot a+1 \vdot b +0 \vdot c +0 \vdot d \\
@@ -392,23 +472,29 @@ C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)\mqty(a\\b\\c\\d) =
 \end{equation}
 
 \subsection{Medição}
-Quando um qubit passa pela operação de medição ele se torna um bit clássico, 0 ou 1, e por esse motivo essa operação é muito importante na computação quântica. Para fazer essa diferenciação entre qubit e bit clássico em um circuito lógico quântico, um traço representa um qubit e um traço duplo um bit clássico.
-\begin{align}
-\qquad \includegraphics[width=0.1\linewidth, valign=c]{medicao.png}
-\end{align}
+Outra porta importante é a de medição, que comumente é representada por um "medidor", como pode ser observado na Figura~\ref{fig:medicao}. Essa operação converte um único qubit no estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ em um bit clássico probabilístico, o qual é 0 com uma probabilidade de $\abs{a}^2$, ou 1 com uma probabilidade $\abs{b}^2$. Para fazer essa diferenciação entre qubit e bit clássico em um circuito lógico quântico, um traço representa um qubit e um traço duplo um bit clássico.
+
+%devo trocar a explicacao da medicao? Quando um qubit passa pela operação de medição ele se torna um bit clássico, 0 ou 1, e por esse motivo essa operação é muito importante na computação quântica.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.40]{medicao.png}
+\caption{Porta quântica de medição}
+\label{fig:medicao}
+\end{figure}
 
 \subsection{Código Superdenso}
 
 Apesar de uma quantidade infinita de informações ser necessária para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo de que alguém que tenha adquirido um qubit possa descobrir qual é seu estado. Se Alice prepara um qubit no estado $\ket{\Psi}$ e envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
 
-E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2bits clássicos para Bob e Eve que fará e inicialização do sistema.
+E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2bits clássicos para Bob e Eve que fará e inicialização do sistema, usaremos algumas das portas citadas acima para explicar o código superdenso.
 
 Na inicialização do sistema, Eve inicializa um qubit de tamanho dois $\ket{\Psi}=\ket{\Psi' \Psi''}$ com zero. 
 \begin{equation}
 \ket{\Psi} = \ket{00} = \ket{0}\otimes \ket{0} = \mqty(1\\0) \otimes \mqty(1\\0) = \mqty(1\\0\\0\\0)
 \end{equation}
 Após isso Eve aplica a operação Hadamard em $\ket{\Psi'}$
-\begin{align}
+\begin{align*}
 H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
 				\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}} ) 
 	\otimes \mqty(1&0\\0&1) 
@@ -425,60 +511,62 @@ H \otimes I =
 	\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}&0 \\
 	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) 
 	\mqty(1\\0\\0\\0) = \mqty(\frac{1}{\sqrt{2}}\\0\\ \frac{1}{\sqrt{2}}\\0)
-\end{align}
+\end{align*}
 e usa a porta CNOT em $\ket{\Psi}$.
-\begin{equation}
+\begin{align*}
 C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0) 
 			\mqty(\frac{1}{\sqrt{2}}\\0\\ \frac{1}{\sqrt{2}}\\0)
 		= \mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}})
-\end{equation}
+\end{align*}
 Em seguida Eve envia $\ket{\Psi'}$ para Alice e $\ket{\Psi''}$ para Bob. 
 
 Alice que deseja enviar dois bits clássicos $\ket{ab}$ para Bob, ao receber o qubit $\ket{\Psi'}$ de Eve aplica uma transformação U em $\ket{\Psi'}$ da seguinte forma:
 \begin{itemize}
 \item Se $\ket{ab}=\ket{00}$, então U = I.
-\begin{align}
+\begin{align*}
 U = I\otimes I = \mqty(1&0\\0&1)\otimes\mqty(1&0\\0&1) = 
 	\mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1) \\
 (I\otimes I)\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)
 	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
 	= \mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
-\end{align}
+\end{align*}
 \item Se $\ket{ab}=\ket{01}$, então U = X.
-\begin{align}
+\begin{align*}
 U = X\otimes I = \mqty(0&1\\1&0)\otimes\mqty(1&0\\0&1) = 
 	\mqty(0&0&1&0\\0&0&0&1\\1&0&0&0\\0&1&0&0) \\
+\end{align*}	
+\begin{align}
 (X\otimes I)\ket{\Psi} =  \mqty(0&0&1&0\\0&0&0&1\\1&0&0&0\\0&1&0&0) 
 	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
 	= \mqty(0\\ \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\ 0)\label{eq34}
 \end{align}
 \item Se $\ket{ab}=\ket{10}$, então U = Z.
-\begin{align}
+\begin{align*}
 U = Z\otimes I = \mqty(1&0\\0&-1)\otimes\mqty(1&0\\0&1) = 
 	\mqty(1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1) \\
 (Z\otimes I)\ket{\Psi} =  \mqty(1&0&0&0\\0&1&0&0\\0&0&-1&0\\0&0&0&-1) 
 	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
 	= \mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ -\frac{1}{\sqrt{2}}) 
-\end{align}
+\end{align*}
 \item Se $\ket{ab}=\ket{11}$, então U = XZ.
-\begin{align}
+\begin{align*}
 U = XZ\otimes I = \mqty(1&1\\1&-1)\otimes\mqty(1&0\\0&1) = 
 	\mqty(1&0&1&0\\0&1&0&1\\1&0&-1&0\\0&1&0&-1) \\
 (XZ\otimes I)\ket{\Psi} =  \mqty(1&0&1&0\\0&1&0&1\\1&0&-1&0\\0&1&0&-1)
 	\mqty(\frac{1}{\sqrt{2}}\\0\\ 0\\ \frac{1}{\sqrt{2}}) 
 	= \mqty(\frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\ -\frac{1}{\sqrt{2}}) 
-\end{align}
+\end{align*}
 \end{itemize}
 Depois de aplicada a transformação, Alice envia $U\ket{\Psi'}$ para Bob. Para continuar as equações usaremos $\ket{ab}=\ket{01}$ \eqref{eq34}.
 
 Bob aplica a porta CNOT em $\ket{\Psi}$
-\begin{equation}
+\begin{align*}
 C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0) 
 			\mqty(0\\ \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\0)
 		= \mqty(0\\ \frac{1}{\sqrt{2}}\\ 0\\ \frac{1}{\sqrt{2}}),
-\end{equation}
+\end{align*}
 em seguida usa a porta Hadamard em $U\ket{\Psi'}$
-\begin{align}
+\begin{align*}
 H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
 				\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}} ) 
 	\otimes \mqty(1&0\\0&1) 
@@ -491,18 +579,20 @@ H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
 	\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}&0 \\
 	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) 
 	\mqty(0\\ \frac{1}{\sqrt{2}}\\ 0\\ \frac{1}{\sqrt{2}}) = \mqty(0\\1\\0\\0)
-\end{align}
+\end{align*}
 que recebeu de Alice. Após tudo isso Bob faz a medição dos dois qubits, passando estes para bits clássicos $\ket{ab}$
-\begin{align}
+\begin{align*}
 \ket{\Psi} = \mqty(0\\1\\0\\0) \hspace{2.5cm} \\
 \ket{\Psi} = 0\vdot\ket{00} + 1\vdot\ket{01} + 0\vdot\ket{10} + 0\vdot\ket{11} \\
 \ket{ab} = \ket{01}. \hspace{2.5cm}
-\end{align}
-(pagina 149)
+\end{align*}
+%(pagina 149)
+A Figura~\ref{fig:superdense} ilustra o código Superdenso.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.38]{superdenso.jpg}
 \caption{Código Superdenso}
+\label{fig:superdense}
 \end{figure}
 
 
@@ -569,17 +659,20 @@ Já pensando sobre a área para montar o circuito resolvemos que as portas ficar
 
 Por final precisamos de uma área para mostrar o resultado o que fez total sentido em deixá-la depois de tudo pois ela seria dependente das anteriores, sendo assim ficou na parte de baixo de tudo.
 
+Na Figura~\ref{fig:simulador} pode ser visto uma captura de tela do simulador.
+
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{simulador-pagina.png}
 \caption{Nosso simulador circuito quântico online}
+\label{fig:simulador}
 \end{figure}
 
 \section{Arquitetura}
 
 Escolhemos o padrão Model-View-Controller (MVC) para o projeto até porque o Django já segue esse padrão e que faz muito sentido para o desenvolvimento de aplicações online.
 
-Esse estilo arquitetural é composto de três elementos: modelo, visão e controle. O modelo é composto dos elementos que representam os principais conceitos do domínio, se pensarmos na orientação a objetos, o modelo seria as classes do sistema e que normalmente são persistidas em bancos de dados. Mas não possuem nenhum acesso de fora do sistema. Já a visão é composta por elementos de interface com o usuário, podendo ser uma interface gráfica, linha de comando ou uma API que manipulam elementos do modelo. E por último, mas não menos importante o controle que são elementos responsáveis pela orquestração, que manipulam uma visão e executam os casos de uso.
+Esse estilo arquitetural é composto de três elementos: modelo, visão e controle, ilustrados na Figura~\ref{fig:mvc}. O modelo é composto dos elementos que representam os principais conceitos do domínio, se pensarmos na orientação a objetos, o modelo seria as classes do sistema e que normalmente são persistidas em bancos de dados. Mas não possuem nenhum acesso de fora do sistema. Já a visão é composta por elementos de interface com o usuário, podendo ser uma interface gráfica, linha de comando ou uma API que manipulam elementos do modelo. E por último, mas não menos importante o controle que são elementos responsáveis pela orquestração, que manipulam uma visão e executam os casos de uso.
 
 No MVC uma visão conhece seu modelo mas o modelo não conhece sua visão, os controles conhecem suas visões mas a visão não conhece seu controle. E as entidades do modelo não conhecem ninguém a não ser as outras entidades do modelo.
 
@@ -587,6 +680,7 @@ No MVC uma visão conhece seu modelo mas o modelo não conhece sua visão, os co
 \centering
 \includegraphics[scale=0.4]{mvc.png}
 \caption{Diagrama MVC \cite{mvc-murta}}
+\label{fig:mvc}
 \end{figure}
 
 Vantagens do MVC:
@@ -599,19 +693,19 @@ Vantagens do MVC:
 \end{itemize}
 
 \section{Django e MVC}
-O Django possui uma peculiaridade, ele utiliza o padrão Model View Controller (MVC), entretanto possui nomes peculiares para seus componentes. Para a parte de modelo ele chama de ``model'' e para View de ``template'' até então tudo bem, mas quando chega na parte do Controller ele chama de ``view'' o que gera confusão e reclamações de muitos. No próprio site do Django~\cite{django} existe uma pergunta sobre isso onde eles respondem que ``view'' representa os dados que são apresentados ao usuário, não necessariamente como é apresentado. Então para eles a ``view'' representa qual informação é vista e ``template'' como ela é vista~\cite{django-mvc}.
+O Django possui uma peculiaridade, ele utiliza o padrão Model View Controller (MVC), entretanto possui nomes peculiares para seus componentes. Para a parte de modelo ele chama de \textit{model} e para View de \textit{template} até então tudo bem, mas quando chega na parte do Controller ele chama de \textit{view} o que gera confusão e reclamações de muitos. No próprio site do Django~\cite{django} existe uma pergunta sobre isso onde eles respondem que \textit{view} representa os dados que são apresentados ao usuário, não necessariamente como é apresentado. Então para eles a \textit{view} representa qual informação é vista e \textit{template} como ela é vista~\cite{django-mvc}.
 
 \section{Drag and Drop}
 
 Como o simulador deveria ser amigável para o usuário decidimos utilizar Drag \& Drop (D\&{D}) para a criação/edição do circuito. Resolvemos que o simulador deveria ter uma área com as portas quânticas disponíveis para montar o circuito quântico e a partir dessa área o usuário poderia arrastar as portas para formar o circuito. Entretanto os D\&{D} convencionais apenas possibilitavam o arrastar de um elemento para um outro container, ou seja, o elemento deixava de existir no container original e era adicionado no final. O que queríamos era que o elemento inicial continuasse existindo onde estava e que uma cópia do mesmo fosse criada e adicionada ao container alvo, ou final, por isso decidimos criar um.
 
-Sendo assim utilizamos Javascript e JQuery~\cite{jquery}, uma biblioteca de JS, para criar uma cópia do elemento que sofreu o evento de Drag e movemos a cópia até o destino do Drop. E ao realizar o Drop existe uma checagem para excluir o elemento existente e adicionar a cópia. Nos materiais encontrados sobre D\&{D} o elemento utilizado pelo Javascript para capturar o elemento do drop era o ev.target o que gera alguns problemas pois esse target não traz especificamente o elemento com o evento de drop atrelado, podendo trazer uma das divs que o encapsulam ou algum outro elemento mais interno fazendo com que não houvesse uma consistência do retorno. Para resolver esse problema decidimos utilizar currentTarget ao invés do target.
+Sendo assim utilizamos Javascript(JS) e JQuery~\cite{jquery}, uma biblioteca de JS, para criar uma cópia do elemento que sofreu o evento de Drag e movemos a cópia até o destino do Drop. E ao realizar o Drop existe uma checagem para excluir o elemento existente e adicionar a cópia. Nos materiais encontrados sobre D\&{D} o elemento utilizado pelo Javascript para capturar o elemento do drop era o ev.target o que gera alguns problemas pois esse target não traz especificamente o elemento com o evento de drop atrelado, podendo trazer uma das divs que o encapsulam ou algum outro elemento mais interno fazendo com que não houvesse uma consistência do retorno. Para resolver esse problema decidimos utilizar currentTarget ao invés do target.
 
 Quando pensamos nas portas de 2 qubits nos deparamos com outro problema. Como iríamos fazer a seleção do qubit de controle? A escolha foi ter um input que serviria de alvo do segundo qubit e a partir disso bastou fazer o tratamento para quando o alvo era igual ao bit do Drop ou caso o alvo fosse maior que o número de bits. No primeiro caso é solto um alerta com a mensagem de que não se pode arrastar a porta para o mesmo bit alvo da conexão, e no segundo caso o alvo se torna o último qubit do circuito ou o primeiro caso o valor seja negativo.
 
-\section{Cálculo via Ajax}
+\section{Cálculo via AJAX}
 
-Ajax, ou JavaScript e XML assíncronos, não é uma linguagem e sim uma combinação de técnicas que utilizam ferramentas já embutidas do browser para realizar requisições ao servidor e receber respostas do mesmo de forma assíncrona, sem a necessidade de recarregar a página inteira, apenas parte da mesma.
+AJAX, ou JavaScript e XML assíncronos, não é uma linguagem e sim uma combinação de técnicas que utilizam ferramentas já embutidas do browser para realizar requisições ao servidor e receber respostas do mesmo de forma assíncrona, sem a necessidade de recarregar a página inteira, apenas parte da mesma.
 
 A escolha do Ajax para realização do cálculo se deve ao simples fato de que o simulador tem o intuito de ser amigável ao usuário e dessa forma utilizando Ajax não existe a necessidade de recarregar a página ou ser direcionado para uma outra.
 
@@ -674,9 +768,9 @@ Texto...
 Neste trabalho apresentamos a implementação de um simulador de circuitos quânticos que utiliza um computador clássico para executar os algoritmos em um computador quântico. Assim, características quânticas como o entrelaçamento e a sobreposição serão realizadas em bits clássicos o que resultará num gasto de tempo maior. Por isso, o simulador também gera uma estimativa de tempo gasto a partir das portas quânticas, emulando o que seria obtido por um computador quântico caso ele seja construído. As portas e o tempo gasto em cada uma e dado pelo usuário. O simulador é uma ferramenta online e dispõe de arraste das portas quânticas para formação dos circuitos com o intuito de facilitar a interação com o usuário.
 
 Conclui-se que o projeto providenciou um  enorme aprendizado nas 
-áreas da computação quântica, desenvolvimento web, Python, framework Django, deploy no Heroku.
+áreas da computação quântica, desenvolvimento web, Python, framework Django, deploy no Heroku. (encher linguica estudei duas areas que nao estao relacionadas, quantica e desenvolvimento web, falar tambem que sao areas que nao foram vista na minha grade curricular)
 
-Como continuidade do projeto seria necessário implantar de novas portas, melhora do sistema de Drag and Drop principalmente no caso das portas de dois qubits, melhora no design do simulador com a ideia de torná-lo mais atrativo ao usuário, alterar a forma como os resultados são mostrados para facilitar o entendimento do usuário. Podendo ir além, adicionando novas funcionalidades como leitura de um circuito a partir de algum tipo de arquivo, a possibilidade de salvar um circuito montado.
+Como tabalho futuro pode-se implantar novas portas, melhora do sistema de Drag and Drop principalmente no caso das portas de dois qubits, melhora no design do simulador com a ideia de torná-lo mais atrativo ao usuário, alterar a forma como os resultados são mostrados para facilitar o entendimento do usuário. Podendo ir além, adicionando novas funcionalidades como leitura de um circuito a partir de algum tipo de arquivo, a possibilidade de salvar um circuito montado.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    REFERÊNCIAS BIBLIOGRÁFICAS
 \bibliographystyle{plain}
