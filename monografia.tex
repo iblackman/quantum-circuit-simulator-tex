@@ -225,7 +225,7 @@ Computadores quânticos utilizam bits quânticos ou "qubits", sistemas quântico
 
 No mundo da mecânica quântica os eventos são governados por probabilidades. Um átomo radioativo, por exemplo, pode enfraquecer emitindo um elétron, ou não. É possível preparar um experimento de tal forma que exista uma chance exata de 50\% de que um dos átomos de um pedaço de material radioativo caía em um determinado tempo~\cite{gribbin}.
 
-Pode-se tomar como exemplo o experimento teórico do "Gato de Schrödinger". São colocados um gato, um frasco de veneno e uma fonte de radiação em uma caixa selada. Se um monitor interno (ex. Contador Geiger) detecta radiação, o frasco é quebrado soltando o veneno, matando o gato. No mundo clássico existe uma chance de 50\% de o gato estar morto, e sem olhar dentro da caixa podemos dizer que o gato está vivo ou morto. Segundo a teoria, nenhuma das duas possibilidades tem qualquer realidade a menos que seja observada~\cite{gribbin}. Isso se equivale para o qubit, ele pode ser 0 ou 1 ao mesmo tempo mas quando ele é observado ele deixa de ser um bit quântico e passa a ser um bit clássico, ou seja, só pode ser 0 ou 1.
+Pode-se tomar como exemplo o experimento teórico do "Gato de \textit{Schrödinger}". São colocados um gato, um frasco de veneno e uma fonte de radiação em uma caixa selada. Se um monitor interno (ex. Contador Geiger) detecta radiação, o frasco é quebrado soltando o veneno, matando o gato. No mundo clássico existe uma chance de 50\% de o gato estar morto, e sem olhar dentro da caixa podemos dizer que o gato está vivo ou morto. Segundo a teoria, nenhuma das duas possibilidades tem qualquer realidade a menos que seja observada~\cite{gribbin}. Isso se equivale para o qubit, ele pode ser 0 ou 1 ao mesmo tempo mas quando ele é observado ele deixa de ser um bit quântico e passa a ser um bit clássico, ou seja, só pode ser 0 ou 1.
 
 Outra visão quanto a um qubit pode-se pensar em uma esfera imaginária onde um bit clássico pode estar apenas em um dos pólos da esfera e o qubit, bit quântico, pode estar em qualquer ponto da esfera. Assim qubits podem armazenar uma quantidade muito maior de informação que um bit clássico.
 
@@ -243,7 +243,7 @@ Nesta sessão mostramos alguns simuladores que existem e quais suas vantagens e 
 
 \subsection{Quantum - Davy Wybiral}
 
-Existe um simulador online desenvolvido por Davy Wybiral de Austin Texas, Quantum ou como está no projeto dele do Git Quantum Circuit Simulator~\cite{davyw}. O projeto foi disponibilizado no Git em Janeiro de 2017~\cite{gitdavyw}. Davy Wybiral utiliza o Canvas para gerar toda a parte gráfica dos circuitos e menus, e javascript para toda a parte de cálculo. O simulador não possui nenhum tipo de documentação e tem uma interface bem simples com um menu superior onde existem algumas opções e uma área com as portas quânticas que podem ser adicionadas nos circuitos e ter a quantidade dos mesmos alterada, como pode ser visto na Figura~\ref{fig:davyw}.
+Existe um simulador online desenvolvido por Davy Wybiral de Austin Texas, \textit{Quantum} ou como está no projeto dele do Git \textit{Quantum Circuit Simulator}~\cite{davyw}. O projeto foi disponibilizado no Git em Janeiro de 2017~\cite{gitdavyw}. Davy Wybiral utiliza o Canvas para gerar toda a parte gráfica dos circuitos e menus, e javascript para toda a parte de cálculo. O simulador não possui nenhum tipo de documentação e tem uma interface bem simples com um menu superior onde existem algumas opções e uma área com as portas quânticas que podem ser adicionadas nos circuitos e ter a quantidade dos mesmos alterada, como pode ser visto na Figura~\ref{fig:davyw}.
 
 \begin{figure}[hbtp]
 \centering
@@ -258,7 +258,7 @@ Para efetuar o cálculo do circuito basta pressionar a tecla Enter ou selecionar
 
 \subsection{Quirk - Craig Gidney}
 
-O projeto teve seu início em Março de 2014, mas não teve commits após o mes de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 foi quando se teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o commit mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido ``Media for Thinking the Unthinkable'' de Bret Victor onde ele menciona benefícios do feedback imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de ``manipulação direta''~\cite{quirk}. Foi desenvolvido utilizando Webgl. Na Figura~\ref{fig:quirk} pode-se ver uma captura de tela do simulador.
+O projeto teve seu início em Março de 2014, mas não teve commits após o mes de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 foi quando se teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o \textit{commit} mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido ``\textit{Media for Thinking the Unthinkable}'' de Bret Victor onde ele menciona benefícios do \textit{feedback} imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de ``manipulação direta''~\cite{quirk}. Foi desenvolvido utilizando Webgl. Na Figura~\ref{fig:quirk} pode-se ver uma captura de tela do simulador.
 
 \begin{figure}[hbtp]
 \centering
@@ -267,13 +267,13 @@ O projeto teve seu início em Março de 2014, mas não teve commits após o mes 
 \label{fig:quirk}
 \end{figure}
 
-Craig faz comparações com alguns simuladores como, por exemplo, o já mencionado de Davy Wybiral e o IBM Quantum Experience. Ele também menciona alguns outros como Quantum Computing Playground e Microsoft's LIQ Ui|>.
+Craig faz comparações com alguns simuladores como, por exemplo, o já mencionado de Davy Wybiral e o IBM \textit{Quantum Experience}. Ele também menciona alguns outros como \textit{Quantum Computing Playground} e Microsoft's LIQ Ui|>.
 
 O simulador Quirk é composto por um menu que possui opções de carregar alguns exemplos de circuitos já prontos, exportar o circuito montado, desfazer ou refazer alguma alteração e inclusive criar porta. Ele possui uma área com as opções de portas a serem utilizadas no circuito, formas de mostrar o resultado e mais diversas opções. Algumas vantagens desse simulador são: as portas são colocadas da forma ``arrastar e soltar'', o resultado é mostrado a todo momento não havendo a necessidade de se apertar um botão para isso, e é possível adicionar mais bits ao circuito dinamicamente com o arrastar de uma das portas para além da linha do último bit.
 
 \section{Organização do Texto}
 
-Este trabalho está divido da seguinte forma: a Seção 2 é apresentada a motivação; na Seção 3 é realizada uma revisão bibliográfica, expondo a teoria e os frameworks existentes atualmente; a Seção 4 apresenta a solução implementada; a Seção 5 traz os resultados obtidos com o trabalho; e por final na Seção 6 são apresentadas as conclusões e trabalhos futuros.
+Este trabalho está divido da seguinte forma: a Seção 2 são apresentados alguns tópicos que serão necessários entender sobre circuito quântico que são utilizados ao longo do projeto; na Seção 3 é apresentada a escolha das ferramentas utilizadas para o desenvolvimento do simulador, expondo a teoria e os frameworks existentes atualmente; a Seção 4 apresenta como a solução foi desenvolvida; a Seção 5 traz os resultados obtidos com o trabalho; e por final na Seção 6 são apresentadas as conclusões e trabalhos futuros.
 
 
 %%%%%%%%% Circuitos Quanticos
@@ -490,9 +490,9 @@ Apesar de uma quantidade infinita de informações ser necessária para especifi
 E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2bits clássicos para Bob e Eve que fará e inicialização do sistema, usaremos algumas das portas citadas acima para explicar o código superdenso.
 
 Na inicialização do sistema, Eve inicializa um qubit de tamanho dois $\ket{\Psi}=\ket{\Psi' \Psi''}$ com zero. 
-\begin{equation}
+\begin{align*}
 \ket{\Psi} = \ket{00} = \ket{0}\otimes \ket{0} = \mqty(1\\0) \otimes \mqty(1\\0) = \mqty(1\\0\\0\\0)
-\end{equation}
+\end{align*}
 Após isso Eve aplica a operação Hadamard em $\ket{\Psi'}$
 \begin{align*}
 H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
@@ -760,15 +760,41 @@ Com o deploy da sua aplicação feito basta acessar a url da aplicação acessan
 \chapter{Resultados}
 \thispagestyle{empty} 
 
-Texto...
+O projeto alcançou o objetivo traçado de criar um simulador web de circuito quântico. O código gerado se encontra no GitHub https://github.com/iblackman/quantum-circuit-simulator.
+
+Na Figura~\ref{fig:resHtml} pode ser ver uma parte do código HTML produzido.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{index.png}
+\caption{Parte do HTML}
+\label{fig:resHtml}
+\end{figure}
+
+Já na Fgura~\ref{fig:resJavascript} pode-se ver uma parte do código Javascript com a função de \textit{Drop} criada.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{javascript.png}
+\caption{Parte do Javascript}
+\label{fig:resJavascript}
+\end{figure}
+
+E na Figura~\ref{fig:resPython} está sendo ilustrado uma parte do código Python que faz o cálculo do circuito quântico montado.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{view.png}
+\caption{Parte dos arquivos Python}
+\label{fig:resPython}
+\end{figure}
 
 \chapter{Conclusão e Trabalhos Futuros}
 \thispagestyle{empty} 
 
-Neste trabalho apresentamos a implementação de um simulador de circuitos quânticos que utiliza um computador clássico para executar os algoritmos em um computador quântico. Assim, características quânticas como o entrelaçamento e a sobreposição serão realizadas em bits clássicos o que resultará num gasto de tempo maior. Por isso, o simulador também gera uma estimativa de tempo gasto a partir das portas quânticas, emulando o que seria obtido por um computador quântico caso ele seja construído. As portas e o tempo gasto em cada uma e dado pelo usuário. O simulador é uma ferramenta online e dispõe de arraste das portas quânticas para formação dos circuitos com o intuito de facilitar a interação com o usuário.
+O trabalho teve como objetivo a implementação de um simulador de circuitos quânticos que executa os algoritmos de um circuito quântico em um computador clássico, recebendo alguns valores de entrada para estimar o tempo gasto por cada porta quântica pois características quânticas como a sobreposição e o entrelaçamento quando executados em um computador clássico têm um gasto de tempo maior. Assim, o simulador consegue emular o que seria obtido em um computador quântico caso ele seja construído. O simulador dispões de algumas funcionalidades como arraste das portas para a construção do circuito, carregar um circuito já preparado, além de estar disponibilizado online. Isso tudo com o intuíto de facilitar a interação com o usuário.
 
-Conclui-se que o projeto providenciou um  enorme aprendizado nas 
-áreas da computação quântica, desenvolvimento web, Python, framework Django, deploy no Heroku. (encher linguica estudei duas areas que nao estao relacionadas, quantica e desenvolvimento web, falar tambem que sao areas que nao foram vista na minha grade curricular)
+O projeto providenciou um enorme aprendizado em duas áreas que não estão relacionadas e que não tive a oportunidade de ver em minha grade curricular, computação quântica e desenvolvimento web. Na parte do desenvolvimento web tivemos a oportunidade de estudar a linguagem de programação Python e um de seus Frameworks para desenvolvimento web, o Django, e realizar deploy na plataforma na nuvem Heroku. E quanto a parte de computação quântica estudamos a bibliotéca QuTip para realização dos cálculos além da própria quântica em si. 
 
 Como tabalho futuro pode-se implantar novas portas, melhora do sistema de Drag and Drop principalmente no caso das portas de dois qubits, melhora no design do simulador com a ideia de torná-lo mais atrativo ao usuário, alterar a forma como os resultados são mostrados para facilitar o entendimento do usuário. Podendo ir além, adicionando novas funcionalidades como leitura de um circuito a partir de algum tipo de arquivo, a possibilidade de salvar um circuito montado.
 
