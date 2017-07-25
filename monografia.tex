@@ -172,7 +172,7 @@ Aos meus amigos Pumbas pelo incentivo, auxílio e testes sempre que necessário 
 
 \thispagestyle{myheadings}
 
-A construção de um computador quântico terá impactos profundos em várias áreas, tais como Física, Matémática e, especialmente, a Ciência da Computação. As dificuldades práticas para se construir um computador quântico são muitas, logo não é possível prever quando ou mesmo se um computador quântico será construído. Apesar disso, a teoria na área da computação quântica vem evoluindo fortemente e para auxiliar na análise desses algoritmos pode ser essencial a criação de um simulador quântico de fácil acesso. Esse simulador utilizaria um computador clássico para realizar os trabalhos de um computador quântico, simulando o entrelaçamento e a sobreposição em bits clássicos e realizando uma estimativa de tempo gasto num computador quântico. O objetivo desse trabalho é realizar a implementação desse simulador de algoritmos quânticos.
+A construção de um computador quântico terá impactos profundos em várias áreas, tais como Física, Matémática e, especialmente, a Ciência da Computação. As dificuldades práticas em se construir um computador quântico são muitas, logo não é possível prever quando ou mesmo se um computador quântico será construído. Apesar disso, a teoria na área da computação quântica vem evoluindo fortemente e para auxiliar na análise desses algoritmos pode ser essencial a criação de um simulador quântico de fácil acesso. Esse simulador utilizaria um computador clássico para realizar os trabalhos de um computador quântico, simulando o entrelaçamento e a sobreposição em bits clássicos e realizando uma estimativa de tempo gasto num computador quântico. O objetivo desse trabalho é realizar a implementação desse simulador de algoritmos quânticos.
 
 \ \\
 
@@ -221,13 +221,13 @@ Keywords: quantum, quantum simulator, circuit, web application.
 
 A computação quântica aproveita a possibilidade de superposição de estados das partículas subatômicas~\cite{wiredQC}. Em um computador normal, que chamaremos de clássico, um bit é um simples pedaço de informação que possui apenas dois estados, 0 ou 1. Para representar tal informação um computador deve conter algum tipo de sistema físico com dois estados distintos para associar aos valores como, por exemplo, um switch que pode estar fechado (1) ou aberto (0)~\cite{mermin}.
 
-Computadores quânticos, por sua vez, utilizam bits quânticos ou "qubits", que também possuem dois estados, entretanto, diferente do bit clássico qubits podem armazenar muito mais informação já que eles podem existir em qualquer sobreposição desses valores, 0, 1, ou ambos ao mesmo tempo~\cite{wiredQC}. 
+Computadores quânticos, por sua vez, utilizam bits quânticos ou ``qubits'', que também possuem dois estados, entretanto, diferente do bit clássico, qubits podem armazenar muito mais informação já que eles podem existir em qualquer sobreposição desses valores, 0, 1, ou ambos ao mesmo tempo~\cite{wiredQC}. 
 
-No mundo da mecânica quântica os eventos são governados por probabilidades. Um átomo radioativo, por exemplo, pode enfraquecer emitindo um elétron, ou não. É possível preparar um experimento de tal forma que exista uma chance exata de 50\% de que um dos átomos de um pedaço de material radioativo caía em um determinado tempo~\cite{gribbin}.
+No mundo da mecânica quântica os eventos são governados por probabilidades. Um átomo radioativo, por exemplo, pode enfraquecer emitindo um elétron, ou não. É possível preparar um experimento de tal forma que exista uma chance exata de 50\% de que um dos átomos de um pedaço de material radioativo caia em um determinado tempo~\cite{gribbin}.
 
-Pode-se tomar como exemplo o experimento teórico do ``Gato de \textit{Schrödinger}''. São colocados um gato, um frasco de veneno e uma fonte de radiação em uma caixa selada. Se um monitor interno (ex. Contador Geiger) detecta radiação, o frasco é quebrado soltando o veneno, matando o gato. No mundo quântico existe uma chance de 50\% de o gato estar morto, e sem olhar dentro da caixa podemos dizer que o gato está vivo ou morto. Segundo a teoria, nenhuma das duas possibilidades tem qualquer realidade a menos que seja observada~\cite{gribbin}. Isso se equivale para o qubit, ele pode ser 0 ou 1 ao mesmo tempo mas quando ele é observado ele deixa de ser um bit quântico e passa a ser um bit clássico, ou seja, só pode ser 0 ou 1.
+Pode-se tomar como exemplo o experimento teórico do ``Gato de \textit{Schrödinger}''. São colocados um gato, um frasco de veneno e uma fonte de radiação em uma caixa selada. Se um monitor interno (ex. Contador Geiger) detecta radiação, o frasco é quebrado soltando o veneno, matando o gato. No mundo quântico existe uma chance de 50\% de o gato estar morto, e sem olhar dentro da caixa não podemos dizer se o gato está vivo ou morto. Segundo a teoria, nenhuma das duas possibilidades tem qualquer realidade a menos que seja observada~\cite{gribbin}. Isso se equivale para o qubit, ele pode ser 0 ou 1 ao mesmo tempo mas quando ele é observado ele deixa de ser um bit quântico e passa a ser um bit clássico, ou seja, só pode ser 0 ou 1.
 
-Outra visão quanto a um qubit pode-se pensar em uma esfera imaginária, ilustrado na Figura~\ref{fig:bloch}, onde um bit clássico pode estar apenas em um dos pólos da esfera e o qubit, bit quântico, pode estar em qualquer ponto da esfera. Assim qubits podem armazenar uma quantidade muito maior de informação que um bit clássico.
+Outra representação de um qubit pode ser uma esfera imaginária, ilustrada na Figura~\ref{fig:bloch}, onde um bit clássico pode estar apenas em um dos pólos da esfera e o qubit, bit quântico, pode estar em qualquer ponto da esfera. Assim qubits podem armazenar uma quantidade muito maior de informação que um bit clássico.
 
 \begin{figure}[H]
 \centering
@@ -239,11 +239,11 @@ Outra visão quanto a um qubit pode-se pensar em uma esfera imaginária, ilustra
 
 \section{Motivação e Objetivo}
 
-A computação quântica é uma área de pesquisa muito relevante, pois utiliza elementos de áreas importantes como a Física, a Matemática e a Engenharia. Apesar de ainda não ser possível prever quando ou mesmo se um computador quântico será construído, caso isto ocorra serão gerados grandes impactos em todas essas áreas. Em um computador quântico, os sistemas não devem ter interações físicas que não estejam sob o controle total e completo do programa. Diferente de como ocorre em um computador clássico, interações físicas não controladas introduziriam interrupções potencialmente catastróficas na operação de um computador quântico, o que resulta numa dificuldade na construção do mesmo. 
+A computação quântica é uma área de pesquisa muito relevante, pois utiliza elementos de áreas importantes como a Física, a Matemática e a Engenharia. Apesar de ainda não ser possível prever quando ou mesmo se um computador quântico será construído, caso isto ocorra serão gerados grandes impactos em todas essas áreas. Em um computador quântico, os sistemas não devem ter interações físicas que não estejam sob o controle total e completo do programa. Diferente de como ocorre em um computador clássico, interações físicas não controladas introduziriam interrupções potencialmente catastróficas na operação de um computador quântico, o que resulta em uma dificuldade na construção do mesmo. 
 
-Entretanto, os benefícios que podem ser gerados com a construção de um computador quântico vão muito além do que os pesquisadores podem imaginar. Para os cientistas da computação, o mais impressionante na computação quântica é a eficiência alcançada por seus algoritmos, algo não possível na teoria clássica da complexidade computacional. O tempo de execução de algumas tarefas em um computador quântico cresce de forma muito mais lenta com o tamanho da entrada do que em um computador clássico, como exemplo temos o algoritmo de busca clássico que possui complexidade de O(N) e o algoritmo quântico de busca, algumas vezes conhecido por Algoritmo de Grover, possibilita que esse método de busca chegue a complexidade de O$(\sqrt{N})$~\cite{grover}. 
+Entretanto, os benefícios que podem ser gerados com a construção de um computador quântico vão muito além do que os pesquisadores podem imaginar. Para os cientistas da computação, o mais impressionante na computação quântica é a eficiência alcançada por seus algoritmos, algo não possível na teoria clássica da complexidade computacional. O tempo de execução de algumas tarefas em um computador quântico cresce de forma muito mais lenta com o tamanho da entrada do que em um computador clássico, como exemplo temos o algoritmo clássico de busca que possui complexidade O(N) e o algoritmo quântico de busca, conhecido por Algoritmo de Grover, possibilita que esse método de busca chegue a complexidade O$(\sqrt{N})$~\cite{grover}. 
 
-Neste trabalho apresentamos a implementação de um simulador de circuitos quânticos que utiliza um computador clássico para executar os algoritmos em um computador quântico. Assim, características quânticas como o entrelaçamento e a sobreposição serão realizadas em bits clássicos o que resultará num gasto de tempo maior. Por isso, o simulador também gera uma estimativa de tempo gasto a partir das portas quânticas, emulando o que seria obtido por um computador quântico caso ele seja construído. As portas e o tempo gasto em cada uma e dado pelo usuário. O simulador é uma ferramenta online e dispõe de arraste das portas quânticas para formação dos circuitos com o intuito de facilitar a interação com o usuário.
+Neste trabalho apresentamos a implementação de um simulador de circuitos quânticos que utiliza um computador clássico para executar os algoritmos quântico. Assim, características quânticas como o entrelaçamento e a sobreposição serão realizadas em bits clássicos o que resultará num gasto de tempo maior. Por isso, o simulador também gera uma estimativa de tempo gasto a partir das portas quânticas, emulando o que seria obtido por um computador quântico caso ele seja construído; as portas e o tempo gasto em cada uma são dados pelo usuário. O simulador é uma ferramenta online e dispõe de arraste das portas quânticas para formação dos circuitos com o intuito de facilitar a interação com o usuário.
 
 \section{Revisão Bibliográfica}
 
@@ -253,14 +253,14 @@ Nesta sessão mostramos alguns simuladores que existem e quais suas vantagens e 
 
 Existe um simulador online desenvolvido por Davy Wybiral de Austin Texas, \textit{Quantum} ou como está no projeto dele do Git \textit{Quantum Circuit Simulator}~\cite{davyw}. O projeto foi disponibilizado no Git em Janeiro de 2017~\cite{gitdavyw}. Davy Wybiral utiliza o Canvas para gerar toda a parte gráfica dos circuitos e menus, e javascript para toda a parte de cálculo. O simulador não possui nenhum tipo de documentação e tem uma interface bem simples com um menu superior onde existem algumas opções e uma área com as portas quânticas que podem ser adicionadas nos circuitos e ter a quantidade dos mesmos alterada, como pode ser visto na Figura~\ref{fig:davyw}.
 
-\begin{figure}[hbtp]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.36]{davyw.jpg}
 \caption{Simulador quântico de Davy Wybiral}
 \label{fig:davyw}
 \end{figure}
 
-A montagem do circuito funciona com a seleção de uma das portas e após isso basta clicar nos circuitos para adicionar a porta selecionada. Pode-se deletar uma porta clicando com o botão direito. Nos casos de portas de 2-bits é necessário que haja uma ação de clique e arraste onde o clique seleciona a posição do bit de controle e ao largar fica a porta. Existe também a possibilidade de arrastar com uma porta de 1-bit selecionada o que adiciona a mesma em diversos circuitos.
+A montagem do circuito funciona com a seleção de uma das portas e após isso basta clicar nos circuitos para adicionar a porta selecionada. Pode-se deletar uma porta clicando com o botão direito. Nos casos de portas de 2-bits é necessário que haja uma ação de clique e arraste onde o clique seleciona a posição do bit de controle e o largar selecionar a porta. Existe também a possibilidade de arrastar com uma porta de 1-bit selecionada o que adiciona a mesma em diversos circuitos.
 
 Para efetuar o cálculo do circuito basta pressionar a tecla Enter ou selecionar no menu a opção \textit{Evaluate}. O resultado é mostrado ao lado direito com todas as possibilidades possíveis e suas respectivas probabilidades.
 
@@ -270,9 +270,9 @@ IBM \textit{Quantum experience} (IBM Q experience) tem como objetivo ajudar no a
 
 O IBM Quantum Experience é composto por:
 \begin{itemize}
-\item um conjunto de tutoriais que vão desde simples experimentos com únicos qubits à experimentos mais complexos com múltiplos qubits;
+\item um conjunto de tutoriais que vão desde simples experimentos com únicos qubits a experimentos mais complexos com múltiplos qubits;
 \item o \textit{Quantum Composer}, uma interface gráfica para criação de circuitos quânticos, os quais eles chamam de \textit{quantum score};
-\item um simulador que pode testar seus \textit{quantum scores};
+\item um simulador que testa seus \textit{quantum scores};
 \item acesso a um processador quântico que roda no laboratório da IBM \textit{Quantum Computing}, onde os seus quantum scores serão executados;
 \item a \textit{quantum community} onde \textit{quantum scores}, ideias e experiências são compartilhadas e discutidas.
 \end{itemize}
@@ -290,7 +290,7 @@ Como pode-se notar na Figura~\ref{fig:ibmq} a interface é composta pela área d
 
 \subsection{Quirk - Craig Gidney}
 
-O projeto teve seu início em Março de 2014, mas não teve commits após o mes de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 foi quando se teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o \textit{commit} mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido ``\textit{Media for Thinking the Unthinkable}'' de Bret Victor onde ele menciona benefícios do \textit{feedback} imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de ``manipulação direta''~\cite{quirk}. Foi desenvolvido utilizando Webgl. Na Figura~\ref{fig:quirk} pode-se ver uma captura de tela do simulador.
+O projeto teve seu início em Março de 2014, mas não teve commits após o mês de criação. Em Novembro do mesmo ano, 2014, voltou a ter commits e entre Março de 2016 e Novembro de 2016 teve a maior concentração de commits, 647 dos 1006 totais. O projeto ainda vem sendo atualizado sendo o commit mais recente do dia 29 de Abril de 2017~\cite{gitquirk}. Craig Gidney, desenvolvedor do Quirk, explica que decidiu criar o simulador porque ficou interessado em computação quântica e pelo fato de ter lido ``\textit{Media for Thinking the Unthinkable}'' de Bret Victor onde ele menciona benefícios do \textit{feedback} imediato em relação ao entendimento e produtividade. Craig diz não ter achado nenhum simulador de circuitos quânticos que passasse essa experiência de ``manipulação direta''~\cite{quirk}. Foi desenvolvido utilizando Webgl. Na Figura~\ref{fig:quirk} pode-se ver uma captura de tela do simulador.
 
 \begin{figure}[hbtp]
 \centering
@@ -305,13 +305,13 @@ O simulador Quirk é composto por um menu que possui opções de carregar alguns
 
 \section{Organização do Texto}
 
-Este trabalho está divido da seguinte forma: a Seção 2 são apresentados alguns tópicos que serão necessários entender sobre circuito quântico que são utilizados ao longo do projeto; na Seção 3 é apresentada a escolha das ferramentas utilizadas para o desenvolvimento do simulador, expondo a teoria e os frameworks existentes atualmente; a Seção 4 apresenta como a solução foi desenvolvida e como resultado o código gerado; e por final na Seção 5 são apresentadas as conclusões e trabalhos futuros.
+Este trabalho está divido da seguinte forma: a Seção 2 são apresentados alguns tópicos sobre circuito quântico que são utilizados ao longo do projeto; na Seção 3 é apresentada a escolha das ferramentas utilizadas para o desenvolvimento do simulador, expondo a teoria e os frameworks existentes atualmente; a Seção 4 apresenta como a solução foi desenvolvida e como resultado o código gerado; e por final na Seção 5 são apresentadas as conclusões e trabalhos futuros.
 
 %%%%%%%%% Circuitos Quanticos
 \chapter{Circuito Quântico}
 
 \section{Circuitos digitais}
-Os circuitos lógicos clássicos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que é a entrada transformada pelo circuito, ilustrado na Figura~\ref{fig:classiccircuit}.
+Os circuitos lógicos clássicos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que representa a entrada transformada pelo circuito, como ilustrado na Figura~\ref{fig:classiccircuit}.
 
 \begin{figure}[H]
 \centering
@@ -327,7 +327,7 @@ Dentro do espaço vetorial bidimensional os únicos vetores clássicos são os d
 \ket{\Psi} = a\ket{0} + b\ket{1} = \mqty(a\\b).
 \end{equation}
 
-Como a única exigência de $\ket{\Psi}$ é ser um vetor unitário dentro do espaço vetorial complexo, a condição de normalização se aplica a ele tendo assim~\eqref{eq2}
+Como a única exigência de $\ket{\Psi}$ é ser um vetor unitário dentro do espaço vetorial complexo, a condição de normalização se aplica a ele, tendo assim~\eqref{eq2}
 \begin{equation}\label{eq2}
 \abs{a}^2 + \abs{b}^2 = 1,
 \end{equation}
@@ -383,7 +383,7 @@ Com \eqref{eq7} e a condição de normalização temos
 Note que um estado geral de 2-qubit \eqref{eq3} é da forma especial \eqref{eq7} se e somente se $a\vdot d=b\vdot c$. Como as quatro amplitudes seguem a condição de normalização \eqref{eq4}, essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \eqref{eq7} de dois estados de 1-qubit. O mesmo é verdade para estados de n-qubits. Enquanto o estado geral de n bits clássicos é um dos $2^n$ produtos de $\ket{0}$s e $\ket{1}$s, o estado geral de n-qubits é a superposição desses $2^n$ produtos e não pode ser expresso como um produto de qualquer conjunto de estados de 1-qubit. Esse não produto de estados de dois ou mais qubits é chamado de entrelaçamento.
 
 \section{Portas quânticas}
-Assim como um computador clássico é formado de circuitos com portas lógicas, um computador quântico também é formado por circuitos. Porém este último possui portas quânticas~\cite{nielsen}, que definem as operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos, como visto na Figura~\ref{fig:portaQuantica}, ou matematicamente por matrizes, como visto na equação~\eqref{eqPortas}.
+Assim como um computador clássico é formado de circuitos com portas lógicas, um computador quântico também é formado por circuitos. Porém, este último possui portas quânticas~\cite{nielsen}, que definem as operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos, como visto na Figura~\ref{fig:portaQuantica}, ou matematicamente por matrizes, como visto na equação~\eqref{eqPortas}.
 \begin{equation}\label{eqPortas}
 \ket{\Psi'} =  U\ket{\Psi}
 \end{equation}
@@ -395,7 +395,7 @@ Assim como um computador clássico é formado de circuitos com portas lógicas, 
 \label{fig:portaQuantica}
 \end{figure}
 
-Uma porta quântica deve sempre ser representada por uma matriz unitária porque ao multiplicar o vetor pela matriz a norma do vetor é mantida.
+Uma porta quântica deve sempre ser representada por uma matriz unitária pois ao multiplicar o vetor pela matriz a norma do vetor deve ser mantida.
 
 \subsection{Identidade} \label{sec:identidade}
 A operação Identidade quântica mantém os valores iniciais do qubit, representada graficamente pela Figura~\ref{fig:I} e pela matriz~\eqref{eqI}. Ela é trivial e não realiza qualquer modificação no qubit.
@@ -415,7 +415,7 @@ I\ket{\Psi} = \mqty(1&0\\0&1)\mqty(a\\b) = \mqty(1 \vdot a+0 \vdot b \\0 \vdot a
 \end{align*}
 
 \subsection{NOT} 
-Considerando as portas clássicas de um único bit, a única é a porta NOT a qual faz com que os bits 0 e 1 se invertam. Imagine o mesmo processo que recebe o estado $\ket{0}$ e retorna o estado $\ket{1}$, e vice versa. Este processo seria um bom candidato para a porta quântica análoga a NOT clássica. Entretanto, especificando a ação sobre os estados $\ket{0}$ e $\ket{1}$ não nos diz nada sobre o que aconteceria sobre a superposição dos mesmos. Na verdade, a porta quântica NOT age linearmente, ou seja, recebe o estado $a\ket{0} + b\ket{1}$ e retorna $b\ket{0} + a\ket{1}$, assim invertendo as amplitudes do qubit. A porta quântica NOT pode ser representada graficamente pela Figura~\ref{fig:not} e um outro modo conveniente de representá-la é em forma de matriz \eqref{eq2x}.
+Considerando as portas de um único bit, a única porta clássica é a porta NOT a qual faz com que os bits 0 e 1 se invertam. Imagine o mesmo processo que recebe o estado $\ket{0}$ e retorna o estado $\ket{1}$, e vice versa. Este processo seria um bom candidato para a porta quântica análoga a NOT clássica. Entretanto, especificando a ação sobre os estados $\ket{0}$ e $\ket{1}$ não nos diz nada sobre o que aconteceria sobre a superposição dos mesmos. Na verdade, a porta quântica NOT age linearmente, ou seja, recebe o estado $a\ket{0} + b\ket{1}$ e retorna $b\ket{0} + a\ket{1}$, assim invertendo as amplitudes do qubit. A porta quântica NOT pode ser representada graficamente pela Figura~\ref{fig:not} e um outro modo conveniente de representá-la é em forma de matriz \eqref{eq2x}.
 
 \begin{equation}\label{eq2x}
 X =  \mqty(0&1\\1&0)
@@ -467,7 +467,7 @@ Z\ket{\Psi} = \mqty(1&0\\0&-1)\mqty(a\\b) = \mqty(1 \vdot a+0 \vdot b \\0 \vdot 
 \end{align*}
 
 \subsection{Hadamard} 
-A porta Hadamard é uma operação fundamental na computação quântica e não possui uma operação clássica equivalente. Ela pode ser representada pela Figura~\ref{fig:H} ou pela matriz~\eqref{eqH}. Essa porta transforma os qubits bases $\ket{0}$ e $\ket{1}$ para um estado de sobreposição onde $\ket{0}$ e $\ket{1}$ possuem a mesma probabilidade. Se consideramos a esfera de Bloch e realizar essa operação sobre ela, isto seria uma rotação da esfera no eixo Y de $90^o$ e em seguida uma rotação no eixo X de $180^o$, como é mostrado na Figura~\ref{fig:h_sphere}.
+A porta Hadamard é uma operação fundamental na computação quântica e não possui uma operação clássica equivalente. Ela pode ser representada pela Figura~\ref{fig:H} ou pela matriz~\eqref{eqH}. Essa porta transforma os qubits bases $\ket{0}$ e $\ket{1}$ para um estado de sobreposição onde $\ket{0}$ e $\ket{1}$ possuem a mesma probabilidade. Se consideramos a esfera de Bloch ela seria equivalente a realizar essa operação sobre ela, isto é uma rotação da esfera no eixo Y de $90^o$ e em seguida uma rotação no eixo X de $180^o$, como é mostrado na Figura~\ref{fig:h_sphere}.
 
 \begin{figure}[H]
 \centering
@@ -534,15 +534,51 @@ Esta é uma porta trivial em um circuito clássico, normalmente nem representada
 
 \subsection{Operações em qubits entrelaçados}
 
-texto
+Dados dois qubits $\ket{\Psi_1}$ e $\ket{\Psi_2}$ podemos fazer a operação $A$ em $\ket{\Psi_1}$ e $B$ em $\ket{\Psi_2}$ como $C$ se ambos estiverem entrelaçados formando um 2-qubit \eqref{eq:cab}.
+
+\begin{align} \label{eq:cab}
+C = A \otimes B
+\end{align}
+
+O produto tensorial pode ser expandido para matrizes em geral.
+
+\begin{align*}
+A \otimes B = \mqty(a_{11}\vdot B & a_{12}\vdot B & \hdots & a_{1n}\vdot B \\
+  a_{21}\vdot B & a_{22}\vdot B & \hdots & a_{2n}\vdot B \\
+  \vdots & \vdots & \hdots & \vdots \\
+  a_{n1}\vdot B & a_{n2}\vdot B & \hdots & a_{nn}\vdot B \\
+)
+\end{align*}
+
+Para qualquer operação em $\ket{\Psi_1}$ seja transformada em uma operação para um 2-qubit $\ket{\Psi_{12}}$, basta realizar o produto tensor com a identidade em $\ket{\Psi_2}$ 
+\begin{align} \label{eq:cai}
+C = A \otimes I
+\end{align}
+
+\begin{align*}
+A \otimes I (\ket{\Psi_1} \otimes \ket{\Psi_2} = \\
+  (A\ket{\Psi_1}) \otimes (I\ket{\Psi_2}) = \\
+  A\ket{\Psi_1} \otimes \ket{\Psi_2} = \\
+  A(\ket{\Psi_1} \otimes \ket{\Psi_2})
+\end{align*}
+
+Agora no caso de duas operações transformadas, dadas as operações A em $\ket{\Psi_1}$ e B em $\ket{\Psi_2}$, temos $C = A\ket{\Psi_1} \otimes I\ket{\Psi_2}$ e $B_{12} = I\ket{\Psi_1} \otimes B\ket{\Psi_2}$.
+
+Assim,
+\begin{align*}
+(A\ket{\Psi_1} \otimes I\ket{\Psi_2})(I\ket{\Psi_1} \otimes B\ket{\Psi_2}) = \\
+AI\ket{\Psi_1} \otimes IB\ket{\Psi_2} = \\
+A\ket{\Psi_1} \otimes B\ket{\Psi_2}
+\end{align*}
 
 \subsection{Código Superdenso} \label{sec:superdenso}
 
-Apesar de uma quantidade infinita de informações serem necessárias para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo no qual alguém que tenha adquirido um qubit possa descobrir qual é seu estado. Se Alice prepara um qubit no estado $\ket{\Psi}$ e o envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
+Apesar de uma quantidade infinita de informações serem necessárias para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo no qual alguém que tenha adquirido um qubit possa descobrir o valor de suas amplitudes. Se Alice prepara um qubit no estado $\ket{\Psi}$ e o envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
 
-E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2 bits clássicos para Bob utilizando somente um qubit e Eve que fará e inicialização do sistema. Usaremos algumas das portas citadas nas seções \ref{sec:identidade} a \ref{sec:medicao} para explicar o código superdenso.
+E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2 bits clássicos para Bob utilizando somente um qubit e Eve que fará a inicialização do sistema. Usaremos algumas das portas citadas nas seções \ref{sec:identidade} a \ref{sec:medicao} para explicar o código superdenso.
 
-\begin{itemize}
+Abaixo, temos os passos do protocolo Superdenso.
+\begin{enumerate}
 \item Eve inicializa um qubit de 2-qubits $\ket{\Psi} = \ket{\Psi'\Psi''}$ com zero;
 \item Eve usa a porta Hadamard em $\ket{\Psi'}$;
 \item Eve usa a porta CNOT em $\ket{\Psi}$;
@@ -559,15 +595,15 @@ E para esse problema existe o código superdenso, seu protocolo consiste de 3 us
 \item Bob usa a porta CNOT em $\ket{\Psi}$;
 \item Bob usa a porta Hadamard em $U\ket{\Psi'}$;
 \item Bob faz a medição dos dois qubits, colapsando-os para bits clássicos $\ket{ab}$.
-\end{itemize}
+\end{enumerate}
 
-A seguir, exemplificaremos o protocolo,
+A seguir, exemplificaremos o protocolo.
 
 Na inicialização do sistema, Eve inicializa um qubit de tamanho dois $\ket{\Psi}=\ket{\Psi' \Psi''}$ com zero. 
 \begin{align*}
 \ket{\Psi} = \ket{00} = \ket{0}\otimes \ket{0} = \mqty(1\\0) \otimes \mqty(1\\0) = \mqty(1\\0\\0\\0)
 \end{align*}
-Após isso Eve aplica a operação Hadamard em $\ket{\Psi'}$
+Após isso, Eve aplica a operação Hadamard em $\ket{\Psi'}$
 \begin{align*}
 H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
 				\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}} ) 
@@ -639,7 +675,7 @@ C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0)
 			\mqty(0\\ \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}}\\0)
 		= \mqty(0\\ \frac{1}{\sqrt{2}}\\ 0\\ \frac{1}{\sqrt{2}}),
 \end{align*}
-em seguida usa a porta Hadamard em $U\ket{\Psi'}$
+em seguida usa a porta Hadamard em $U\ket{\Psi'}$ que recebeu de Alice.
 \begin{align*}
 H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
 				\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}} ) 
@@ -654,7 +690,7 @@ H \otimes I = \mqty(\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
 	0&\frac{1}{\sqrt{2}}&0&-\frac{1}{\sqrt{2}}) 
 	\mqty(0\\ \frac{1}{\sqrt{2}}\\ 0\\ \frac{1}{\sqrt{2}}) = \mqty(0\\1\\0\\0)
 \end{align*}
-que recebeu de Alice. Após tudo isso Bob faz a medição dos dois qubits, passando estes para bits clássicos $\ket{ab}$
+ Após tudo isso Bob faz a medição dos dois qubits, passando estes para bits clássicos $\ket{ab}$
 \begin{align*}
 \ket{\Psi} = \mqty(0\\1\\0\\0) \hspace{2.5cm} \\
 \ket{\Psi} = 0\vdot\ket{00} + 1\vdot\ket{01} + 0\vdot\ket{10} + 0\vdot\ket{11} \\
@@ -726,15 +762,7 @@ O Flask seria uma boa opção entretanto escolhemos o Django por:
 \chapter{Desenvolvimento e Resultados}
 \thispagestyle{empty} 
 
-O simulador deveria ter uma área com inputs de tempo, portas e o circuito. Primeiramente, definimos a interface geral, determinando onde seria localizada cada funcionalidade. Como um dos objetivos do projeto é simular o tempo que um computador quântico levaria para executar o circuito, decidimos por colocar os inputs em local de destaque, ficando assim à esquerda e a cima. 
-
-Resolvemos que as portas ficariam também a cima, pois ao carregar a página o circuito estaria vazio e assim, ela se diferenciaria dos inputs ficando à direita.
-
-Por final, precisamos de uma área para mostrar o resultado do circuito que foi deixado abaixo de tudo pois ela seria dependente das anteriores.
-
-Também adicionamos abaixo do circuito, botões para exemplificar o código superdenso, descrito na seção \ref{sec:superdenso} para facilitar os testes e uso inicial do simulador.
-
-Na Figura~\ref{fig:simulador} pode ser visto uma captura de tela do simulador.
+O simulador deveria ter uma área com inputs de tempo, portas e o circuito. Primeiramente, definimos a interface geral, determinando onde seria localizada cada funcionalidade. Como um dos objetivos do projeto é simular o tempo que um computador quântico levaria para executar o circuito, decidimos por colocar os inputs em local de destaque, ficando assim à esquerda e a cima. Resolvemos que as portas ficariam também a cima, pois ao carregar a página o circuito estaria vazio e assim, ela se diferenciaria dos inputs ficando à direita. Por final, precisamos de uma área para mostrar o resultado do circuito que foi deixado abaixo de tudo pois ela seria dependente das anteriores. Também adicionamos abaixo do circuito, botões para exemplificar o código superdenso, descrito na seção \ref{sec:superdenso} para facilitar os testes e uso inicial do simulador. Na Figura~\ref{fig:simulador} pode ser visto uma captura de tela do simulador.
 
 \begin{figure}[H]
 \centering
@@ -775,7 +803,7 @@ Como o simulador deveria ser amigável para o usuário decidimos utilizar Drag \
 
 Sendo assim utilizamos Javascript(JS) e JQuery~\cite{jquery}, uma biblioteca de JS, para criar uma cópia do elemento que sofreu o evento de Drag e movemos a cópia até o destino do Drop. Ao realizar o Drop existe uma checagem para excluir o elemento existente e adicionar a cópia. Nos materiais encontrados sobre D\&{D} o elemento utilizado pelo Javascript para capturar o elemento do drop era o ev.target o que gera alguns problemas já que esse target não traz especificamente o elemento com o evento de drop atrelado, podendo trazer uma das divs que o encapsulam ou algum outro elemento mais interno fazendo com que não houvesse uma consistência do retorno. Para resolver esse problema decidimos utilizar currentTarget ao invés do target.
 
-Quando pensamos nas portas de 2 qubits nos deparamos com outro problema, o de a seleção do qubit de controle? A escolha foi ter um input que serviria de alvo do segundo qubit, fazendo o tratamento para quando o alvo era igual ao bit do Drop ou caso o alvo fosse maior que o número de bits. No primeiro caso é solto um alerta com a mensagem de que não é possível arrastar a porta para o mesmo bit alvo da conexão, e no segundo caso o alvo se torna o último qubit do circuito ou o primeiro, caso o valor seja negativo.
+Quando pensamos nas portas de 2 qubits nos deparamos com outro problema, o de a seleção do qubit de controle. A escolha foi ter um input que serviria de alvo do segundo qubit, fazendo o tratamento para quando o alvo era igual ao bit do Drop ou caso o alvo fosse maior que o número de bits. No primeiro caso é solto um alerta com a mensagem de que não é possível arrastar a porta para o mesmo bit alvo da conexão, e no segundo caso o alvo se torna o último qubit do circuito ou o primeiro, caso o valor seja negativo.
 
 \section{Cálculo via AJAX}
 
@@ -787,7 +815,7 @@ Primeiramente, existe o tratamento do circuito para um objeto de fácil acesso �
 
 Por serem estruturas de dados comuns a todas as linguagens, de formato para troca de dados para nosso sistema foi decidido como uma boa opção~\cite{json}.
 
-Após isso colocamos os elementos, as portas pertencentes ao circuito, em um array de arrays. Também colocamos a quantidade de qubits que o circuito possui, as conexões entre as portas e enviamos para o servidor.
+Após isso colocamos os elementos (as portas pertencentes ao circuito) em um array de arrays. Também colocamos a quantidade de qubits que o circuito possui, as conexões entre as portas e enviamos para o servidor.
 
 No servidor, por estarmos utilizando o Django, o tratamento de requisição e respostas já é realizado~\cite{django-req-resp}. Dentro da view, que é considerado um controle pelo Django, bastou receber o objeto Request, fazer a leitura do JSON que foi enviado pelo AJAX e trabalhar em cima dele utilizando a biblioteca QuTip para realizar o cálculo.
 
@@ -797,7 +825,7 @@ Ao receber o retorno do servidor, o AJAX adiciona os resultados, tanto do cálcu
 
 \section{Usando QuTip}
 
-Utilizar a biblioteca QuTip se mostrou um desafio maior do que inicialmente previsto. Entretanto, após o período de familiarização inicial, ela se tornou uma excelente ferramenta. QuTip possui um objeto, o QubitCircuit, que representa um programa ou algoritmo quântico que mantém uma sequência de portas(chamados \textit{Gates}). O QubitCircuit possui uma função add\_gate com os seguintes parâmetros:
+Utilizar a biblioteca QuTip se mostrou um desafio maior do que inicialmente previsto. Entretanto, após o período de familiarização inicial, ela se tornou uma excelente ferramenta. QuTip possui um objeto, o QubitCircuit, que representa um programa ou algoritmo quântico que mantém uma sequência de portas (chamados \textit{Gates}). O QubitCircuit possui uma função add\_gate com os seguintes parâmetros:
 \begin{itemize}
 \item gate - Nome da porta, dentro de uma lista aceitável. RX, RY, RZ, CRX, CRY, CRZ, SQRTNOT, SNOT, PHASEGATE, CPHASE, CNOT, CSIGN, BERKELEY, SWAPalpha, SWAP, ISWAP, SQRTSWAP, SQRTISWAP, FREDKIN, TOFFOLI, GLOBALPHASE;
 \item targets - Uma lista com os qubits alvos;
@@ -860,9 +888,9 @@ Finalmente, na Figura~\ref{fig:resPython} está sendo ilustrado uma parte do có
 
 O trabalho teve como objetivo a implementação de um simulador de circuitos quânticos que executa algoritmos quânticos em um computador clássico, recebendo alguns valores de entrada para estimar o tempo gasto por cada porta quântica. Assim, o simulador consegue emular o que seria obtido em um computador quântico caso ele seja construído emulando sobreposição de estados e entrelaçamento. O simulador dispões de algumas funcionalidades como arraste das portas para a construção do circuito, criação de circuitos já preparados, além de disponibilidade online. Isso tudo com o intuíto de facilitar a interação com o usuário.
 
-O projeto providenciou um enorme aprendizado em duas áreas que não estão relacionadas e que não são obrigatórias na grade curricular do aluno, computação quântica e desenvolvimento web. Na parte do desenvolvimento web tivemos a oportunidade de estudar a linguagem de programação Python e um de seus Frameworks para desenvolvimento web, o Django, e realizar deploy na plataforma na nuvem Heroku. E quanto a parte de computação quântica estudamos a biblioteca QuTip para realização dos cálculos além da própria quântica em si. 
+O projeto providenciou um enorme aprendizado em duas áreas que não estão relacionadas e que não são obrigatórias na grade curricular do aluno, Computação Quântica e Desenvolvimento Web. Na parte do desenvolvimento web tivemos a oportunidade de estudar a linguagem de programação Python e um de seus Frameworks para desenvolvimento web, o Django, e realizar deploy na plataforma na nuvem Heroku. E quanto a parte de computação quântica estudamos a biblioteca QuTip para realização dos cálculos além dos algoritmos quânticos e seu funcionamento. 
 
-Como trabalhos futuros pode-se implantar novas portas, melhora do sistema de Drag and Drop principalmente no caso das portas de dois qubits, melhora no design do simulador com a ideia de torná-lo mais atrativo ao usuário, e alterar a forma como os resultados são mostrados para facilitar o entendimento do usuário. O sistema pode ser expandido, adicionando novas funcionalidades como leitura de um circuito a partir de algum tipo de arquivo, e a possibilidade de salvar um circuito, já montado.
+Como trabalhos futuros pode-se implantar novas portas, melhora do sistema de Drag and Drop principalmente no caso das portas de dois qubits, melhora no design do simulador com a ideia de torná-lo mais atrativo ao usuário, e alterar a forma como os resultados são mostrados para facilitar o entendimento do usuário. O sistema pode ser expandido, adicionando novas funcionalidades como leitura de um circuito a partir de algum tipo de arquivo, e a possibilidade de salvar um circuito já montado.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    REFERÊNCIAS BIBLIOGRÁFICAS
 \bibliographystyle{plain}
