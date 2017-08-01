@@ -7,6 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[brazilian]{babel}
 \usepackage{graphicx}
+\usepackage[hyphens]{url}
 \usepackage{hyperref}
 \usepackage{physics}
 \usepackage[export]{adjustbox}
@@ -243,9 +244,9 @@ A computação quântica é uma área de pesquisa muito relevante, pois utiliza 
 
 Entretanto, os benefícios que podem ser gerados com a construção de um computador quântico vão muito além do que os pesquisadores podem imaginar. Para os cientistas da computação, o mais impressionante na computação quântica é a eficiência alcançada por seus algoritmos, algo não possível na teoria clássica da complexidade computacional. O tempo de execução de algumas tarefas em um computador quântico cresce de forma muito mais lenta com o tamanho da entrada do que em um computador clássico, como exemplo temos o algoritmo clássico de busca que possui complexidade O(N) e o algoritmo quântico de busca, conhecido por Algoritmo de Grover, possibilita que esse método de busca chegue a complexidade O$(\sqrt{N})$~\cite{grover}. 
 
-Neste trabalho apresentamos a implementação de um simulador de circuitos quânticos que utiliza um computador clássico para executar os algoritmos quântico. Assim, características quânticas como o entrelaçamento e a sobreposição serão realizadas em bits clássicos o que resultará num gasto de tempo maior. Por isso, o simulador também gera uma estimativa de tempo gasto a partir das portas quânticas, emulando o que seria obtido por um computador quântico caso ele seja construído; as portas e o tempo gasto em cada uma são dados pelo usuário. O simulador é uma ferramenta online e dispõe de arraste das portas quânticas para formação dos circuitos com o intuito de facilitar a interação com o usuário.
+Neste trabalho apresentamos a implementação de um simulador de circuitos quânticos que utiliza um computador clássico para executar os algoritmos quântico. Assim, características quânticas como o entrelaçamento e a sobreposição serão realizadas em bits clássicos o que resultará num gasto de tempo maior. Por isso, o simulador também gera uma estimativa de tempo gasto a partir das portas quânticas, emulando o que seria obtido por um computador quântico caso ele seja construído; as portas e o tempo gasto em cada uma são dados pelo usuário. O simulador é uma ferramenta online e dispõe de arraste das portas quânticas para formação dos circuitos com o intuito de facilitar a interação com o usuário, ter uma interface simples e como diferencial gerar uma estimativa de tempo gasto.
 
-\section{Revisão Bibliográfica}
+\section{Trabalhos Relacionados}
 
 Nesta sessão mostramos alguns simuladores que existem e quais suas vantagens e desvantagens.
 
@@ -302,6 +303,10 @@ O projeto teve seu início em Março de 2014, mas não teve commits após o mês
 Craig faz comparações com alguns simuladores como, por exemplo, o já mencionado de Davy Wybiral e o IBM \textit{Quantum Experience}. Ele também menciona alguns outros como \textit{Quantum Computing Playground} e Microsoft's LIQ Ui|>.
 
 O simulador Quirk é composto por um menu que possui opções de carregar alguns exemplos de circuitos já prontos, exportar o circuito montado, desfazer ou refazer alguma alteração e inclusive criar porta. Ele possui uma área com as opções de portas a serem utilizadas no circuito, formas de mostrar o resultado e mais diversas opções. Algumas vantagens desse simulador são: as portas são colocadas da forma ``arrastar e soltar'', o resultado é mostrado a todo momento não havendo a necessidade de se apertar um botão para isso, e é possível adicionar mais bits ao circuito dinamicamente com o arrastar de uma das portas para além da linha do último bit.
+
+\subsection{Comparação}
+
+O nosso simulador tem como objetivo ser simples como o Quantum do Davy Wybiral entretanto com mais funcionalidades, como o arraste das portas para construção do circuito, existente nos dois outros simuladores. Menos poluído que o Quirk do Craig Gidney. E gerando uma estimativa de tempo gasto com a passagem dos tempos das portas quânticas pelo usuário, uma funcionalidade que nenhum dos três disponibiliza.
 
 \section{Organização do Texto}
 
@@ -365,22 +370,22 @@ Generalizando para \textit{n} qubits o estado geral pode ser qualquer superposi�
 \end{align*}
 No contexto de computação quântica, o conjunto de $2^n$ estados clássicos, isto é, todos os possíveis produtos tensores de \textit{n} qubits $\ket{0}$ e $\ket{1}$ é chamado de base clássica. Os estados que caracterizam \textit{n} bits clássicos, estados de base clássica, são um conjunto bem limitado dos estados de \textit{n} qubits, os quais podem ser qualquer superposição com coeficientes complexos desses estados de base clássica.
 
-Se tivermos dois qubits, um no estado $\ket{\Psi} = a\ket{0} + b\ket{1}$ e outro no estado $\ket{\Phi} = c\ket{0} + d\ket{1}$, então o estado de 2-qubits $\ket{\Psi}$ do par é o produto tensor dos estados individuais,
+Se tivermos dois qubits, um no estado $\ket{\Psi} = a'\ket{0} + b'\ket{1}$ e outro no estado $\ket{\Phi} = c'\ket{0} + d'\ket{1}$, então o estado de 2-qubits $\ket{\Psi}$ do par é o produto tensorial dos estados individuais,
 \begin{equation}\label{eq7}
 \ket{\Psi}_2 = \ket{\Psi}\otimes\ket{\Phi} 
-= ac\ket{00} + ad\ket{01} + bc\ket{10} + bd\ket{11}
-= \mqty(a \vdot c\\a \vdot d\\b \vdot c\\b \vdot d)
+= a'c'\ket{00} + a'd'\ket{01} + b'c'\ket{10} + b'd'\ket{11}
+= \mqty(a' \vdot c'\\a' \vdot d'\\b' \vdot c'\\b' \vdot d')
 \end{equation}\
 Com \eqref{eq7} e a condição de normalização temos
 \begin{align*}
-\abs{a \vdot c}^2 + \abs{a \vdot d}^2 + \abs{b \vdot c}^2 + \abs{b \vdot d}^2 \\
-\abs{a}^2 \vdot \abs{c}^2 + \abs{a}^2 \vdot \abs{d}^2 + \abs{b}^2 \vdot \abs{c}^2 + \abs{b}^2 \vdot \abs{d}^2 \\
-\abs{a}^2 \vdot (\abs{c}^2 + {d}^2) + \abs{b}^2 \vdot (\abs{c}^2 + \abs{d}^2) \\
-\abs{a}^2 \vdot 1 + \abs{b}^2 \vdot 1 \\
-\abs{a}^2 + \abs{b}^2 = 1
+\abs{a' \vdot c'}^2 + \abs{a' \vdot d'}^2 + \abs{b' \vdot c'}^2 + \abs{b' \vdot d'}^2 \\
+\abs{a'}^2 \vdot \abs{c'}^2 + \abs{a'}^2 \vdot \abs{d'}^2 + \abs{b'}^2 \vdot \abs{c'}^2 + \abs{b'}^2 \vdot \abs{d'}^2 \\
+\abs{a'}^2 \vdot (\abs{c'}^2 + {d'}^2) + \abs{b'}^2 \vdot (\abs{c'}^2 + \abs{d'}^2) \\
+\abs{a'}^2 \vdot 1 + \abs{b'}^2 \vdot 1 \\
+\abs{a'}^2 + \abs{b'}^2 = 1
 \end{align*}
 
-Note que um estado geral de 2-qubit \eqref{eq3} é da forma especial \eqref{eq7} se e somente se $a\vdot d=b\vdot c$. Como as quatro amplitudes seguem a condição de normalização \eqref{eq4}, essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \eqref{eq7} de dois estados de 1-qubit. O mesmo é verdade para estados de n-qubits. Enquanto o estado geral de n bits clássicos é um dos $2^n$ produtos de $\ket{0}$s e $\ket{1}$s, o estado geral de n-qubits é a superposição desses $2^n$ produtos e não pode ser expresso como um produto de qualquer conjunto de estados de 1-qubit. Esse não produto de estados de dois ou mais qubits é chamado de entrelaçamento.
+Note que um estado geral de 2-qubit \eqref{eq3} é da forma especial \eqref{eq7} se e somente se $a'\vdot d'=b'\vdot c'$. Como as quatro amplitudes seguem a condição de normalização \eqref{eq4}, essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \eqref{eq7} de dois estados de 1-qubit. O mesmo é verdade para estados de n-qubits. Enquanto o estado geral de n bits clássicos é um dos $2^n$ produtos de $\ket{0}$s e $\ket{1}$s, o estado geral de n-qubits é a superposição desses $2^n$ produtos e não pode ser expresso como um produto de qualquer conjunto de estados de 1-qubit. Esse não produto de estados de dois ou mais qubits é chamado de entrelaçamento.
 
 \section{Portas quânticas}
 Assim como um computador clássico é formado de circuitos com portas lógicas, um computador quântico também é formado por circuitos. Porém, este último possui portas quânticas~\cite{nielsen}, que definem as operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos, como visto na Figura~\ref{fig:portaQuantica}, ou matematicamente por matrizes, como visto na equação~\eqref{eqPortas}.
@@ -497,7 +502,7 @@ H\ket{\Psi} = \frac{1}{\sqrt{2}}\mqty(1&1\\1&-1)\mqty(a\\b) = \frac{1}{\sqrt{2}}
 \subsection{CNOT} \label{sec:cnot}
 A operação CNOT é uma porta de dois qubits conhecidos como controle e alvo, representada pela matriz~\eqref{eqCNOT} ou pela Figura~\ref{fig:CNOT}, na qual a linha de cima representa o qubit de controle e a de baixo o qubit alvo. A porta CNOT funciona da seguinte maneira: dados dois qubits, $\ket{x}$ e $\ket{y}$, a matriz C mantém o valor de $\ket{y}$ caso $\ket{x}$ seja igual a $\ket{0}$ e caso $\ket{x}$ seja igual a $\ket{1}$ ela inverte o valor de $\ket{y}$, como é mostrado em~\eqref{eqFullCNOT}.
 \begin{equation}\label{eqCNOT}
-C =  \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)
+C =  \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0)
 \end{equation}
 
 \begin{figure}[H]
@@ -510,7 +515,7 @@ C =  \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)
 Assim, para dois qubits entrelaçados, ela inverterá as amplitudes referentes aos qubits $\ket{10}$ e $\ket{11}$:
 
 \begin{equation}\label{eqFullCNOT}
-C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)\mqty(a\\b\\c\\d) = 
+C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0)\mqty(a\\b\\c\\d) = 
 \mqty(1 \vdot a+0 \vdot b +0 \vdot c +0 \vdot d \\
 	  0 \vdot a+1 \vdot b +0 \vdot c +0 \vdot d \\
 	  0 \vdot a+0 \vdot b +0 \vdot c +1 \vdot d \\
@@ -519,11 +524,9 @@ C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1)\mqty(a\\b\\c\\d) =
 \end{equation}
 
 \subsection{Medição} \label{sec:medicao}
-Outra porta importante é a de medição, que comumente é representada por um "medidor", como pode ser observado na Figura~\ref{fig:medicao}. Essa operação converte um único qubit no estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ em um bit clássico probabilístico, o qual é 0 com uma probabilidade de $\abs{a}^2$, ou 1 com uma probabilidade $\abs{b}^2$. Para fazer essa diferenciação entre qubit e bit clássico em um circuito lógico quântico, um traço representa um qubit e um traço duplo um bit clássico.
+Outra porta importante é a de medição, que comumente é representada por um ``medido'', como pode ser observado na Figura~\ref{fig:medicao}. Essa operação converte um único qubit no estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ em um bit clássico probabilístico, o qual é 0 com uma probabilidade de $\abs{a}^2$, ou 1 com uma probabilidade $\abs{b}^2$. Para fazer essa diferenciação entre qubit e bit clássico em um circuito lógico quântico, um traço representa um qubit e um traço duplo um bit clássico.
 
 Esta é uma porta trivial em um circuito clássico, normalmente nem representada, sendo uma das maiores diferenças entre circuitos quânticos e clássicos.
-
-%devo trocar a explicacao da medicao? Quando um qubit passa pela operação de medição ele se torna um bit clássico, 0 ou 1, e por esse motivo essa operação é muito importante na computação quântica.
 
 \begin{figure}[H]
 \centering
@@ -532,7 +535,7 @@ Esta é uma porta trivial em um circuito clássico, normalmente nem representada
 \label{fig:medicao}
 \end{figure}
 
-\subsection{Operações em qubits entrelaçados}
+\section{Operações em qubits entrelaçados}
 
 Dados dois qubits $\ket{\Psi_1}$ e $\ket{\Psi_2}$ podemos fazer a operação $A$ em $\ket{\Psi_1}$ e $B$ em $\ket{\Psi_2}$ como $C$ se ambos estiverem entrelaçados formando um 2-qubit \eqref{eq:cab}.
 
@@ -550,7 +553,7 @@ A \otimes B = \mqty(a_{11}\vdot B & a_{12}\vdot B & \hdots & a_{1n}\vdot B \\
 )
 \end{align*}
 
-Para qualquer operação em $\ket{\Psi_1}$ seja transformada em uma operação para um 2-qubit $\ket{\Psi_{12}}$, basta realizar o produto tensor com a identidade em $\ket{\Psi_2}$ 
+Para qualquer operação em $\ket{\Psi_1}$ seja transformada em uma operação para um 2-qubit $\ket{\Psi_{12}}$, basta realizar o produto tensorial com a identidade em $\ket{\Psi_2}$ 
 \begin{align} \label{eq:cai}
 C = A \otimes I
 \end{align}
@@ -571,7 +574,7 @@ AI\ket{\Psi_1} \otimes IB\ket{\Psi_2} = \\
 A\ket{\Psi_1} \otimes B\ket{\Psi_2}
 \end{align*}
 
-\subsection{Código Superdenso} \label{sec:superdenso}
+\section{Código Superdenso} \label{sec:superdenso}
 
 Apesar de uma quantidade infinita de informações serem necessárias para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo no qual alguém que tenha adquirido um qubit possa descobrir o valor de suas amplitudes. Se Alice prepara um qubit no estado $\ket{\Psi}$ e o envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
 
@@ -740,7 +743,7 @@ Frameworks web são projetados para dar suporte no desenvolvimento de sites din�
 Flask é o framework mais recente encontrado, foi criado em meados de 2010. Evoluiu muito a partir da análise de frameworks anteriores e tem se destacado em pequenos projetos. A sua comunidade é pequena comparada a do Django mas é ativa em listas de e-mail e no IRC~\cite{ryanbrown}. 
 
 \subsection{Pyramid}
-O Pyramid foi criado a partir do projeto Pylons~\cite{pylonsproject} e recebeu o nome de Pyramid somente no ano de 2010, mesmo tendo sua primeira realease em 2005. É um framework tão maduro quanto o Django e disponibiliza mais flexibilidade para desenvolvedores que possuem projetos onde o caso de uso não se encaixe muito bem nos padrões do mapeamento objeto-relacional, que nada mais é do que a representação das tabelas do banco de dados através de classes onde cada resgistro é representado como uma instancia da classe~\cite{pyramid}. Pode-se dizer que Pyramid é o framework mais flexível dentre os estudados. Apesar disso, pareceu muito mais complexo do que nosso projeto necessitava. Além disso, ele possui a comunidade mais inativa dentre os frameworks pesquisados.
+O Pyramid foi criado a partir do projeto Pylons~\cite{pylonsproject} e recebeu o nome de Pyramid somente no ano de 2010, mesmo tendo sua primeira release em 2005. É um framework tão maduro quanto o Django e disponibiliza mais flexibilidade para desenvolvedores que possuem projetos onde o caso de uso não se encaixe muito bem nos padrões do mapeamento objeto-relacional, que nada mais é do que a representação das tabelas do banco de dados através de classes onde cada resgistro é representado como uma instancia da classe~\cite{pyramid}. Pode-se dizer que Pyramid é o framework mais flexível dentre os estudados. Apesar disso, pareceu muito mais complexo do que nosso projeto necessitava. Além disso, ele possui a comunidade mais inativa dentre os frameworks pesquisados.
 
 \subsection{Django}
 Django foi lançado em 2005. É um framework com foco em grandes aplicações que inclui dezenas de extras para lidar com as tarefas comuns do desenvolvimento web, como por exemplo autenticação e administração de conteúdo, além de auxiliar também com questões de segurança como SQL injection com seus querysets, evitar ataques Cross Site Scripting e fornecer proteção a Clickjacking~\cite{django}. Sem dúvida o Django é o framework mais popular e a lista de sites que o utilizam é impressionante, tendo mais de 5000 páginas~\cite{listadjangosites}. Para sites que possuem requisitos comuns, Django segue padrões bem sensatos tornando-o uma escolha bem popular entre aplicações web de porte médio ou grande.
@@ -762,7 +765,7 @@ O Flask seria uma boa opção entretanto escolhemos o Django por:
 \chapter{Desenvolvimento e Resultados}
 \thispagestyle{empty} 
 
-O simulador deveria ter uma área com inputs de tempo, portas e o circuito. Primeiramente, definimos a interface geral, determinando onde seria localizada cada funcionalidade. Como um dos objetivos do projeto é simular o tempo que um computador quântico levaria para executar o circuito, decidimos por colocar os inputs em local de destaque, ficando assim à esquerda e a cima. Resolvemos que as portas ficariam também a cima, pois ao carregar a página o circuito estaria vazio e assim, ela se diferenciaria dos inputs ficando à direita. Por final, precisamos de uma área para mostrar o resultado do circuito que foi deixado abaixo de tudo pois ela seria dependente das anteriores. Também adicionamos abaixo do circuito, botões para exemplificar o código superdenso, descrito na seção \ref{sec:superdenso} para facilitar os testes e uso inicial do simulador. Na Figura~\ref{fig:simulador} pode ser visto uma captura de tela do simulador.
+O simulador deveria ter uma área com inputs de tempo, portas e o circuito. Primeiramente, definimos a interface geral, determinando onde seria localizada cada funcionalidade. Como um dos objetivos do projeto é simular o tempo que um computador quântico levaria para executar o circuito, decidimos por colocar os inputs em local de destaque, ficando assim à esquerda e a cima. Resolvemos que as portas ficariam também a cima, pois ao carregar a página o circuito estaria vazio e assim, ela se diferenciaria dos inputs ficando à direita. Por final, precisamos de uma área para mostrar o resultado do circuito que foi deixado abaixo de tudo pois ela seria dependente das anteriores. Também adicionamos abaixo do circuito, botões para exemplificar o código superdenso, descrito na seção \ref{sec:superdenso} para facilitar os testes e uso inicial do simulador. Na Figura~\ref{fig:simulador} pode ser visto uma captura de tela do simulador, que pode ser acessado em \url{https://demo-quantum.herokuapp.com/simulador/}.
 
 \begin{figure}[H]
 \centering
@@ -854,7 +857,7 @@ Com o deploy da sua aplicação feito basta acessar a url da aplicação acessan
 
 \section{Resultados}
 
-O projeto alcançou o objetivo traçado ao criar um simulador web de circuito quântico. O código gerado se encontra no GitHub https://github.com/iblackman/quantum-circuit-simulator.
+O projeto alcançou o objetivo traçado ao criar um simulador web de circuito quântico. O código gerado se encontra no GitHub: \url{https://github.com/iblackman/quantum-circuit-simulator}.
 
 Na Figura~\ref{fig:resHtml} podemos ver uma parte do código HTML produzido, que cria a área dos inputs de tempo das portas, as portas a serem arrastadas, o circuito e a parte onde é mostrado o resultado.
 
