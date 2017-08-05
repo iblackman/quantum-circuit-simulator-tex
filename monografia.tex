@@ -316,7 +316,7 @@ Este trabalho está divido da seguinte forma: a Seção 2 são apresentados algu
 \chapter{Circuito Quântico}
 
 \section{Circuitos digitais}
-Os circuitos lógicos clássicos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que representa a entrada transformada pelo circuito, como ilustrado na Figura~\ref{fig:classiccircuit}.
+Os circuitos lógicos clássicos são formados por portas como AND, OR e NOT que recebem uma sequência de valores binários 0 e 1. Ao passar pelas portas é gerada uma saída que representa a entrada transformada pelo circuito, como ilustrado na Figura~\ref{fig:classiccircuit}~\cite{nielsen}.
 
 \begin{figure}[H]
 \centering
@@ -332,7 +332,7 @@ Dentro do espaço vetorial bidimensional os únicos vetores clássicos são os d
 \ket{\Psi} = a\ket{0} + b\ket{1} = \mqty(a\\b).
 \end{equation}
 
-Como a única exigência de $\ket{\Psi}$ é ser um vetor unitário dentro do espaço vetorial complexo, a condição de normalização se aplica a ele, tendo assim~\eqref{eq2}
+Como a única exigência de $\ket{\Psi}$ é ser um vetor unitário dentro do espaço vetorial complexo, a condição de normalização se aplica a ele, tendo assim~\eqref{eq2}~\cite{mermin}
 \begin{equation}\label{eq2}
 \abs{a}^2 + \abs{b}^2 = 1,
 \end{equation}
@@ -368,7 +368,7 @@ Generalizando para \textit{n} qubits o estado geral pode ser qualquer superposi�
 \ket{\Psi} = \sum_{0\leq x<2^n} \alpha_x\ket{x}_n \\
 \sum_{0\leq x<2^n} \abs{\alpha_x}^2 = 1.
 \end{align*}
-No contexto de computação quântica, o conjunto de $2^n$ estados clássicos, isto é, todos os possíveis produtos tensores de \textit{n} qubits $\ket{0}$ e $\ket{1}$ é chamado de base clássica. Os estados que caracterizam \textit{n} bits clássicos, estados de base clássica, são um conjunto bem limitado dos estados de \textit{n} qubits, os quais podem ser qualquer superposição com coeficientes complexos desses estados de base clássica.
+No contexto de computação quântica, o conjunto de $2^n$ estados clássicos, isto é, todos os possíveis produtos tensores de \textit{n} qubits $\ket{0}$ e $\ket{1}$ é chamado de base clássica. Os estados que caracterizam \textit{n} bits clássicos, estados de base clássica, são um conjunto bem limitado dos estados de \textit{n} qubits, os quais podem ser qualquer superposição com coeficientes complexos desses estados de base clássica~\cite{mermin}.
 
 Se tivermos dois qubits, um no estado $\ket{\Psi} = a'\ket{0} + b'\ket{1}$ e outro no estado $\ket{\Phi} = c'\ket{0} + d'\ket{1}$, então o estado de 2-qubits $\ket{\Psi}$ do par é o produto tensorial dos estados individuais,
 \begin{equation}\label{eq7}
@@ -385,7 +385,7 @@ Com \eqref{eq7} e a condição de normalização temos
 \abs{a'}^2 + \abs{b'}^2 = 1
 \end{align*}
 
-Note que um estado geral de 2-qubit \eqref{eq3} é da forma especial \eqref{eq7} se e somente se $a'\vdot d'=b'\vdot c'$. Como as quatro amplitudes seguem a condição de normalização \eqref{eq4}, essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \eqref{eq7} de dois estados de 1-qubit. O mesmo é verdade para estados de n-qubits. Enquanto o estado geral de n bits clássicos é um dos $2^n$ produtos de $\ket{0}$s e $\ket{1}$s, o estado geral de n-qubits é a superposição desses $2^n$ produtos e não pode ser expresso como um produto de qualquer conjunto de estados de 1-qubit. Esse não produto de estados de dois ou mais qubits é chamado de entrelaçamento.
+Note que um estado geral de 2-qubit \eqref{eq3} é da forma especial \eqref{eq7} se e somente se $a'\vdot d'=b'\vdot c'$. Como as quatro amplitudes seguem a condição de normalização \eqref{eq4}, essa relação não se mantém, e o estado geral de 2-qubit é diferente do estado geral de 2 bits clássicos, ele não é um produto \eqref{eq7} de dois estados de 1-qubit. O mesmo é verdade para estados de n-qubits. Enquanto o estado geral de n bits clássicos é um dos $2^n$ produtos de $\ket{0}$s e $\ket{1}$s, o estado geral de n-qubits é a superposição desses $2^n$ produtos e não pode ser expresso como um produto de qualquer conjunto de estados de 1-qubit~\cite{mermin}. Esse não produto de estados de dois ou mais qubits é chamado de entrelaçamento.
 
 \section{Portas quânticas}
 Assim como um computador clássico é formado de circuitos com portas lógicas, um computador quântico também é formado por circuitos. Porém, este último possui portas quânticas~\cite{nielsen}, que definem as operações básicas que podemos realizar em qubits. Essas portas podem ser representadas graficamente através de circuitos, como visto na Figura~\ref{fig:portaQuantica}, ou matematicamente por matrizes, como visto na equação~\eqref{eqPortas}.
@@ -420,7 +420,7 @@ I\ket{\Psi} = \mqty(1&0\\0&1)\mqty(a\\b) = \mqty(1 \vdot a+0 \vdot b \\0 \vdot a
 \end{align*}
 
 \subsection{NOT} 
-Considerando as portas de um único bit, a única porta clássica é a porta NOT a qual faz com que os bits 0 e 1 se invertam. Imagine o mesmo processo que recebe o estado $\ket{0}$ e retorna o estado $\ket{1}$, e vice versa. Este processo seria um bom candidato para a porta quântica análoga a NOT clássica. Entretanto, especificando a ação sobre os estados $\ket{0}$ e $\ket{1}$ não nos diz nada sobre o que aconteceria sobre a superposição dos mesmos. Na verdade, a porta quântica NOT age linearmente, ou seja, recebe o estado $a\ket{0} + b\ket{1}$ e retorna $b\ket{0} + a\ket{1}$, assim invertendo as amplitudes do qubit. A porta quântica NOT pode ser representada graficamente pela Figura~\ref{fig:not} e um outro modo conveniente de representá-la é em forma de matriz \eqref{eq2x}.
+Considerando as portas de um único bit, a única porta clássica é a porta NOT a qual faz com que os bits 0 e 1 se invertam. Imagine o mesmo processo que recebe o estado $\ket{0}$ e retorna o estado $\ket{1}$, e vice versa. Este processo seria um bom candidato para a porta quântica análoga a NOT clássica. Entretanto, especificando a ação sobre os estados $\ket{0}$ e $\ket{1}$ não nos diz nada sobre o que aconteceria sobre a superposição dos mesmos. Na verdade, a porta quântica NOT age linearmente, ou seja, recebe o estado $a\ket{0} + b\ket{1}$ e retorna $b\ket{0} + a\ket{1}$, assim invertendo as amplitudes do qubit~\cite{nielsen}. A porta quântica NOT pode ser representada graficamente pela Figura~\ref{fig:not} e um outro modo conveniente de representá-la é em forma de matriz \eqref{eq2x}.
 
 \begin{equation}\label{eq2x}
 X =  \mqty(0&1\\1&0)
@@ -472,7 +472,7 @@ Z\ket{\Psi} = \mqty(1&0\\0&-1)\mqty(a\\b) = \mqty(1 \vdot a+0 \vdot b \\0 \vdot 
 \end{align*}
 
 \subsection{Hadamard} 
-A porta Hadamard é uma operação fundamental na computação quântica e não possui uma operação clássica equivalente. Ela pode ser representada pela Figura~\ref{fig:H} ou pela matriz~\eqref{eqH}. Essa porta transforma os qubits bases $\ket{0}$ e $\ket{1}$ para um estado de sobreposição onde $\ket{0}$ e $\ket{1}$ possuem a mesma probabilidade. Se consideramos a esfera de Bloch ela seria equivalente a realizar essa operação sobre ela, isto é uma rotação da esfera no eixo Y de $90^o$ e em seguida uma rotação no eixo X de $180^o$, como é mostrado na Figura~\ref{fig:h_sphere}.
+A porta Hadamard é uma operação fundamental na computação quântica e não possui uma operação clássica equivalente. Ela pode ser representada pela Figura~\ref{fig:H} ou pela matriz~\eqref{eqH}. Essa porta transforma os qubits bases $\ket{0}$ e $\ket{1}$ para um estado de sobreposição onde $\ket{0}$ e $\ket{1}$ possuem a mesma probabilidade. Se consideramos a esfera de Bloch ela seria equivalente a realizar essa operação sobre ela, isto é uma rotação da esfera no eixo Y de $90^o$ e em seguida uma rotação no eixo X de $180^o$, como é mostrado na Figura~\ref{fig:h_sphere}~\cite{nielsen}.
 
 \begin{figure}[H]
 \centering
@@ -500,7 +500,7 @@ H\ket{\Psi} = \frac{1}{\sqrt{2}}\mqty(1&1\\1&-1)\mqty(a\\b) = \frac{1}{\sqrt{2}}
 \end{equation}
 
 \subsection{CNOT} \label{sec:cnot}
-A operação CNOT é uma porta de dois qubits conhecidos como controle e alvo, representada pela matriz~\eqref{eqCNOT} ou pela Figura~\ref{fig:CNOT}, na qual a linha de cima representa o qubit de controle e a de baixo o qubit alvo. A porta CNOT funciona da seguinte maneira: dados dois qubits, $\ket{x}$ e $\ket{y}$, a matriz C mantém o valor de $\ket{y}$ caso $\ket{x}$ seja igual a $\ket{0}$ e caso $\ket{x}$ seja igual a $\ket{1}$ ela inverte o valor de $\ket{y}$, como é mostrado em~\eqref{eqFullCNOT}.
+A operação CNOT é uma porta de dois qubits conhecidos como controle e alvo, representada pela matriz~\eqref{eqCNOT} ou pela Figura~\ref{fig:CNOT}, na qual a linha de cima representa o qubit de controle e a de baixo o qubit alvo~\cite{mermin}. A porta CNOT funciona da seguinte maneira: dados dois qubits, $\ket{x}$ e $\ket{y}$, a matriz C mantém o valor de $\ket{y}$ caso $\ket{x}$ seja igual a $\ket{0}$ e caso $\ket{x}$ seja igual a $\ket{1}$ ela inverte o valor de $\ket{y}$, como é mostrado em~\eqref{eqFullCNOT}.
 \begin{equation}\label{eqCNOT}
 C =  \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0)
 \end{equation}
@@ -524,7 +524,7 @@ C\ket{\Psi} = \mqty(1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0)\mqty(a\\b\\c\\d) =
 \end{equation}
 
 \subsection{Medição} \label{sec:medicao}
-Outra porta importante é a de medição, que comumente é representada por um ``medido'', como pode ser observado na Figura~\ref{fig:medicao}. Essa operação converte um único qubit no estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ em um bit clássico probabilístico, o qual é 0 com uma probabilidade de $\abs{a}^2$, ou 1 com uma probabilidade $\abs{b}^2$. Para fazer essa diferenciação entre qubit e bit clássico em um circuito lógico quântico, um traço representa um qubit e um traço duplo um bit clássico.
+Outra porta importante é a de medição, que comumente é representada por um ``medido'', como pode ser observado na Figura~\ref{fig:medicao}. Essa operação converte um único qubit no estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ em um bit clássico probabilístico, o qual é 0 com uma probabilidade de $\abs{a}^2$, ou 1 com uma probabilidade $\abs{b}^2$~\cite{mermin}. Para fazer essa diferenciação entre qubit e bit clássico em um circuito lógico quântico, um traço representa um qubit e um traço duplo um bit clássico.
 
 Esta é uma porta trivial em um circuito clássico, normalmente nem representada, sendo uma das maiores diferenças entre circuitos quânticos e clássicos.
 
@@ -565,7 +565,7 @@ A \otimes I (\ket{\Psi_1} \otimes \ket{\Psi_2} = \\
   A(\ket{\Psi_1} \otimes \ket{\Psi_2})
 \end{align*}
 
-Agora no caso de duas operações transformadas, dadas as operações A em $\ket{\Psi_1}$ e B em $\ket{\Psi_2}$, temos $C = A\ket{\Psi_1} \otimes I\ket{\Psi_2}$ e $B_{12} = I\ket{\Psi_1} \otimes B\ket{\Psi_2}$.
+Agora no caso de duas operações transformadas, dadas as operações A em $\ket{\Psi_1}$ e B em $\ket{\Psi_2}$, temos $C = A\ket{\Psi_1} \otimes I\ket{\Psi_2}$ e $B_{12} = I\ket{\Psi_1} \otimes B\ket{\Psi_2}$~\cite{mermin}.
 
 Assim,
 \begin{align*}
@@ -576,7 +576,7 @@ A\ket{\Psi_1} \otimes B\ket{\Psi_2}
 
 \section{Código Superdenso} \label{sec:superdenso}
 
-Apesar de uma quantidade infinita de informações serem necessárias para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo no qual alguém que tenha adquirido um qubit possa descobrir o valor de suas amplitudes. Se Alice prepara um qubit no estado $\ket{\Psi}$ e o envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação.
+Apesar de uma quantidade infinita de informações serem necessárias para especificar o estado $\ket{\Psi}=a\ket{0}+b\ket{1}$ de um único qubit, não existe um modo no qual alguém que tenha adquirido um qubit possa descobrir o valor de suas amplitudes. Se Alice prepara um qubit no estado $\ket{\Psi}$ e o envia para Bob, tudo que ele pode fazer é aplicar uma transformação unitária à sua escolha e fazer a medição do qubit, chegando ao valor 0 ou 1. O máximo que Alice pode comunicar para Bob enviando um único qubit é um único bit de informação~\cite{mermin}.
 
 E para esse problema existe o código superdenso, seu protocolo consiste de 3 usuários. Alice, que deseja enviar 2 bits clássicos para Bob utilizando somente um qubit e Eve que fará a inicialização do sistema. Usaremos algumas das portas citadas nas seções \ref{sec:identidade} a \ref{sec:medicao} para explicar o código superdenso.
 
