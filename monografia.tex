@@ -12,6 +12,7 @@
 \usepackage{physics}
 \usepackage[export]{adjustbox}
 \usepackage{float}
+\usepackage{pdfpages}
 
 \linespread{1.5} 
 \setlength{\hoffset}{-1in}
@@ -87,7 +88,6 @@ Computer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    FOLHA DE ROSTO
-
 \begin{center}
 
 \MakeUppercase{\nome}
@@ -118,11 +118,11 @@ Niterói - RJ \\
 \end{center}
 
 \newpage
-
+\includepdf[pages={1},offset=25mm 0mm]{ficha-catalografica.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    FICHA CATALOGRÁFICA
 
 \newpage
-
+\includepdf[pages={1},offset=30mm -5mm]{folha-aprovacao.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    FOLHA DE APROVAÇÃO
 
 \newpage
@@ -859,31 +859,40 @@ Com o deploy da sua aplicação feito basta acessar a url da aplicação acessan
 
 O projeto alcançou o objetivo traçado ao criar um simulador web de circuito quântico. O código gerado se encontra no GitHub: \url{https://github.com/iblackman/quantum-circuit-simulator}.
 
-Na Figura~\ref{fig:resHtml} podemos ver uma parte do código HTML produzido, que cria a área dos inputs de tempo das portas, as portas a serem arrastadas, o circuito e a parte onde é mostrado o resultado.
+Na Figura~\ref{fig:step01} podemos ver o simulador recém aberto com todos os campos de estimativa de tempo gasto das portas zerados, o circuito com tamanho de 0 quibits e sem nenhum resulado.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.35]{index.png}
-\caption{Parte do HTML}
-\label{fig:resHtml}
+\includegraphics[scale=0.45]{step01.png}
+\caption{Captura de tela com o simulador recém aberto}
+\label{fig:step01}
 \end{figure}
 
-Já na Figura~\ref{fig:resJavascript} podemos ver uma parte do código Javascript com a função de \textit{Drop} criada, como descrito na seção~\ref{sec:dragdrop}.
+Na Figura~\ref{fig:step02} já se pode notar que o preenchimento dos campos de estimativa de tempo gasto das portas foi preenchido e o tamanho do circuito foi acrescido em 1 qubit com o apertar do botão ``Adicionar qubit'', para reduzir o número de qubits basta clicar no botão remover ao lado de cada linha do circuito.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.43]{javascript.png}
-\caption{Parte do Javascript}
-\label{fig:resJavascript}
+\includegraphics[scale=0.45]{step02.png}
+\caption{Captura de tela após preenchimento dos campos e aumento do circuito}
+\label{fig:step02}
 \end{figure}
 
-Finalmente, na Figura~\ref{fig:resPython} está sendo ilustrado uma parte do código Python que faz o cálculo do circuito quântico montado, gerando o resultado do qubit final.
+Já na Figura~\ref{fig:step03} é ilustrado o simulador com um circuito montado através da adição de mais qubits ao circuito e do arrastar das portas. Ou com o clique em um dos botões do Protocolo Superdenso que já carrega alguns exemplos de circuitos já prontos.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.40]{view.png}
-\caption{Parte do programa em Python}
-\label{fig:resPython}
+\includegraphics[scale=0.45]{step03.png}
+\caption{Captura de tela após contrução do circuito}
+\label{fig:step03}
+\end{figure}
+
+Na Figura~\ref{fig:step04} pode-se notar que após clique do botão calcular o resultado é mostrado na parte inferior da pagina trazendo os valores e seus probabilidades além da estimativa de tempo de execução do circuito.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{step04.png}
+\caption{Captura de tela após clique no botão calcular com os resultados na tela}
+\label{fig:step04}
 \end{figure}
 
 \chapter{Conclusão e Trabalhos Futuros}
